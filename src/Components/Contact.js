@@ -25,7 +25,7 @@ const Contact = () => {
 
     if (firstName && lastName && phone && email && address && message) {
       const res = fetch(
-        "https://reactfirebasewebsite-default-rtdb.firebaseio.com/userDataRecords.json",
+        "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
         {
           method: "POST",
           headers: {
@@ -72,8 +72,9 @@ const Contact = () => {
                     Connect With Our <br /> Sales Team.
                   </h1>
                   <p className="main-hero-para">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Deserunt eaque alias similique.
+                    Welcome  Admin 
+                    <br></br>
+                    Enter Faculty Information
                   </p>
                   <figure>
                     <img
