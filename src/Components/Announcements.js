@@ -3,12 +3,9 @@ import React, { useState } from "react";
 const Announcements
  = () => {
   const [userData, setUserData] = useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    email: "",
-    address: "",
-    Education: "",
+    Title: "",
+    Announcement: "",
+   
   });
 
   let name, value;
@@ -16,41 +13,35 @@ const Announcements
     name = event.target.name;
     value = event.target.value;
 
-    setUserData({ ...userData, [name]: value });
+    setUserData({...userData, [name]: value });
   };
 
   // connect with firebase
   const submitData = async (event) => {
     event.preventDefault();
-    const { firstName, lastName, phone, email, address, Education } = userData;
+    const { Title, Announcement } = userData;
 
-    if (firstName && lastName && phone && email && address && Education) {
+    if (Title && Announcement) {
       const res = fetch(
-        "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
+        "https://ssna-admin-default-rtdb.firebaseio.com/Announcements.json",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            firstName,
-            lastName,
-            phone,
-            email,
-            address,
-            Education,
+            Title,
+            Announcement,
+           
           }),
         }
       );
 
       if (res) {
         setUserData({
-          firstName: "",
-          lastName: "",
-          phone: "",
-          email: "",
-          address: "",
-          Education: "",
+          Title: "",
+          Announcement: "",
+       
         });
         alert("Data Stored");
       } else {
@@ -76,15 +67,15 @@ const Announcements
                   <p className="main-hero-para">
                     
                     <br></br>
-                    Enter Faculty Information
+                    Post An Announcement
                   </p>
-                   <figure>
+                   {/* <figure>
                     <img
                        src="./images/SSNALogo.png"
                       alt="SSNA logo"
                       className="img-fluid"
                     /> 
-                  </figure> 
+                  </figure>  */}
                 </div>
 
                 {/* right side contact form  */}
@@ -94,79 +85,26 @@ const Announcements
                       <div className="col-12 col-lg-6 contact-input-feild">
                         <input
                           type="text"
-                          name="firstName"
+                          name="Title"
                           id=""
                           className="form-control"
-                          placeholder="First Name"
-                          value={userData.firstName}
+                          placeholder="Announcement Title"
+                          value={userData.Title}
                           onChange={postUserData}
                         />
                       </div>
                       <div className="col-12 col-lg-6 contact-input-feild">
                         <input
                           type="text"
-                          name="lastName"
+                          name="Announcement"
                           id=""
                           className="form-control"
-                          placeholder="Last Name"
-                          value={userData.lastName}
+                          placeholder="Announcement"
+                          value={userData.Announcement}
                           onChange={postUserData}
                         />
                       </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-12 col-lg-6 contact-input-feild">
-                        <input
-                          type="text"
-                          name="phone"
-                          id=""
-                          className="form-control"
-                          placeholder="Phone Number "
-                          value={userData.phone}
-                          onChange={postUserData}
-                        />
-                      </div>
-                      <div className="col-12 col-lg-6 contact-input-feild">
-                        <input
-                          type="text"
-                          name="email"
-                          id=""
-                          className="form-control"
-                          placeholder="Email ID"
-                          value={userData.email}
-                          onChange={postUserData}
-                        />
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-12 contact-input-feild">
-                        <input
-                          type="text"
-                          name="address"
-                          id=""
-                          className="form-control"
-                          placeholder="Office Address"
-                          value={userData.address}
-                          onChange={postUserData}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col-12 ">
-                        <input
-                          type="text"
-                          name="Education"
-                          id=""
-                          className="form-control"
-                          placeholder="Education"
-                          value={userData.Education}
-                          onChange={postUserData}
-                        />
-                      </div>
-                    </div>
-                   
-
+                    </div>                                    
                     <button
                       type="submit"
                       className="btn btn-style w-100"
