@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-const FacultyInfo
- = () => {
+const FacultyInfo = () => {
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -9,6 +8,7 @@ const FacultyInfo
     email: "",
     address: "",
     Education: "",
+    Department:"",
   });
 
   let name, value;
@@ -22,9 +22,9 @@ const FacultyInfo
   // connect with firebase
   const submitData = async (event) => {
     event.preventDefault();
-    const { firstName, lastName, phone, email, address, Education } = userData;
+    const { firstName, lastName, phone, email, address, Education,Department } = userData;
 
-    if (firstName && lastName && phone && email && address && Education) {
+    if (firstName && lastName && phone && email && address && Education && Department) {
       const res = fetch(
         "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
         {
@@ -39,6 +39,7 @@ const FacultyInfo
             email,
             address,
             Education,
+            Department
           }),
         }
       );
@@ -51,6 +52,7 @@ const FacultyInfo
           email: "",
           address: "",
           Education: "",
+          Department:"",
         });
         alert("Data Stored");
       } else {
@@ -153,7 +155,7 @@ const FacultyInfo
                     </div>
 
                     <div className="row">
-                      <div className="col-12 ">
+                      <div className="col-12 contact-input-feild">
                         <input
                           type="text"
                           name="Education"
@@ -161,6 +163,21 @@ const FacultyInfo
                           className="form-control"
                           placeholder="Education"
                           value={userData.Education}
+                          onChange={postUserData}
+                        />
+                      </div>
+                    </div>
+                   
+
+                    <div className="row">
+                      <div className="col-12 contact-input-feild">
+                        <input
+                          type="text"
+                          name="Department"
+                          id=""
+                          className="form-control"
+                          placeholder="Department"
+                          value={userData.Department}
                           onChange={postUserData}
                         />
                       </div>
@@ -184,5 +201,4 @@ const FacultyInfo
   );
 };
 
-export default FacultyInfo
-;
+export default FacultyInfo;
