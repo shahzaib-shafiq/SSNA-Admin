@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-const Contact = () => {
+const Announcements
+ = () => {
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -183,4 +184,5 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Announcements
+;

@@ -1,10 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
-import Contact from './Components/Contact'
+import FacultyInfo from './Components/FacultyInfo'
 function App() {
   return (
     <div className="App">
-<Contact/>
+<FacultyInfo/>
       
     </div>
   );
