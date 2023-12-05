@@ -7,7 +7,7 @@ const Contact = () => {
     phone: "",
     email: "",
     address: "",
-    message: "",
+    Education: "",
   });
 
   let name, value;
@@ -21,9 +21,9 @@ const Contact = () => {
   // connect with firebase
   const submitData = async (event) => {
     event.preventDefault();
-    const { firstName, lastName, phone, email, address, message } = userData;
+    const { firstName, lastName, phone, email, address, Education } = userData;
 
-    if (firstName && lastName && phone && email && address && message) {
+    if (firstName && lastName && phone && email && address && Education) {
       const res = fetch(
         "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
         {
@@ -37,7 +37,7 @@ const Contact = () => {
             phone,
             email,
             address,
-            message,
+            Education,
           }),
         }
       );
@@ -49,7 +49,7 @@ const Contact = () => {
           phone: "",
           email: "",
           address: "",
-          message: "",
+          Education: "",
         });
         alert("Data Stored");
       } else {
@@ -69,20 +69,21 @@ const Contact = () => {
               <div className="row">
                 <div className="contact-leftside col-12 col-lg-5">
                   <h1 className="main-heading fw-bold">
-                    Connect With Our <br /> Sales Team.
+                  Welcome   <br /> Admin 
                   </h1>
+                  
                   <p className="main-hero-para">
-                    Welcome  Admin 
+                    
                     <br></br>
                     Enter Faculty Information
                   </p>
-                  <figure>
+                   <figure>
                     <img
-                      src="./images/hero1.jpg"
-                      alt="contatUsImg"
+                       src="./images/SSNALogo.png"
+                      alt="SSNA logo"
                       className="img-fluid"
-                    />
-                  </figure>
+                    /> 
+                  </figure> 
                 </div>
 
                 {/* right side contact form  */}
@@ -143,7 +144,7 @@ const Contact = () => {
                           name="address"
                           id=""
                           className="form-control"
-                          placeholder="Add Address"
+                          placeholder="Office Address"
                           value={userData.address}
                           onChange={postUserData}
                         />
@@ -154,29 +155,16 @@ const Contact = () => {
                       <div className="col-12 ">
                         <input
                           type="text"
-                          name="message"
+                          name="Education"
                           id=""
                           className="form-control"
-                          placeholder="Enter Your Message"
-                          value={userData.message}
+                          placeholder="Education"
+                          value={userData.Education}
                           onChange={postUserData}
                         />
                       </div>
                     </div>
-                    <div class="form-check form-checkbox-style">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="flexCheckChecked"
-                      />
-                      <label
-                        class="form-check-label"
-                        className="main-hero-para">
-                        I agree that the thapatechnicalpay may contact me at the
-                        email address or phone number above
-                      </label>
-                    </div>
+                   
 
                     <button
                       type="submit"
