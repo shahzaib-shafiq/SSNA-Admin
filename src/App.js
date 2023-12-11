@@ -9,7 +9,7 @@ import Registration from './Components/Registration';
 function App() {
   return (
     <div className="App">
-  {/* <FacultyInfo/> */}
+  <FacultyInfo/>
     <Announcements/>
 
     {/* <Registration/> */}

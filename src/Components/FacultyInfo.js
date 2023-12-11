@@ -105,7 +105,7 @@ const FacultyInfo = () => {
   const handleUpload=(e)=>{
     console.log(e.target.files[0])
 
-    const imgs=ref(imagedb,`Imgs${v4()}`)
+  const imgs=ref(imagedb,`FacultyImgs/${v4()}`)
   uploadBytes(imgs,e.target.files[0]).then(data=>{
     console.log(data,"imgs")
     getDownloadURL(data.ref).then(val=>{
@@ -115,6 +115,8 @@ const FacultyInfo = () => {
   })
   
   }
+
+
   return (
     <>
       <section className="contactus-section">
@@ -190,16 +192,18 @@ const FacultyInfo = () => {
                     <div className="row">
                       <div className="col-12 col-lg-6 contact-input-feild">
                         <input
-                          type="text"
-                          name="phone"
-                          maxLength="3"
-                          id=""
+                          type="tel"
+                          inputMode="numeric"
+                          name="phone"   
+                          maxLength={3}                  
                           className="form-control"
                           placeholder="Phone Number "
                           value={userData.phone}
                           onChange={postUserData}
 
                         />
+
+                        
                       </div>
                       <div className="col-12 col-lg-6 contact-input-feild">
                         <input
