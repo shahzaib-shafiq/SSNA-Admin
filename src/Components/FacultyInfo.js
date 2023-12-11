@@ -2,13 +2,16 @@ import React, { useState } from "react";
 
 const FacultyInfo = () => {
   const [userData, setUserData] = useState({
-    firstName: "",
-    lastName: "",
+    Name: "",
     phone: "",
     email: "",
     address: "",
     Education: "",
-    Department:"",
+    University:"",
+    Department: "",
+    areaOfIntrest:"",
+    id:"",
+
   });
 
   let name, value;
@@ -22,9 +25,9 @@ const FacultyInfo = () => {
   // connect with firebase
   const submitData = async (event) => {
     event.preventDefault();
-    const { firstName, lastName, phone, email, address, Education,Department } = userData;
+    const {Name, phone, email, address, Education, Department ,University,areaOfIntrest} = userData;
 
-    if (firstName && lastName && phone && email && address && Education && Department) {
+    if (Name&& phone && email && address && Education && Department&&University&&areaOfIntrest) {
       const res = fetch(
         "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
         {
@@ -33,26 +36,28 @@ const FacultyInfo = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            firstName,
-            lastName,
+            Name,
             phone,
             email,
             address,
             Education,
-            Department
+            Department,
+            University,
+            areaOfIntrest
           }),
         }
       );
 
       if (res) {
         setUserData({
-          firstName: "",
-          lastName: "",
+          Name: "",
           phone: "",
           email: "",
           address: "",
           Education: "",
-          Department:"",
+          Department: "",
+          University:"",
+          areaOfIntrest:""
         });
         alert("Data Stored");
       } else {
@@ -72,46 +77,43 @@ const FacultyInfo = () => {
               <div className="row">
                 <div className="contact-leftside col-12 col-lg-5">
                   <h1 className="main-heading fw-bold">
-                  Welcome   <br /> Admin 
+                    Welcome   <br /> Admin
                   </h1>
-                  
+
                   <p className="main-hero-para">
-                    
+
                     <br></br>
                     Enter Faculty Information
                   </p>
-                   <figure>
-                    <img
+                  <figure>
+                    {/* <img
                        src="./images/SSNALogo.png"
                       alt="SSNA logo"
                       className="img-fluid"
-                    /> 
-                  </figure> 
+                    />  */}
+                  </figure>
                 </div>
 
                 {/* right side contact form  */}
                 <div className="contact-rightside col-12 col-lg-7">
                   <form method="POST">
+
+
+                    {/* img
+                 id 
+                    */}
+
+
                     <div className="row">
+
                       <div className="col-12 col-lg-6 contact-input-feild">
                         <input
                           type="text"
-                          name="firstName"
+                          name="Name"
                           id=""
                           className="form-control"
-                          placeholder="First Name"
-                          value={userData.firstName}
-                          onChange={postUserData}
-                        />
-                      </div>
-                      <div className="col-12 col-lg-6 contact-input-feild">
-                        <input
-                          type="text"
-                          name="lastName"
-                          id=""
-                          className="form-control"
-                          placeholder="Last Name"
-                          value={userData.lastName}
+                          placeholder="Full Name"
+                          value={userData.Name}
                           onChange={postUserData}
                         />
                       </div>
@@ -167,9 +169,10 @@ const FacultyInfo = () => {
                         />
                       </div>
                     </div>
-                   
+
 
                     <div className="row">
+
                       <div className="col-12 contact-input-feild">
                         <input
                           type="text"
@@ -182,7 +185,44 @@ const FacultyInfo = () => {
                         />
                       </div>
                     </div>
-                   
+
+
+                    {/* New Daata */}
+                    <div className="row">
+
+                      <div className="col-12 contact-input-feild">
+                        <input
+                          type="text"
+                          name="University"
+                          id=""
+                          className="form-control"
+                          placeholder="University"
+                          value={userData.University}
+                          onChange={postUserData}
+                        />
+
+
+                      </div>
+                    </div>
+
+
+                    <div className="row">
+
+                      <div className="col-12 contact-input-feild">
+                        <input
+                          type="text"
+                          name="areaOfIntrest"
+                          id=""
+                          className="form-control"
+                          placeholder="Area of Intrest"
+                          value={userData.Area_of_Intrest}
+                          onChange={postUserData}
+                        />
+
+
+                      </div>
+                    </div>
+
 
                     <button
                       type="submit"
