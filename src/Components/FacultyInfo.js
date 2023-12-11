@@ -156,33 +156,50 @@ const FacultyInfo = () => {
                       </div>
                     </div>
 
+
+
                     <div className="row">
                       <div className="col-12 contact-input-feild">
-                        <input
-                          type="text"
+                        <select
                           name="Education"
                           id=""
-                          className="form-control"
-                          placeholder="Education"
+                          className="form-control wider-dropdown"
                           value={userData.Education}
                           onChange={postUserData}
-                        />
+                        >
+                          <option value="">Qualification</option>
+                          <option value="BS">BS</option>
+                          <option value="MS">MS</option>
+                          <option value="PHD">PHD</option>
+                        </select>
+
                       </div>
                     </div>
 
 
-                    <div className="row">
 
+                    <div className="row">
                       <div className="col-12 contact-input-feild">
-                        <input
-                          type="text"
+                        <select
                           name="Department"
                           id=""
-                          className="form-control"
-                          placeholder="Department"
+                          className="form-control wider-dropdown"
                           value={userData.Department}
                           onChange={postUserData}
-                        />
+                        >
+                          <option value="">Department</option>
+                          <option value="CS">CS</option>
+                          <option value="SE">SE</option>
+                          <option value="EE">EE</option>
+                          <option value="AI">AI</option>
+                          <option value="CYS">CYS</option>
+
+                          <option value="BBA">BBA</option>
+
+
+
+                        </select>
+
                       </div>
                     </div>
 
