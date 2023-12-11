@@ -8,7 +8,34 @@ export default function HomePage() {
     return (
         <div>
             <h1>Home Page</h1>
-            <button onClick={logout}>Logout</button>
+
+            <div className="col">
+
+            <button                   
+                      className="btn btn-style w-100"
+                      onClick={logout}>
+                      Add Faculty
+                    </button>
+
+
+                    <button                   
+                      className="btn btn-style w-100"
+                      onClick={logout}>
+                      Announcement
+                    </button>
+
+
+
+                    <button                   
+                      className="btn btn-style w-200"
+                      onClick={logout}>
+                      Logout
+                    </button>
+
+            
+
+                          </div>
+            
         </div>
     );
 }

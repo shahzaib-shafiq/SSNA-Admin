@@ -75,6 +75,7 @@ const Announcements
 
   return (
     <>
+
       <section className="contactus-section">
         <div className="container">
           <div className="row">
@@ -90,13 +91,7 @@ const Announcements
                     <br></br>
                     Post An Announcement
                   </p>
-                   {/* <figure>
-                    <img
-                       src="./images/SSNALogo.png"
-                      alt="SSNA logo"
-                      className="img-fluid"
-                    /> 
-                  </figure>  */}
+                  
                 </div>
 
                 {/* right side contact form  */}
@@ -157,8 +152,6 @@ const Announcements
 
                         />
                       </div>
-
-
                     </div>                                    
                     <button
                       type="submit"
@@ -177,5 +170,4 @@ const Announcements
   );
 };
 
-export default Announcements
-;
+export default Announcements;
