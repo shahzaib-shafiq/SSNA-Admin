@@ -7,27 +7,32 @@ const FacultyInfo = () => {
     email: "",
     address: "",
     Education: "",
-    University:"",
+    University: "",
     Department: "",
-    areaOfIntrest:"",
-    id:"",
+    areaOfIntrest: "",
+    id: "",
 
   });
 
   let name, value;
+
+
   const postUserData = (event) => {
     name = event.target.name;
     value = event.target.value;
+
+
 
     setUserData({ ...userData, [name]: value });
   };
 
   // connect with firebase
+
   const submitData = async (event) => {
     event.preventDefault();
-    const {Name, phone, email, address, Education, Department ,University,areaOfIntrest} = userData;
+    const { Name, phone, email, address, Education, Department, University, areaOfIntrest,id } = userData;
 
-    if (Name&& phone && email && address && Education && Department&&University&&areaOfIntrest) {
+    if (Name && phone && email && address && Education && Department && University && areaOfIntrest,id) {
       const res = fetch(
         "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
         {
@@ -43,7 +48,8 @@ const FacultyInfo = () => {
             Education,
             Department,
             University,
-            areaOfIntrest
+            areaOfIntrest,
+            id
           }),
         }
       );
@@ -56,8 +62,9 @@ const FacultyInfo = () => {
           address: "",
           Education: "",
           Department: "",
-          University:"",
-          areaOfIntrest:""
+          University: "",
+          areaOfIntrest: "",
+          id:""
         });
         alert("Data Stored");
       } else {
@@ -67,6 +74,22 @@ const FacultyInfo = () => {
       alert("plz fill the data");
     }
   };
+
+  // // JavaScript function to validate email format
+  // const validateEmail = (e) => {
+  //   const { value } = e.target;
+  //   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  //   if (!emailRegex.test(value)) {
+  //     // Invalid email format, handle the error (e.g., show an error message)
+  //     console.log('Please enter a valid email address.');
+  //     // You can set an error state or display an error message to the user
+  //   } else {
+  //     // Valid email format
+  //     console.log('Valid email address.');
+  //     // Clear error state or hide error message if previously shown
+  //   }
+  // };
 
   return (
     <>
@@ -104,6 +127,24 @@ const FacultyInfo = () => {
                     */}
 
 
+
+<div className="row">
+
+<div className="col-12 col-lg-6 contact-input-feild">
+  <input
+    type="text"
+    name="id"
+    maxLength="6"
+    id=""
+    className="form-control"
+    placeholder="EID"
+    value={userData.id}
+    onChange={postUserData}
+  />
+</div>
+</div>
+
+
                     <div className="row">
 
                       <div className="col-12 col-lg-6 contact-input-feild">
@@ -119,6 +160,7 @@ const FacultyInfo = () => {
                         />
                       </div>
                     </div>
+
                     <div className="row">
                       <div className="col-12 col-lg-6 contact-input-feild">
                         <input
@@ -130,6 +172,7 @@ const FacultyInfo = () => {
                           placeholder="Phone Number "
                           value={userData.phone}
                           onChange={postUserData}
+
                         />
                       </div>
                       <div className="col-12 col-lg-6 contact-input-feild">
@@ -141,6 +184,7 @@ const FacultyInfo = () => {
                           placeholder="Email ID"
                           value={userData.email}
                           onChange={postUserData}
+
                         />
                       </div>
                     </div>
@@ -196,7 +240,6 @@ const FacultyInfo = () => {
                           <option value="EE">EE</option>
                           <option value="AI">AI</option>
                           <option value="CYS">CYS</option>
-
                           <option value="BBA">BBA</option>
 
 
@@ -237,7 +280,7 @@ const FacultyInfo = () => {
                           id=""
                           className="form-control"
                           placeholder="Area of Intrest"
-                          value={userData.Area_of_Intrest}
+                          value={userData.areaOfIntrest}
                           onChange={postUserData}
                         />
 
