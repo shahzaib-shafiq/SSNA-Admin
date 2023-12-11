@@ -81,37 +81,34 @@ const FacultyInfo = () => {
                     Enter Faculty Information
                   </p>
                    <figure>
-                    <img
+                    {/* <img
                        src="./images/SSNALogo.png"
                       alt="SSNA logo"
                       className="img-fluid"
-                    /> 
+                    />  */}
                   </figure> 
                 </div>
 
                 {/* right side contact form  */}
                 <div className="contact-rightside col-12 col-lg-7">
                   <form method="POST">
+
+
+                 {/* img
+                 id 
+                    */}
+
+                    
                     <div className="row">
+                      
                       <div className="col-12 col-lg-6 contact-input-feild">
                         <input
                           type="text"
-                          name="firstName"
+                          name="Name"
                           id=""
                           className="form-control"
-                          placeholder="First Name"
-                          value={userData.firstName}
-                          onChange={postUserData}
-                        />
-                      </div>
-                      <div className="col-12 col-lg-6 contact-input-feild">
-                        <input
-                          type="text"
-                          name="lastName"
-                          id=""
-                          className="form-control"
-                          placeholder="Last Name"
-                          value={userData.lastName}
+                          placeholder="Full Name"
+                          value={userData.Name}
                           onChange={postUserData}
                         />
                       </div>
@@ -170,6 +167,7 @@ const FacultyInfo = () => {
                    
 
                     <div className="row">
+
                       <div className="col-12 contact-input-feild">
                         <input
                           type="text"
@@ -180,6 +178,43 @@ const FacultyInfo = () => {
                           value={userData.Department}
                           onChange={postUserData}
                         />
+                      </div>
+                    </div>
+                   
+
+{/* New Daata */}
+                    <div className="row">
+                      
+                      <div className="col-12 contact-input-feild">
+                        <input
+                          type="text"
+                          name="University"
+                          id=""
+                          className="form-control"
+                          placeholder="University"
+                          value={userData.University}
+                          onChange={postUserData}
+                        />
+
+
+                      </div>
+                    </div>
+                   
+
+                      <div className="row">
+                      
+                      <div className="col-12 contact-input-feild">
+                        <input
+                          type="text"
+                          name="Area_of_Intrest"
+                          id=""
+                          className="form-control"
+                          placeholder="Area of Intrest"
+                          value={userData.Area_of_Intrest}
+                          onChange={postUserData}
+                        />
+
+                        
                       </div>
                     </div>
                    
