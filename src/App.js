@@ -4,11 +4,13 @@ import FacultyInfo from './Components/FacultyInfo'
 import Announcements from './Components/Announcements'
 import Registration from './Components/Registration';
 
+
+
 function App() {
   return (
     <div className="App">
-  <FacultyInfo/>
-    {/* <Announcements/> */}
+  {/* <FacultyInfo/> */}
+    <Announcements/>
 
     {/* <Registration/> */}
 

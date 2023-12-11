@@ -5,7 +5,7 @@ const Announcements
   const [userData, setUserData] = useState({
     Title: "",
     Announcement: "",
-   
+    AnnouncementDate:""
   });
 
   let name, value;
@@ -19,9 +19,9 @@ const Announcements
   // connect with firebase
   const submitData = async (event) => {
     event.preventDefault();
-    const { Title, Announcement } = userData;
+    const { Title, Announcement,AnnouncementDate } = userData;
 
-    if (Title && Announcement) {
+    if (Title && Announcement&&AnnouncementDate) {
       const res = fetch(
         "https://ssna-admin-default-rtdb.firebaseio.com/Announcements.json",
         {
@@ -32,6 +32,7 @@ const Announcements
           body: JSON.stringify({
             Title,
             Announcement,
+            AnnouncementDate
            
           }),
         }
@@ -41,6 +42,7 @@ const Announcements
         setUserData({
           Title: "",
           Announcement: "",
+          AnnouncementDate: "",
        
         });
         alert("Data Stored");
@@ -86,6 +88,7 @@ const Announcements
                         <input
                           type="text"
                           name="Title"
+                          maxLength="20"
                           id=""
                           className="form-control"
                           placeholder="Announcement Title"
@@ -98,11 +101,32 @@ const Announcements
                           type="text"
                           name="Announcement"
                           id=""
+                          maxLength="100"
                           className="form-control"
                           placeholder="Announcement"
                           value={userData.Announcement}
                           onChange={postUserData}
                         />
+
+
+                      </div>
+
+                      <div className="col-12 col-lg-6 contact-input-feild">
+                        <input
+                          type="date"
+                          name="AnnouncementDate"
+                          
+                          className="form-control wider-dropdown"
+                          id="start"
+                          
+                          value={userData.AnnouncementDate}
+                          onChange={postUserData}
+
+                          min="2018-01-01"
+                          max="2050-12-31"
+                        />
+
+                        
                       </div>
                     </div>                                    
                     <button
