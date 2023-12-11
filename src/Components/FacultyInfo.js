@@ -110,6 +110,7 @@ const FacultyInfo = () => {
                         <input
                           type="text"
                           name="Name"
+                          maxLength="20"
                           id=""
                           className="form-control"
                           placeholder="Full Name"
@@ -123,6 +124,7 @@ const FacultyInfo = () => {
                         <input
                           type="text"
                           name="phone"
+                          maxLength="3"
                           id=""
                           className="form-control"
                           placeholder="Phone Number "
@@ -132,7 +134,7 @@ const FacultyInfo = () => {
                       </div>
                       <div className="col-12 col-lg-6 contact-input-feild">
                         <input
-                          type="text"
+                          type="email"
                           name="email"
                           id=""
                           className="form-control"
@@ -147,6 +149,7 @@ const FacultyInfo = () => {
                         <input
                           type="text"
                           name="address"
+                          maxLength="20"
                           id=""
                           className="form-control"
                           placeholder="Office Address"
@@ -211,6 +214,7 @@ const FacultyInfo = () => {
                         <input
                           type="text"
                           name="University"
+                          maxLength="40"
                           id=""
                           className="form-control"
                           placeholder="University"
@@ -229,6 +233,7 @@ const FacultyInfo = () => {
                         <input
                           type="text"
                           name="areaOfIntrest"
+                          maxLength="50"
                           id=""
                           className="form-control"
                           placeholder="Area of Intrest"
