@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-
+import { imagedb } from "./config";
+import {getDownloadURL, ref, uploadBytes} from 'firebase/storage'
+import {v4} from 'uuid';
 const Announcements
  = () => {
   const [userData, setUserData] = useState({
@@ -8,6 +10,7 @@ const Announcements
     AnnouncementDate:""
   });
 
+  const [img,setImg]=useState('');
   let name, value;
   const postUserData = (event) => {
     name = event.target.name;
@@ -53,6 +56,22 @@ const Announcements
       alert("plz fill the data");
     }
   };
+
+  
+  const handleUpload=(e)=>{
+    console.log(e.target.files[0])
+
+  const imgs=ref(imagedb,`AnnouncementImgs/${v4()}`)
+  uploadBytes(imgs,e.target.files[0]).then(data=>{
+    console.log(data,"imgs")
+    getDownloadURL(data.ref).then(val=>{
+      setImg(val)
+
+    })
+  })
+  
+  }
+
 
   return (
     <>
@@ -128,6 +147,18 @@ const Announcements
 
                         
                       </div>
+
+                      <div className="col-12 contact-input-feild">
+                        <input
+                          type="file"
+                          className="wider-dropdown"
+
+                          onChange={(e)=>handleUpload(e)}
+
+                        />
+                      </div>
+
+
                     </div>                                    
                     <button
                       type="submit"
