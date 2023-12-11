@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-
+import { imagedb } from "./config";
+import {getDownloadURL, ref, uploadBytes} from 'firebase/storage'
+import {v4} from 'uuid';
 const FacultyInfo = () => {
+  
+  
   const [userData, setUserData] = useState({
     Name: "",
     phone: "",
@@ -11,8 +15,11 @@ const FacultyInfo = () => {
     Department: "",
     areaOfIntrest: "",
     id: "",
-
+    
   });
+
+
+  const [img,setImg]=useState('');
 
   let name, value;
 
@@ -20,6 +27,7 @@ const FacultyInfo = () => {
   const postUserData = (event) => {
     name = event.target.name;
     value = event.target.value;
+    
 
 
 
@@ -73,6 +81,8 @@ const FacultyInfo = () => {
     } else {
       alert("plz fill the data");
     }
+
+
   };
 
   // // JavaScript function to validate email format
@@ -91,6 +101,20 @@ const FacultyInfo = () => {
   //   }
   // };
 
+
+  const handleUpload=(e)=>{
+    console.log(e.target.files[0])
+
+    const imgs=ref(imagedb,`Imgs${v4()}`)
+  uploadBytes(imgs,e.target.files[0]).then(data=>{
+    console.log(data,"imgs")
+    getDownloadURL(data.ref).then(val=>{
+      setImg(val)
+
+    })
+  })
+  
+  }
   return (
     <>
       <section className="contactus-section">
@@ -125,6 +149,8 @@ const FacultyInfo = () => {
                     {/* img
                  id 
                     */}
+
+
 
 
 
@@ -287,6 +313,21 @@ const FacultyInfo = () => {
 
                       </div>
                     </div>
+
+                    
+
+
+                      <div className="col-12 contact-input-feild">
+                        <input
+                          type="file"
+                          className="wider-dropdown"
+
+                          onChange={(e)=>handleUpload(e)}
+
+                        />
+                      </div>
+                    
+
 
 
                     <button
