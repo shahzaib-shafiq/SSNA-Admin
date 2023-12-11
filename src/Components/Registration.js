@@ -8,8 +8,8 @@ export default function Registration() {
 
     const GoogleRegistration=()=>{
         signInWithPopup(auth,provider).then((data)=>{
-setValue(data.user.email)
-localStorage.setItem("email",data.user.email)
+        setValue(data.user.email)
+        localStorage.setItem("email",data.user.email)
         })
     }
 

@@ -104,6 +104,34 @@ const Announcements
                           onChange={postUserData}
                         />
                       </div>
+
+
+                      <div className="col-12 col-lg-6 contact-input-feild">
+                        <input
+                          type="text"
+                          name="Announcement"
+                          id=""
+                          className="form-control"
+                          placeholder="Date"
+                          value={userData.Announcement}
+                          onChange={postUserData}
+                        />
+                      </div>
+
+                      <div className="col-12 col-lg-6 contact-input-feild">
+                        <input
+                          type="text"
+                          name="Announcement"
+                          id=""
+                          className="form-control"
+                          placeholder="Img"
+                          value={userData.Announcement}
+                          onChange={postUserData}
+                        />
+                      </div>
+
+
+                      
                     </div>                                    
                     <button
                       type="submit"
