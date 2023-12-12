@@ -6,16 +6,16 @@ import { signUpSchema } from "../schemas";
 
 
 const initialValues = {
-    name: "",
-    phone: "",
-    email: "",
-    address: "",
-    Education: "",
-    University: "",
-    Department: "",
-    areaOfIntrest: "",
-    id: ""
-  
+  name: "",
+  phone: "",
+  email: "",
+  address: "",
+  Education: "",
+  University: "",
+  Department: "",
+  areaOfIntrest: "",
+  id: ""
+
 };
 
 const FacultyData = () => {
@@ -30,7 +30,7 @@ const FacultyData = () => {
     initialValues,
     validationSchema: signUpSchema,
     onSubmit: (values, action) => {
-      const { name, phone, email, address, Education, Department, University, areaOfIntrest, id} = values;   
+      const { name, phone, email, address, Education, Department, University, areaOfIntrest, id } = values;
 
       if (name && phone && email && address && Education && Department && University && areaOfIntrest, id) {
         const res = fetch(
@@ -41,15 +41,15 @@ const FacultyData = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              name, 
+              name,
               phone,
-               email,
-                address,
-                 Education,
-                  Department,
-                   University, 
-                   areaOfIntrest,
-                    id
+              email,
+              address,
+              Education,
+              Department,
+              University,
+              areaOfIntrest,
+              id
             }),
           }
         );
@@ -60,7 +60,7 @@ const FacultyData = () => {
     },
   });
 
-   return (
+  return (
     <>
       <GlobalStyle />
       <Wrapper>
@@ -91,6 +91,9 @@ const FacultyData = () => {
                       <p className="form-error">{errors.name}</p>
                     ) : null}
                   </div>
+
+
+                  
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
                       Email
@@ -109,7 +112,159 @@ const FacultyData = () => {
                       <p className="form-error">{errors.email}</p>
                     ) : null}
                   </div>
-                 
+
+
+
+
+                  <div className="input-block">
+                    <label htmlFor="email" className="input-label">
+                      Extension
+                    </label>
+                    <input
+                      type="number"
+                      autoComplete="off"
+                      name="phone"
+                      id="phone"
+                      placeholder="Ext"
+                      value={values.phone}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.email && touched.email ? (
+                      <p className="form-error">{errors.email}</p>
+                    ) : null}
+                  </div>
+
+
+
+
+                  <div className="input-block">
+                    <label htmlFor="email" className="input-label">
+                      Office Adress
+                    </label>
+                    <input
+                      type="text"
+                      autoComplete="off"
+                      name="address"
+                      id="address"
+                      placeholder="Office Address"
+                      value={values.address}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.email && touched.email ? (
+                      <p className="form-error">{errors.email}</p>
+                    ) : null}
+                  </div>
+
+
+                  <div className="input-block">
+                    <label htmlFor="email" className="input-label">
+                      Education
+                    </label>
+                    <input
+                      type="text"
+                      autoComplete="off"
+                      name="Education"
+                      id="Education"
+                      placeholder="Education"
+                      value={values.Education}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.email && touched.email ? (
+                      <p className="form-error">{errors.email}</p>
+                    ) : null}
+                  </div>
+
+
+                  <div className="input-block">
+                    <label htmlFor="email" className="input-label">
+                      Department
+                    </label>
+                    <input
+                      type="text"
+                      autoComplete="off"
+                      name="Department"
+                      id="Department"
+                      placeholder="Department"
+                      value={values.Department}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.email && touched.email ? (
+                      <p className="form-error">{errors.email}</p>
+                    ) : null}
+                  </div>
+
+
+                  
+                  <div className="input-block">
+                    <label htmlFor="email" className="input-label">
+                      University
+                    </label>
+                    <input
+                      type="text"
+                      autoComplete="off"
+                      name="University"
+                      id="University"
+                      placeholder="University"
+                      value={values.University}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.email && touched.email ? (
+                      <p className="form-error">{errors.email}</p>
+                    ) : null}
+                  </div>
+
+
+                  
+                  <div className="input-block">
+                    <label htmlFor="email" className="input-label">
+                      Area of Intrest
+                    </label>
+                    <input
+                      type="text"
+                      autoComplete="off"
+                      name="areaOfIntrest"
+                      id="areaOfIntrest"
+                      placeholder="Area of Intrest"
+                      value={values.areaOfIntrest}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.email && touched.email ? (
+                      <p className="form-error">{errors.email}</p>
+                    ) : null}
+                  </div>
+
+
+                  <div className="input-block">
+                    <label htmlFor="email" className="input-label">
+                      Faculty ID
+                    </label>
+                    <input
+                      type="text"
+                      autoComplete="off"
+                      name="id"
+                      id="id"
+                      placeholder="Faculty ID"
+                      value={values.id}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.email && touched.email ? (
+                      <p className="form-error">{errors.email}</p>
+                    ) : null}
+                  </div>
+
+
+                  
+                  
+
+
+
                   <div className="modal-buttons">
                     <a href="#" className="">
                       Add a Faculty Member
@@ -119,7 +274,7 @@ const FacultyData = () => {
                     </button>
                   </div>
                 </form>
-                
+
               </div>
               <div className="modal-right">
                 <img
@@ -299,4 +454,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default  FacultyData;
+export default FacultyData;

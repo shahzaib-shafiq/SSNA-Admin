@@ -38,7 +38,7 @@ const FacultyInfo = () => {
     name = event.target.name;
     value = event.target.value;
 
-   setUserData({ ...userData, [name]: value });
+    setUserData({ ...userData, [name]: value });
   };
 
   // connect with firebase
