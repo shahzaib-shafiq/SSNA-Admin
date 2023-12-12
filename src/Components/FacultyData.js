@@ -8,7 +8,6 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { v4 } from 'uuid';
 
 
-
 const initialValues = {
   name: "",
   phone: "",
@@ -24,6 +23,7 @@ const initialValues = {
 const FacultyData = () => {
 
   const [img, setImg] = useState('');
+
   const {
     values,
     errors,
@@ -34,67 +34,116 @@ const FacultyData = () => {
   } = useFormik({
     initialValues,
     validationSchema: signUpSchema,
-    onSubmit: (values, action) => {
+    // onSubmit: (values, action) => {
+    //   const { name, phone, email, address, Education, Department, university, areaOfIntrest, id } = values;
+
+    //   if (name && phone && email && address && Education && Department && university && areaOfIntrest, id) {
+    //     const res = fetch(
+    //       "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
+    //       {
+    //         method: "POST",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({
+    //           name,
+    //           phone,
+    //           email,
+    //           address,
+    //           Education,
+    //           Department,
+    //           university,
+    //           areaOfIntrest,
+    //           id
+    //         }),
+    //       }
+    //     );
+
+    //     // Reset form values
+    //     action.resetForm();
+    //   }
+    // },
+
+    onSubmit: async (values, action) => {
       const { name, phone, email, address, Education, Department, university, areaOfIntrest, id } = values;
-
-      if (name && phone && email && address && Education && Department && university && areaOfIntrest, id) {
-        const res = fetch(
-          "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name,
-              phone,
-              email,
-              address,
-              Education,
-              Department,
-              university,
-              areaOfIntrest,
-              id
-            }),
-          }
-        );
-
-        // Reset form values
-        action.resetForm();
+    
+      if (name && phone && email && address && Education && Department && university && areaOfIntrest && id) {
+        try {
+          // Upload the image first
+          const imageFile = document.getElementById('fileInput').files[0];
+          const imgRef = ref(imagedb, `FacultyImgs/${v4()}`);
+          await uploadBytes(imgRef, imageFile);
+    
+          // Get the download URL of the uploaded image
+          const imageUrl = await getDownloadURL(imgRef);
+    
+          // Make the API request to save the data along with the image URL
+          const res = await fetch(
+            "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name,
+                phone,
+                email,
+                address,
+                Education,
+                Department,
+                university,
+                areaOfIntrest,
+                id,
+                imageUrl, 
+              }),
+            }
+          );
+    
+          // Reset form values
+          action.resetForm();
+        } catch (error) {
+          console.error("Error uploading image or submitting form:", error);
+        }
       }
     },
+    
   });
 
-  const [previewImage, setPreviewImage] = useState(null);
+  // const handleUpload = (e) => {
+  //   console.log(e.target.files[0])
 
-  const handleImageChange = (e) => {
+  //   const imgs = ref(imagedb, `FacultyImgs/${v4()}`)
+  //   uploadBytes(imgs, e.target.files[0]).then(data => {
+  //     console.log(data, "imgs")
+  //     getDownloadURL(data.ref).then(val => {
+  //       setImg(val)
+
+  //     })
+  //   })
+
+  // }
+  const handleUpload = (e) => {
     const imageFile = e.target.files[0];
   
     if (imageFile) {
-      // Display a preview if needed
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewImage(reader.result);
-      };
-      reader.readAsDataURL(imageFile);
-  
-      // You may want to upload the image to your server or handle it accordingly
+      // Upload the image to Firebase Storage
+      const imgRef = ref(imagedb, `FacultyImgs/${v4()}`);
+      uploadBytes(imgRef, imageFile)
+        .then((uploadTaskSnapshot) => {
+          // Get the download URL of the uploaded image
+          return getDownloadURL(uploadTaskSnapshot.ref);
+        })
+        .then((downloadURL) => {
+          // Set the image URL in the state
+          setImg(downloadURL);
+        })
+        .catch((error) => {
+          console.error("Error uploading image:", error);
+        });
     }
   };
   
-  const handleUpload = (e) => {
-    console.log(e.target.files[0])
-
-    const imgs = ref(imagedb, `FacultyImgs/${v4()}`)
-    uploadBytes(imgs, e.target.files[0]).then(data => {
-      console.log(data, "imgs")
-      getDownloadURL(data.ref).then(val => {
-        setImg(val)
-
-      })
-    })
-
-  }
 
   return (
     <>
@@ -125,13 +174,12 @@ const FacultyData = () => {
 
                     />
 
-
-                    {errors.name && touched.name ? (
+                   {errors.name && touched.name ? (
                       <p className="form-error">{errors.name}</p>
                     ) : null}
-
-
                   </div>
+
+
 
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
@@ -312,22 +360,24 @@ const FacultyData = () => {
                     ) : null}
                   </div>
 
-
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
                       Faculty Image
                     </label>
                     
-                      <input
-                        type="file"
-                        className="wider-dropdown"
+  <input
+  type="file"
+  id="fileInput" // Add this line
+  className="wider-dropdown"
+  onChange={(e) => handleUpload(e)}
+/>
 
-                        onChange={(e) => handleUpload(e)}
 
-                      />
-                    </div>
-                  
-                  
+                    {errors.id && touched.id ? (
+                      <p className="form-error">{errors.id}</p>
+                    ) : null}
+                  </div>
+
 
                   <div className="modal-buttons">
                     <a href="#" className="">
