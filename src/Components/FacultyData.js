@@ -5,35 +5,62 @@ import { useFormik } from "formik";
 import { signUpSchema } from "../schemas";
 
 
-
 const initialValues = {
-  name: "",
-  email: "",
-  password: "",
-  confirm_password: "",
+    name: "",
+    phone: "",
+    email: "",
+    address: "",
+    Education: "",
+    University: "",
+    Department: "",
+    areaOfIntrest: "",
+    id: ""
+  
 };
 
-
-
 const FacultyData = () => {
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues,
-      validationSchema: signUpSchema,
-      onSubmit: (values, action) => {
-        console.log(
-          "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",
-          values
-        );
-        action.resetForm();
-      },
-    });
-  console.log(
-    "🚀 ~ file: Registration.jsx ~ line 25 ~ Registration ~ errors",
-    errors
-  );
+  const {
+    values,
+    errors,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
+    initialValues,
+    validationSchema: signUpSchema,
+    onSubmit: (values, action) => {
+      const { name, phone, email, address, Education, Department, University, areaOfIntrest, id} = values;   
 
-  return (
+      if (name && phone && email && address && Education && Department && University && areaOfIntrest, id) {
+        const res = fetch(
+          "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name, 
+              phone,
+               email,
+                address,
+                 Education,
+                  Department,
+                   University, 
+                   areaOfIntrest,
+                    id
+            }),
+          }
+        );
+
+        // Reset form values
+        action.resetForm();
+      }
+    },
+  });
+
+   return (
     <>
       <GlobalStyle />
       <Wrapper>
