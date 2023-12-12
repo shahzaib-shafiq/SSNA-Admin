@@ -1,8 +1,13 @@
-import React from "react";
+import React,{useState} from "react";
 import styled from "styled-components";
 import { GlobalStyle } from "../Styles/globalStyles";
 import { useFormik } from "formik";
 import { signUpSchema } from "../schemas";
+import { imagedb } from "./config";
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { v4 } from 'uuid';
+
+
 
 const initialValues = {
   name: "",
@@ -17,6 +22,8 @@ const initialValues = {
 };
 
 const FacultyData = () => {
+
+  const [img, setImg] = useState('');
   const {
     values,
     errors,
@@ -58,6 +65,37 @@ const FacultyData = () => {
     },
   });
 
+  const [previewImage, setPreviewImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    const imageFile = e.target.files[0];
+  
+    if (imageFile) {
+      // Display a preview if needed
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result);
+      };
+      reader.readAsDataURL(imageFile);
+  
+      // You may want to upload the image to your server or handle it accordingly
+    }
+  };
+  
+  const handleUpload = (e) => {
+    console.log(e.target.files[0])
+
+    const imgs = ref(imagedb, `FacultyImgs/${v4()}`)
+    uploadBytes(imgs, e.target.files[0]).then(data => {
+      console.log(data, "imgs")
+      getDownloadURL(data.ref).then(val => {
+        setImg(val)
+
+      })
+    })
+
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -94,8 +132,6 @@ const FacultyData = () => {
 
 
                   </div>
-
-
 
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
@@ -275,6 +311,23 @@ const FacultyData = () => {
                       <p className="form-error">{errors.id}</p>
                     ) : null}
                   </div>
+
+
+                  <div className="input-block">
+                    <label htmlFor="email" className="input-label">
+                      Faculty Image
+                    </label>
+                    
+                      <input
+                        type="file"
+                        className="wider-dropdown"
+
+                        onChange={(e) => handleUpload(e)}
+
+                      />
+                    </div>
+                  
+                  
 
                   <div className="modal-buttons">
                     <a href="#" className="">
