@@ -1,97 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { GlobalStyle } from "../Styles/globalStyles";
 import { useFormik } from "formik";
 import { signUpSchema } from "../schemas";
-import { imagedb, facultyDatabase } from "./config"; // Import your database config
 
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { v4 } from 'uuid';
+
 
 const initialValues = {
-  Name: "",
-  phone: "",
+  name: "",
   email: "",
-  address: "",
-  Education: "",
-  University: "",
-  Department: "",
-  areaOfInterest: "", // Corrected the field name
-  id: "",
+  password: "",
+  confirm_password: "",
 };
 
+
+
 const FacultyData = () => {
-  const [userData, setUserData] = useState(initialValues);
-  const [img, setImg] = useState('');
-
-  const postUserData = (event) => {
-    const { name, value } = event.target;
-    setUserData({ ...userData, [name]: value });
-  };
-
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues,
-    validationSchema: signUpSchema,
-    onSubmit: async (values, action) => {
-      try {
-        await submitData(values);
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema: signUpSchema,
+      onSubmit: (values, action) => {
+        console.log(
+          "🚀 ~ file: Registration.jsx ~ line 11 ~ Registration ~ values",
+          values
+        );
         action.resetForm();
-      } catch (error) {
-        console.error("Error submitting data:", error);
-      }
-    },
-  });
-
-  const submitData = async (values) => {
-    const { Name, phone, email, address, Education, Department, University, areaOfInterest, id } = values;
-
-    if (Name && email) {
-      const res = await fetch(
-        "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            Name,
-            phone,
-            email,
-            address,
-            Education,
-            Department,
-            University,
-            areaOfInterest,
-            id,
-            image: img, // Include the image URL in the database
-          }),
-        }
-      );
-
-
-
-      if (res.ok) {
-        setUserData(initialValues);
-        setImg(''); // Reset image state
-        alert("Data Stored");
-      } else {
-        alert("Failed to store data. Please try again.");
-      }
-    } else {
-      alert("Please fill in all the required fields.");
-    }
-  };
-
-  const handleUpload = (e) => {
-    const imgs = ref(imagedb, `FacultyImgs/${v4()}`);
-
-    uploadBytes(imgs, e.target.files[0]).then(data => {
-      getDownloadURL(data.ref).then(val => {
-        setImg(val);
-      });
+      },
     });
-  };
-
+  console.log(
+    "🚀 ~ file: Registration.jsx ~ line 25 ~ Registration ~ errors",
+    errors
+  );
 
   return (
     <>
@@ -101,7 +41,7 @@ const FacultyData = () => {
           <div className="modal">
             <div className="modal-container">
               <div className="modal-left">
-                <h1 className="modal-title">Welcome Admin</h1>
+                <h1 className="modal-title">Welcome Admin!</h1>
                 <p className="modal-desc">
                   Add a New Faculty Member
                 </p>
@@ -142,75 +82,13 @@ const FacultyData = () => {
                       <p className="form-error">{errors.email}</p>
                     ) : null}
                   </div>
-
-{/*                   
-                  <div className="input-block">
-                    <label htmlFor="name" className="input-label">
-                      Name
-                    </label>
-                    <input
-                      type="name"
-                      autoComplete="off"
-                      name="name"
-                      id="name"
-                      placeholder="Name"
-                      value={values.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    {errors.name && touched.name ? (
-                      <p className="form-error">{errors.name}</p>
-                    ) : null}
-                  </div>
-
-
-                  <div className="input-block">
-                    <label htmlFor="name" className="input-label">
-                      Name
-                    </label>
-                    <input
-                      type="name"
-                      autoComplete="off"
-                      name="name"
-                      id="name"
-                      placeholder="Name"
-                      value={values.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    {errors.name && touched.name ? (
-                      <p className="form-error">{errors.name}</p>
-                    ) : null}
-                  </div>
-
-
-                  <div className="input-block">
-                    <label htmlFor="name" className="input-label">
-                      Name
-                    </label>
-                    <input
-                      type="name"
-                      autoComplete="off"
-                      name="name"
-                      id="name"
-                      placeholder="Name"
-                      value={values.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    {errors.name && touched.name ? (
-                      <p className="form-error">{errors.name}</p>
-                    ) : null}
-                  </div> */}
-
-
-
+                 
                   <div className="modal-buttons">
                     <a href="#" className="">
-                      Add New Faculty Member
+                      Add a Faculty Member
                     </a>
-                    <button className="input-button" type="submit" onClick={submitData}>>
-                      Registration
+                    <button className="input-button" type="submit">
+                      Register Faculty
                     </button>
                   </div>
                 </form>

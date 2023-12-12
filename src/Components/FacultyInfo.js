@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { imagedb } from "./config";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { v4 } from 'uuid';
+
+
+
+
 const FacultyInfo = () => {
 
   //Regex
