@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { imagedb } from "./config";
-import {getDownloadURL, ref, uploadBytes} from 'firebase/storage'
-import {v4} from 'uuid';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { v4 } from 'uuid';
 const FacultyInfo = () => {
-  
-  
+
+  //Regex
+  ///^[a-zA-Z._]+@nu\.edu\.pk
+
   const [userData, setUserData] = useState({
     Name: "",
     phone: "",
@@ -15,32 +17,33 @@ const FacultyInfo = () => {
     Department: "",
     areaOfIntrest: "",
     id: "",
-    
+
   });
 
 
-  const [img,setImg]=useState('');
+  const [img, setImg] = useState('');
 
   let name, value;
 
 
   const postUserData = (event) => {
+
+    //const regex=^[a-zA-Z._]+@nu\.edu\.pk;
+
+
     name = event.target.name;
     value = event.target.value;
-    
 
-
-
-    setUserData({ ...userData, [name]: value });
+   setUserData({ ...userData, [name]: value });
   };
 
   // connect with firebase
 
   const submitData = async (event) => {
     event.preventDefault();
-    const { Name, phone, email, address, Education, Department, University, areaOfIntrest,id } = userData;
+    const { Name, phone, email, address, Education, Department, University, areaOfIntrest, id } = userData;
 
-    if (Name && phone && email && address && Education && Department && University && areaOfIntrest,id) {
+    if (Name && phone && email && address && Education && Department && University && areaOfIntrest, id) {
       const res = fetch(
         "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
         {
@@ -72,7 +75,7 @@ const FacultyInfo = () => {
           Department: "",
           University: "",
           areaOfIntrest: "",
-          id:""
+          id: ""
         });
         alert("Data Stored");
       } else {
@@ -85,35 +88,18 @@ const FacultyInfo = () => {
 
   };
 
-  // // JavaScript function to validate email format
-  // const validateEmail = (e) => {
-  //   const { value } = e.target;
-  //   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-  //   if (!emailRegex.test(value)) {
-  //     // Invalid email format, handle the error (e.g., show an error message)
-  //     console.log('Please enter a valid email address.');
-  //     // You can set an error state or display an error message to the user
-  //   } else {
-  //     // Valid email format
-  //     console.log('Valid email address.');
-  //     // Clear error state or hide error message if previously shown
-  //   }
-  // };
-
-
-  const handleUpload=(e)=>{
+  const handleUpload = (e) => {
     console.log(e.target.files[0])
 
-  const imgs=ref(imagedb,`FacultyImgs/${v4()}`)
-  uploadBytes(imgs,e.target.files[0]).then(data=>{
-    console.log(data,"imgs")
-    getDownloadURL(data.ref).then(val=>{
-      setImg(val)
+    const imgs = ref(imagedb, `FacultyImgs/${v4()}`)
+    uploadBytes(imgs, e.target.files[0]).then(data => {
+      console.log(data, "imgs")
+      getDownloadURL(data.ref).then(val => {
+        setImg(val)
 
+      })
     })
-  })
-  
+
   }
 
 
@@ -156,21 +142,21 @@ const FacultyInfo = () => {
 
 
 
-<div className="row">
+                    <div className="row">
 
-<div className="col-12 col-lg-6 contact-input-feild">
-  <input
-    type="text"
-    name="id"
-    maxLength="6"
-    id=""
-    className="form-control"
-    placeholder="EID"
-    value={userData.id}
-    onChange={postUserData}
-  />
-</div>
-</div>
+                      <div className="col-12 col-lg-6 contact-input-feild">
+                        <input
+                          type="text"
+                          name="id"
+                          maxLength="6"
+                          id=""
+                          className="form-control"
+                          placeholder="EID"
+                          value={userData.id}
+                          onChange={postUserData}
+                        />
+                      </div>
+                    </div>
 
 
                     <div className="row">
@@ -194,8 +180,8 @@ const FacultyInfo = () => {
                         <input
                           type="tel"
                           inputMode="numeric"
-                          name="phone"   
-                          maxLength={3}                  
+                          name="phone"
+                          maxLength={3}
                           className="form-control"
                           placeholder="Phone Number "
                           value={userData.phone}
@@ -203,12 +189,14 @@ const FacultyInfo = () => {
 
                         />
 
-                        
+
                       </div>
                       <div className="col-12 col-lg-6 contact-input-feild">
                         <input
                           type="email"
                           name="email"
+                          required
+
                           id=""
                           className="form-control"
                           placeholder="Email ID"
@@ -318,19 +306,19 @@ const FacultyInfo = () => {
                       </div>
                     </div>
 
-                    
 
 
-                      <div className="col-12 contact-input-feild">
-                        <input
-                          type="file"
-                          className="wider-dropdown"
 
-                          onChange={(e)=>handleUpload(e)}
+                    <div className="col-12 contact-input-feild">
+                      <input
+                        type="file"
+                        className="wider-dropdown"
 
-                        />
-                      </div>
-                    
+                        onChange={(e) => handleUpload(e)}
+
+                      />
+                    </div>
+
 
 
 
