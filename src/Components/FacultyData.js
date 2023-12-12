@@ -85,10 +85,10 @@ const FacultyData = () => {
                       value={values.name}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                    
+
                     />
-                    
-                    
+
+
                     {errors.name && touched.name ? (
                       <p className="form-error">{errors.name}</p>
                     ) : null}
@@ -97,7 +97,7 @@ const FacultyData = () => {
                   </div>
 
 
-                  
+
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
                       Email
@@ -139,7 +139,7 @@ const FacultyData = () => {
                     {errors.phone && touched.phone ? (
                       <p className="form-error">{errors.phone}</p>
                     ) : null}
-                  
+
                   </div>
 
 
@@ -167,18 +167,22 @@ const FacultyData = () => {
 
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
-                      Education
+                      Qualification
                     </label>
-                    <input
-                      type="text"
-                      autoComplete="off"
+                    <select
                       name="Education"
                       id="Education"
-                      placeholder="Education"
                       value={values.Education}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                    />
+                      className="dropdown"
+                    >
+                      <option value="">Qualification</option>
+                      <option value="BS">BS</option>
+                      <option value="MS">MS</option>
+                      <option value="PHD">PHD</option>
+
+                    </select>
                     {errors.Education && touched.Education ? (
                       <p className="form-error">{errors.Education}</p>
                     ) : null}
@@ -189,23 +193,31 @@ const FacultyData = () => {
                     <label htmlFor="email" className="input-label">
                       Department
                     </label>
-                    <input
-                      type="text"
-                      autoComplete="off"
+                    <select
                       name="Department"
                       id="Department"
-                      placeholder="Department"
                       value={values.Department}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                    />
+                      className="dropdown"
+                    >
+                      <option value="">Department</option>
+                      <option value="CS">CS</option>
+                      <option value="SE">SE</option>
+                      <option value="EE">EE</option>
+                      <option value="AI">AI</option>
+                      <option value="CYS">CYS</option>
+                      <option value="BBA">BBA</option>
+
+                    </select>
+
                     {errors.Department && touched.Department ? (
                       <p className="form-error">{errors.Department}</p>
                     ) : null}
                   </div>
 
 
-                  
+
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
                       University
@@ -226,7 +238,7 @@ const FacultyData = () => {
                   </div>
 
 
-                  
+
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
                       Area of Intrest
@@ -264,9 +276,9 @@ const FacultyData = () => {
                     {errors.id && touched.id ? (
                       <p className="form-error">{errors.id}</p>
                     ) : null}
-                  </div>             
-            
-                 <div className="modal-buttons">
+                  </div>
+
+                  <div className="modal-buttons">
                     <a href="#" className="">
                       Add a Faculty Member
                     </a>

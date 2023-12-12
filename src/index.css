@@ -533,6 +533,40 @@ footer .main-hero-para {
   transition: 0.2s all;
 }
 
+/* Dropdown */
+/* Add some basic styling to the dropdown */
+.dropdown {
+  width: 400px; /* Adjust the width as needed */
+  height: 40px;
+  padding: 4px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Style the dropdown arrow */
+.dropdown::after {
+  content: '\25BC'; /* Unicode character for down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Style the options */
+.dropdown option {
+  font-size: 16px;
+}
+
+/* Style the dropdown when focused */
+.dropdown:focus {
+  outline: none;
+  border-color: #007bff; /* Change the color as needed */
+}
+/* Style dropdown */
+
+
 .notfound a:hover {
   background-color: #fff;
   border-color: #189cf0;
