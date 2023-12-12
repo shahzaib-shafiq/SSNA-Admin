@@ -10,11 +10,10 @@ const initialValues = {
   email: "",
   address: "",
   Education: "",
-  University: "",
+  university: "",
   Department: "",
   areaOfIntrest: "",
   id: ""
-
 };
 
 const FacultyData = () => {
@@ -29,9 +28,9 @@ const FacultyData = () => {
     initialValues,
     validationSchema: signUpSchema,
     onSubmit: (values, action) => {
-      const { name, phone, email, address, Education, Department, University, areaOfIntrest, id } = values;
+      const { name, phone, email, address, Education, Department, university, areaOfIntrest, id } = values;
 
-      if (name && phone && email && address && Education && Department && University && areaOfIntrest, id) {
+      if (name && phone && email && address && Education && Department && university && areaOfIntrest, id) {
         const res = fetch(
           "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
           {
@@ -46,7 +45,7 @@ const FacultyData = () => {
               address,
               Education,
               Department,
-              University,
+              university,
               areaOfIntrest,
               id
             }),
@@ -220,20 +219,20 @@ const FacultyData = () => {
 
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
-                      University
+                      university
                     </label>
                     <input
                       type="text"
                       autoComplete="off"
-                      name="University"
-                      id="University"
-                      placeholder="University"
-                      value={values.University}
+                      name="university"
+                      id="university"
+                      placeholder="university"
+                      value={values.university}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {errors.University && touched.University ? (
-                      <p className="form-error">{errors.University}</p>
+                    {errors.university && touched.university ? (
+                      <p className="form-error">{errors.university}</p>
                     ) : null}
                   </div>
 
@@ -257,7 +256,6 @@ const FacultyData = () => {
                       <p className="form-error">{errors.areaOfIntrest}</p>
                     ) : null}
                   </div>
-
 
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">

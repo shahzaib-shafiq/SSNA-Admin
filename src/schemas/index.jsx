@@ -21,7 +21,7 @@ export const signUpSchema = Yup.object({
   Department: Yup.string().max(25).required("Enter Department"),
   University: Yup.string().max(45).matches(/^[a-zA-Z._]+$/, "Must be a valid University Name").required("Enter University Name"),
   areaOfIntrest: Yup.string().max(25).matches(/^[a-zA-Z._]+$/, "Must be a valid Area of Intrest").required("Enter Area of Intrest"),
-  id: Yup.string().max(6).required("Enter ID"),
+  id: Yup.string().matches(/^[0-9_]+$/, "Must be a valid 6 Digit Id ").min(6).max(6).required("Enter ID"),
 
 
 });
