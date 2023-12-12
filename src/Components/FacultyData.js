@@ -4,7 +4,6 @@ import { GlobalStyle } from "../Styles/globalStyles";
 import { useFormik } from "formik";
 import { signUpSchema } from "../schemas";
 
-
 const initialValues = {
   name: "",
   phone: "",
@@ -86,10 +85,15 @@ const FacultyData = () => {
                       value={values.name}
                       onChange={handleChange}
                       onBlur={handleBlur}
+                    
                     />
+                    
+                    
                     {errors.name && touched.name ? (
                       <p className="form-error">{errors.name}</p>
                     ) : null}
+
+
                   </div>
 
 
@@ -130,9 +134,12 @@ const FacultyData = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {errors.email && touched.email ? (
-                      <p className="form-error">{errors.email}</p>
+
+
+                    {errors.phone && touched.phone ? (
+                      <p className="form-error">{errors.phone}</p>
                     ) : null}
+                  
                   </div>
 
 
@@ -152,8 +159,8 @@ const FacultyData = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {errors.email && touched.email ? (
-                      <p className="form-error">{errors.email}</p>
+                    {errors.address && touched.address ? (
+                      <p className="form-error">{errors.address}</p>
                     ) : null}
                   </div>
 
@@ -172,8 +179,8 @@ const FacultyData = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {errors.email && touched.email ? (
-                      <p className="form-error">{errors.email}</p>
+                    {errors.Education && touched.Education ? (
+                      <p className="form-error">{errors.Education}</p>
                     ) : null}
                   </div>
 
@@ -192,8 +199,8 @@ const FacultyData = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {errors.email && touched.email ? (
-                      <p className="form-error">{errors.email}</p>
+                    {errors.Department && touched.Department ? (
+                      <p className="form-error">{errors.Department}</p>
                     ) : null}
                   </div>
 
@@ -213,8 +220,8 @@ const FacultyData = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {errors.email && touched.email ? (
-                      <p className="form-error">{errors.email}</p>
+                    {errors.University && touched.University ? (
+                      <p className="form-error">{errors.University}</p>
                     ) : null}
                   </div>
 
@@ -234,8 +241,8 @@ const FacultyData = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {errors.email && touched.email ? (
-                      <p className="form-error">{errors.email}</p>
+                    {errors.areaOfIntrest && touched.areaOfIntrest ? (
+                      <p className="form-error">{errors.areaOfIntrest}</p>
                     ) : null}
                   </div>
 
@@ -254,18 +261,12 @@ const FacultyData = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {errors.email && touched.email ? (
-                      <p className="form-error">{errors.email}</p>
+                    {errors.id && touched.id ? (
+                      <p className="form-error">{errors.id}</p>
                     ) : null}
-                  </div>
-
-
-                  
-                  
-
-
-
-                  <div className="modal-buttons">
+                  </div>             
+            
+                 <div className="modal-buttons">
                     <a href="#" className="">
                       Add a Faculty Member
                     </a>
