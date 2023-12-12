@@ -5,10 +5,13 @@ import {v4} from 'uuid';
 const Announcements
  = () => {
   const [userData, setUserData] = useState({
+    
     Title: "",
     Announcement: "",
-    AnnouncementDate:""
+    AnnouncementDate:"",
+    description:""
   });
+
 
   const [img,setImg]=useState('');
   let name, value;
@@ -19,44 +22,54 @@ const Announcements
     setUserData({...userData, [name]: value });
   };
 
-  // connect with firebase
+
+     // Function to generate a random 6-digit ID
+     const generateRandomId = () => {
+      return Math.floor(1000000 + Math.random() * 9000000).toString();
+    };
+
+
   const submitData = async (event) => {
     event.preventDefault();
-    const { Title, Announcement,AnnouncementDate } = userData;
-
-    if (Title && Announcement&&AnnouncementDate) {
-      const res = fetch(
-        "https://ssna-admin-default-rtdb.firebaseio.com/Announcements.json",
+    const { Title, Announcement, AnnouncementDate, description } = userData;
+  
+ 
+  
+    if (Title && Announcement && AnnouncementDate && description) {
+      const randomId = generateRandomId();
+  
+      const res = await fetch(
+        `https://ssna-admin-default-rtdb.firebaseio.com/Announcements/${randomId}.json`,
         {
-          method: "POST",
+          method: "PUT", // Use PUT to specify the ID
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
             Title,
             Announcement,
-            AnnouncementDate
-           
+            AnnouncementDate,
+            description,
+            id: randomId,
           }),
         }
       );
-
-      if (res) {
+  
+      if (res.ok) {
         setUserData({
           Title: "",
           Announcement: "",
           AnnouncementDate: "",
-       
+          description: "",
         });
         alert("Data Stored");
       } else {
-        alert("plz fill the data");
+        alert("Failed to store data");
       }
     } else {
-      alert("plz fill the data");
+      alert("Please fill in all the data");
     }
   };
-
   
   const handleUpload=(e)=>{
     console.log(e.target.files[0])
@@ -121,10 +134,20 @@ const Announcements
                           value={userData.Announcement}
                           onChange={postUserData}
                         />
-
-
                       </div>
 
+                      <div className="col-12 col-lg-6 contact-input-feild">
+                        <input
+                          type="text"
+                          name="description"
+                          id=""
+                          maxLength="100"
+                          className="form-control"
+                          placeholder="Description"
+                          value={userData.description}
+                          onChange={postUserData}
+                        />
+                      </div>
                       <div className="col-12 col-lg-6 contact-input-feild">
                         <input
                           type="date"
@@ -135,7 +158,6 @@ const Announcements
                           
                           value={userData.AnnouncementDate}
                           onChange={postUserData}
-
                           min="2018-01-01"
                           max="2050-12-31"
                         />
