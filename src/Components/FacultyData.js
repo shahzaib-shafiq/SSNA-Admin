@@ -78,7 +78,6 @@ const FacultyData = () => {
 
       })
     })
-
   }
 
   return (
@@ -197,10 +196,10 @@ const FacultyData = () => {
                       onBlur={handleBlur}
                       className="dropdown"
                     >
-                      <option value="">Qualification</option>
-                      <option value="BS">BS</option>
-                      <option value="MS">MS</option>
-                      <option value="PHD">PHD</option>
+                      <option className="dropdownoption" value="">Qualification</option>
+                      <option className="dropdownoption" value="BS">BS</option>
+                      <option className="dropdownoption" value="MS">MS</option>
+                      <option className="dropdownoption" value="PHD">PHD</option>
 
                     </select>
                     {errors.Education && touched.Education ? (
@@ -221,22 +220,19 @@ const FacultyData = () => {
                       onBlur={handleBlur}
                       className="dropdown"
                     >
-                      <option value="">Department</option>
-                      <option value="CS">CS</option>
-                      <option value="SE">SE</option>
-                      <option value="EE">EE</option>
-                      <option value="AI">AI</option>
-                      <option value="CYS">CYS</option>
-                      <option value="BBA">BBA</option>
-
+                      <option className="dropdownoption" value="">Department</option>
+                      <option  className="dropdownoption" value="CS">CS</option>
+                      <option className="dropdownoption" value="SE">SE</option>
+                      <option className="dropdownoption" value="EE">EE</option>
+                      <option className="dropdownoption" value="AI">AI</option>
+                      <option className="dropdownoption" value="CYS">CYS</option>
+                      <option className="dropdownoption" value="BBA">BBA</option>
                     </select>
 
                     {errors.Department && touched.Department ? (
                       <p className="form-error">{errors.Department}</p>
                     ) : null}
                   </div>
-
-
 
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
@@ -256,7 +252,6 @@ const FacultyData = () => {
                       <p className="form-error">{errors.University}</p>
                     ) : null}
                   </div>
-
 
 
                   <div className="input-block">
