@@ -28,7 +28,6 @@ const Announcements
         // Update the state only if the input is valid or empty
         setUserData({ Title: inputValue });
 
-
       }
 
       
@@ -148,7 +147,9 @@ if (
         </div>
       )}
                       <div className="row">
-                      
+                      <label htmlFor="email" className="input-label">
+                      Enter Post Title
+                    </label>
                         <div className="col-12 col-lg-6 contact-input-feild">
                           <input
                             type="text"
@@ -161,6 +162,10 @@ if (
                             onChange={postUserData}
                           />
                         </div>
+
+                        <label htmlFor="email" className="input-label">
+                      Enter Summary
+                    </label>
                         <div className="col-12 col-lg-6 contact-input-feild">
                           <input
                             type="text"
@@ -174,6 +179,9 @@ if (
                           />
                         </div>
 
+                        <label htmlFor="email" className="input-label">
+                      Enter Post Description
+                    </label>
                         <div className="col-12 col-lg-6 contact-input-feild">
                           <input
                             type="text"
@@ -186,6 +194,11 @@ if (
                             onChange={postUserData}
                           />
                         </div>
+
+                        <label htmlFor="email" className="input-label">
+                      Enter Announcement Date
+                    </label>
+
                         <div className="col-12 col-lg-6 contact-input-feild">
                           <input
                             type="date"
