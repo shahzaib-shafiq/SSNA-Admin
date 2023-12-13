@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { GlobalStyle } from "../Styles/globalStyles";
 import { useFormik } from "formik";
@@ -6,9 +6,9 @@ import { signUpSchema } from "../schemas";
 import { imagedb } from "./config";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { v4 } from 'uuid';
-
-
-
+import { Link } from 'react-router-dom'
+import Button from '@mui/material/Button';
+import HomeIcon from '@mui/icons-material/Home';
 const initialValues = {
   name: "",
   phone: "",
@@ -56,7 +56,7 @@ const FacultyData = () => {
               University,
               areaOfIntrest,
               id,
-              img:img
+              img: img
             }),
           }
         );
@@ -70,7 +70,7 @@ const FacultyData = () => {
   const handleUpload = (e) => {
     console.log(e.target.files[0])
 
-    const imgs = ref(imagedb, `AnnouncementImgs/${v4()}`)
+    const imgs = ref(imagedb, `FacultyImgs/${v4()}`)
     uploadBytes(imgs, e.target.files[0]).then(data => {
       console.log(data, "imgs")
       getDownloadURL(data.ref).then(val => {
@@ -89,10 +89,14 @@ const FacultyData = () => {
           <div className="modal">
             <div className="modal-container">
               <div className="modal-left">
-                <h1 className="modal-title">Welcome Admin!</h1>
-                <p className="modal-desc">
-                  Add a New Faculty Member
-                </p>
+                <Link to='/HomePage'>
+                  <Button variant='contained' size='medium' endIcon={<HomeIcon />}>
+                   Home Page
+                  </Button>
+                </Link>
+
+                <h1 className="modal-title">Add a New Faculty Member</h1>
+
                 <form onSubmit={handleSubmit}>
                   <div className="input-block">
                     <label htmlFor="name" className="input-label">
@@ -109,16 +113,10 @@ const FacultyData = () => {
                       onBlur={handleBlur}
 
                     />
-
-
                     {errors.name && touched.name ? (
                       <p className="form-error">{errors.name}</p>
                     ) : null}
-
-
                   </div>
-
-
 
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
@@ -301,20 +299,20 @@ const FacultyData = () => {
                   </div>
 
                   <div className="col-12 contact-input-feild">
-                  <div className="input-block">
-                  <label htmlFor="email" className="input-label">Faculty Image</label>
-                          <input
-                            type="file"
-                            className="wider-dropdown"
-                            onChange={(e) => handleUpload(e)}
-                            
-                            />
-                            </div>
-                        </div>
+                    <div className="input-block">
+                      <label htmlFor="email" className="input-label">Faculty Image</label>
+                      <input
+                        type="file"
+                        className="wider-dropdown"
+                        onChange={(e) => handleUpload(e)}
+
+                      />
+                    </div>
+                  </div>
 
 
                   <div className="modal-buttons">
-                   
+
                     <button className="input-button" type="submit">
                       Register Faculty
                     </button>

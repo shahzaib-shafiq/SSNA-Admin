@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { imagedb } from "./config";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { v4 } from 'uuid';
-
+import { Link } from 'react-router-dom'
+import Button from '@mui/material/Button';
+import HomeIcon from '@mui/icons-material/Home';
 const Announcements
   = () => {
     const [userData, setUserData] = useState({
@@ -128,6 +130,12 @@ const Announcements
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-10 mx-auto">
+              <Link to='/HomePage'>
+                  <Button variant='contained' size='medium' endIcon={<HomeIcon />}>
+                   Home Page
+                  </Button>
+                </Link>
+
                 <div className="row">
                   <div className="contact-leftside col-12 col-lg-5">
                     <h1 className="main-heading fw-bold">
@@ -141,7 +149,6 @@ const Announcements
                   {/* right side contact form  */}
                   <div className="contact-rightside col-12 col-lg-7">
                     <form method="POST">
-
                       <div className="row">
                         <label htmlFor="email" className="input-label">
                           Enter Post Title
