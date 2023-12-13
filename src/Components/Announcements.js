@@ -28,10 +28,8 @@ const Announcements
       if (onlyEnglishRegex.test(inputValue) || inputValue === '') {
         // Update the state only if the input is valid or empty
         setUserData({ Title: inputValue });
-
+        
       }
-
-
       setUserData({ ...userData, [name]: value });
     };
 
@@ -71,7 +69,10 @@ const Announcements
         const randomId = generateRandomId();
 
         const res = await fetch(
-          `https://ssna-admin-default-rtdb.firebaseio.com/Announcements/${randomId}.json`,
+          //`https://ssna-admin-default-rtdb.firebaseio.com/Announcements/${randomId}.json`,
+          `https://ssna-admin-default-rtdb.firebaseio.com/Announcements.json`,
+          
+
           {
             method: "POST",
             headers: {
@@ -83,6 +84,7 @@ const Announcements
               AnnouncementDate,
               description,
               id: randomId,
+              img:img
             }),
           }
         );
@@ -101,8 +103,6 @@ const Announcements
       } else {
         setErrorMsg("Please fill in all the data");
       }
-
-
     };
 
     const handleUpload = (e) => {
@@ -130,14 +130,10 @@ const Announcements
                 <div className="row">
                   <div className="contact-leftside col-12 col-lg-5">
                     <h1 className="main-heading fw-bold">
-                      Welcome   <br /> Admin
+                    Post   <br /> Announcement
                     </h1>
                     <br></br>
-                    <p className="main-hero-para">
-
-
-                      Post An Announcement
-                    </p>
+                    
 
                   </div>
 
@@ -219,7 +215,6 @@ const Announcements
                           <input
                             type="file"
                             className="wider-dropdown"
-
                             onChange={(e) => handleUpload(e)}
 
                           />
@@ -228,14 +223,17 @@ const Announcements
                       {errorMsg && (
                         <div className="col-12 text-danger mt-2">
                           {errorMsg}
+
                         </div>
                       )}
 
-                      {sucessMsg && (
-                        <div className="col-12 text-success mt-2">
-                          {sucessMsg}
-                        </div>
-                      )}
+                      {
+
+                        sucessMsg && (
+                          <div className="col-12 text-success mt-2">
+                            {sucessMsg}
+                          </div>
+                        )}
                       <button
                         type="submit"
                         className="btn btn-style w-100"
