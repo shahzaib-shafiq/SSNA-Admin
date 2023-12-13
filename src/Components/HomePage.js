@@ -9,8 +9,6 @@ import AnnouncementIcon from '@mui/icons-material/Announcement';
 import {Link} from 'react-router-dom'
 
 export default function HomePage() {
-
-
   const logout = () => {
     localStorage.clear()
     window.location.reload()
@@ -23,18 +21,18 @@ export default function HomePage() {
       <div className="container">
 
       <Link to='/FacultyData'>
-          <Button variant='contained' size='medium' endIcon={<PersonAddIcon />}>
+          <Button variant='contained' size='large' endIcon={<PersonAddIcon />}>
             Add Faculty
           </Button>
         </Link>
 
         <Link to='/announcement'>
-          <Button variant='contained' size='medium' endIcon={<AnnouncementIcon />}>
+          <Button variant='contained' size='large' endIcon={<AnnouncementIcon />}>
             Announcement
           </Button>
         </Link>
       
-      <Button variant="contained" endIcon={<LogoutIcon />}
+      <Button variant="contained" size='large' endIcon={<LogoutIcon />}
       
       onClick={logout}>
         Signout

@@ -34,35 +34,6 @@ const FacultyData = () => {
   } = useFormik({
     initialValues,
     validationSchema: signUpSchema,
-    // onSubmit: (values, action) => {
-    //   const { name, phone, email, address, Education, Department, university, areaOfIntrest, id } = values;
-
-    //   if (name && phone && email && address && Education && Department && university && areaOfIntrest, id) {
-    //     const res = fetch(
-    //       "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
-    //       {
-    //         method: "POST",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //           name,
-    //           phone,
-    //           email,
-    //           address,
-    //           Education,
-    //           Department,
-    //           university,
-    //           areaOfIntrest,
-    //           id
-    //         }),
-    //       }
-    //     );
-
-    //     // Reset form values
-    //     action.resetForm();
-    //   }
-    // },
 
     onSubmit: async (values, action) => {
       const { name, phone, email, address, Education, Department, university, areaOfIntrest, id } = values;
@@ -110,19 +81,7 @@ const FacultyData = () => {
     
   });
 
-  // const handleUpload = (e) => {
-  //   console.log(e.target.files[0])
 
-  //   const imgs = ref(imagedb, `FacultyImgs/${v4()}`)
-  //   uploadBytes(imgs, e.target.files[0]).then(data => {
-  //     console.log(data, "imgs")
-  //     getDownloadURL(data.ref).then(val => {
-  //       setImg(val)
-
-  //     })
-  //   })
-
-  // }
   const handleUpload = (e) => {
     const imageFile = e.target.files[0];
   
@@ -405,6 +364,36 @@ const FacultyData = () => {
 };
 
 const Wrapper = styled.section`
+  // .container {
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   background-color: #efedee;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
+
+  // .modal {
+  //   width: 100%;
+  //   /* height: 60px; */
+  //   background: rgba(51, 51, 51, 0.5);
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   justify-content: center;
+  //   transition: 0.4s;
+  // }
+
+  .modal-left {
+    padding: 20px; /* Adjust padding as needed */
+    background: #fff;
+    flex: 1;
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+
   .container {
     position: fixed;
     top: 0;
@@ -419,7 +408,8 @@ const Wrapper = styled.section`
 
   .modal {
     width: 100%;
-    /* height: 60px; */
+    height: 100%; /* Set height to 100% to cover the entire viewport */
+    overflow-y: auto; /* Make the modal scrollable */
     background: rgba(51, 51, 51, 0.5);
     display: flex;
     flex-direction: column;
