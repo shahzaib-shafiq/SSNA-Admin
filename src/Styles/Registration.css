@@ -1,0 +1,23 @@
+body {
+    background-color: #cad4fc; /* Replace with your desired background color */
+    margin: 0; /* Remove default body margin */
+    padding: 0; /* Remove default body padding */
+  }
+
+.RegButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    margin: 0;
+  }
+  .error-message {
+    color: rgb(6, 6, 6);
+    margin-bottom: 10px;
+    font-size: 16px; /* Adjust the font size as needed */
+  }
+  /* Add your own styles or modify as needed */
+  .ButtonContainer {
+    text-align: center;
+  }
+  

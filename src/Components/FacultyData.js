@@ -1,24 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { GlobalStyle } from "../Styles/globalStyles";
 import { useFormik } from "formik";
 import { signUpSchema } from "../schemas";
-
-// Data Added to DB
-
+import { imagedb } from "./config";
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { v4 } from 'uuid';
+import { Link } from 'react-router-dom'
+import Button from '@mui/material/Button';
+import HomeIcon from '@mui/icons-material/Home';
 const initialValues = {
   name: "",
   phone: "",
   email: "",
   address: "",
   Education: "",
-  university: "",
+  University: "",
   Department: "",
   areaOfIntrest: "",
   id: ""
+
 };
 
 const FacultyData = () => {
+
+  const [img, setImg] = useState('');
   const {
     values,
     errors,
@@ -30,9 +36,9 @@ const FacultyData = () => {
     initialValues,
     validationSchema: signUpSchema,
     onSubmit: (values, action) => {
-      const { name, phone, email, address, Education, Department, university, areaOfIntrest, id } = values;
+      const { name, phone, email, address, Education, Department, University, areaOfIntrest, id } = values;
 
-      if (name && phone && email && address && Education && Department && university && areaOfIntrest, id) {
+      if (name && phone && email && address && Education && Department && University && areaOfIntrest, id) {
         const res = fetch(
           "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
           {
@@ -47,9 +53,10 @@ const FacultyData = () => {
               address,
               Education,
               Department,
-              university,
+              University,
               areaOfIntrest,
-              id
+              id,
+              img: img
             }),
           }
         );
@@ -60,6 +67,19 @@ const FacultyData = () => {
     },
   });
 
+  const handleUpload = (e) => {
+    console.log(e.target.files[0])
+
+    const imgs = ref(imagedb, `FacultyImgs/${v4()}`)
+    uploadBytes(imgs, e.target.files[0]).then(data => {
+      console.log(data, "imgs")
+      getDownloadURL(data.ref).then(val => {
+        setImg(val)
+
+      })
+    })
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -68,10 +88,14 @@ const FacultyData = () => {
           <div className="modal">
             <div className="modal-container">
               <div className="modal-left">
-                <h1 className="modal-title">Welcome Admin!</h1>
-                <p className="modal-desc">
-                  Add a New Faculty Member
-                </p>
+                <Link to='/HomePage'>
+                  <Button variant='contained' size='medium' endIcon={<HomeIcon />}>
+                   Home Page
+                  </Button>
+                </Link>
+
+                <h1 className="modal-title">Add a New Faculty Member</h1>
+
                 <form onSubmit={handleSubmit}>
                   <div className="input-block">
                     <label htmlFor="name" className="input-label">
@@ -88,16 +112,10 @@ const FacultyData = () => {
                       onBlur={handleBlur}
 
                     />
-
-
                     {errors.name && touched.name ? (
                       <p className="form-error">{errors.name}</p>
                     ) : null}
-
-
                   </div>
-
-
 
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
@@ -178,10 +196,10 @@ const FacultyData = () => {
                       onBlur={handleBlur}
                       className="dropdown"
                     >
-                      <option value="">Qualification</option>
-                      <option value="BS">BS</option>
-                      <option value="MS">MS</option>
-                      <option value="PHD">PHD</option>
+                      <option className="dropdownoption" value="">Qualification</option>
+                      <option className="dropdownoption" value="BS">BS</option>
+                      <option className="dropdownoption" value="MS">MS</option>
+                      <option className="dropdownoption" value="PHD">PHD</option>
 
                     </select>
                     {errors.Education && touched.Education ? (
@@ -202,14 +220,13 @@ const FacultyData = () => {
                       onBlur={handleBlur}
                       className="dropdown"
                     >
-                      <option value="">Department</option>
-                      <option value="CS">CS</option>
-                      <option value="SE">SE</option>
-                      <option value="EE">EE</option>
-                      <option value="AI">AI</option>
-                      <option value="CYS">CYS</option>
-                      <option value="BBA">BBA</option>
-
+                      <option className="dropdownoption" value="">Department</option>
+                      <option  className="dropdownoption" value="CS">CS</option>
+                      <option className="dropdownoption" value="SE">SE</option>
+                      <option className="dropdownoption" value="EE">EE</option>
+                      <option className="dropdownoption" value="AI">AI</option>
+                      <option className="dropdownoption" value="CYS">CYS</option>
+                      <option className="dropdownoption" value="BBA">BBA</option>
                     </select>
 
                     {errors.Department && touched.Department ? (
@@ -217,27 +234,24 @@ const FacultyData = () => {
                     ) : null}
                   </div>
 
-
-
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
-                      university
+                      University
                     </label>
                     <input
                       type="text"
                       autoComplete="off"
-                      name="university"
-                      id="university"
-                      placeholder="university"
-                      value={values.university}
+                      name="University"
+                      id="University"
+                      placeholder="University"
+                      value={values.University}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {errors.university && touched.university ? (
-                      <p className="form-error">{errors.university}</p>
+                    {errors.University && touched.University ? (
+                      <p className="form-error">{errors.University}</p>
                     ) : null}
                   </div>
-
 
 
                   <div className="input-block">
@@ -259,6 +273,7 @@ const FacultyData = () => {
                     ) : null}
                   </div>
 
+
                   <div className="input-block">
                     <label htmlFor="email" className="input-label">
                       Faculty ID
@@ -278,10 +293,21 @@ const FacultyData = () => {
                     ) : null}
                   </div>
 
+                  <div className="col-12 contact-input-feild">
+                    <div className="input-block">
+                      <label htmlFor="email" className="input-label">Faculty Image</label>
+                      <input
+                        type="file"
+                        className="wider-dropdown"
+                        onChange={(e) => handleUpload(e)}
+
+                      />
+                    </div>
+                  </div>
+
+
                   <div className="modal-buttons">
-                    <a href="#" className="">
-                      Add a Faculty Member
-                    </a>
+
                     <button className="input-button" type="submit">
                       Register Faculty
                     </button>
