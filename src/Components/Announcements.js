@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { imagedb } from "./config";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { v4 } from 'uuid';
+
 const Announcements
   = () => {
     const [userData, setUserData] = useState({
@@ -226,9 +227,7 @@ const Announcements
 
                         </div>
                       )}
-
                       {
-
                         sucessMsg && (
                           <div className="col-12 text-success mt-2">
                             {sucessMsg}

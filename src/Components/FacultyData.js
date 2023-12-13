@@ -1,8 +1,13 @@
-import React from "react";
+import React,{useState} from "react";
 import styled from "styled-components";
 import { GlobalStyle } from "../Styles/globalStyles";
 import { useFormik } from "formik";
 import { signUpSchema } from "../schemas";
+import { imagedb } from "./config";
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { v4 } from 'uuid';
+
+
 
 const initialValues = {
   name: "",
@@ -18,6 +23,8 @@ const initialValues = {
 };
 
 const FacultyData = () => {
+
+  const [img, setImg] = useState('');
   const {
     values,
     errors,
@@ -48,7 +55,8 @@ const FacultyData = () => {
               Department,
               University,
               areaOfIntrest,
-              id
+              id,
+              img:img
             }),
           }
         );
@@ -58,6 +66,20 @@ const FacultyData = () => {
       }
     },
   });
+
+  const handleUpload = (e) => {
+    console.log(e.target.files[0])
+
+    const imgs = ref(imagedb, `AnnouncementImgs/${v4()}`)
+    uploadBytes(imgs, e.target.files[0]).then(data => {
+      console.log(data, "imgs")
+      getDownloadURL(data.ref).then(val => {
+        setImg(val)
+
+      })
+    })
+
+  }
 
   return (
     <>
@@ -278,10 +300,21 @@ const FacultyData = () => {
                     ) : null}
                   </div>
 
+                  <div className="col-12 contact-input-feild">
+                  <div className="input-block">
+                  <label htmlFor="email" className="input-label">Faculty Image</label>
+                          <input
+                            type="file"
+                            className="wider-dropdown"
+                            onChange={(e) => handleUpload(e)}
+                            
+                            />
+                            </div>
+                        </div>
+
+
                   <div className="modal-buttons">
-                    <a href="#" className="">
-                      Add a Faculty Member
-                    </a>
+                   
                     <button className="input-button" type="submit">
                       Register Faculty
                     </button>
