@@ -14,6 +14,7 @@ const Announcements
 
     const [errorMsg, setErrorMsg] = useState("");
     const [img, setImg] = useState('');
+    const [sucessMsg, setSucessMsg] = useState("");
     let name, value;
     const postUserData = (event) => {
 
@@ -30,7 +31,7 @@ const Announcements
 
       }
 
-      
+
       setUserData({ ...userData, [name]: value });
     };
 
@@ -55,15 +56,15 @@ const Announcements
         return;
       }
 
-if (
-    !isNaN(parseInt(Title)) ||
-    !isNaN(parseInt(Announcement)) ||
-    !isNaN(parseInt(description)) ||
-    isNaN(Date.parse(AnnouncementDate))
-  ) {
-    setErrorMsg("Please enter valid data in the Field");
-    return;
-  }
+      if (
+        !isNaN(parseInt(Title)) ||
+        !isNaN(parseInt(Announcement)) ||
+        !isNaN(parseInt(description)) ||
+        isNaN(Date.parse(AnnouncementDate))
+      ) {
+        setErrorMsg("Please enter valid data in the Field");
+        return;
+      }
 
 
       if (Title && Announcement && AnnouncementDate && description) {
@@ -93,13 +94,15 @@ if (
             AnnouncementDate: "",
             description: "",
           });
-          alert("Data Stored");
+          setSucessMsg("Announcement Created"); // Set success message here
         } else {
-          alert("Failed to store data");
+          setErrorMsg("Failed to store data");
         }
       } else {
-        alert("Please fill in all the data");
+        setErrorMsg("Please fill in all the data");
       }
+
+
     };
 
     const handleUpload = (e) => {
@@ -129,11 +132,11 @@ if (
                     <h1 className="main-heading fw-bold">
                       Welcome   <br /> Admin
                     </h1>
-<br></br>
+                    <br></br>
                     <p className="main-hero-para">
 
-                      
-                          Post An Announcement
+
+                      Post An Announcement
                     </p>
 
                   </div>
@@ -141,15 +144,11 @@ if (
                   {/* right side contact form  */}
                   <div className="contact-rightside col-12 col-lg-7">
                     <form method="POST">
-                    {errorMsg && (
-        <div className="col-12 text-danger mt-2">
-          {errorMsg}
-        </div>
-      )}
+
                       <div className="row">
-                      <label htmlFor="email" className="input-label">
-                      Enter Post Title
-                    </label>
+                        <label htmlFor="email" className="input-label">
+                          Enter Post Title
+                        </label>
                         <div className="col-12 col-lg-6 contact-input-feild">
                           <input
                             type="text"
@@ -164,8 +163,8 @@ if (
                         </div>
 
                         <label htmlFor="email" className="input-label">
-                      Enter Summary
-                    </label>
+                          Enter Summary
+                        </label>
                         <div className="col-12 col-lg-6 contact-input-feild">
                           <input
                             type="text"
@@ -180,8 +179,8 @@ if (
                         </div>
 
                         <label htmlFor="email" className="input-label">
-                      Enter Post Description
-                    </label>
+                          Enter Post Description
+                        </label>
                         <div className="col-12 col-lg-6 contact-input-feild">
                           <input
                             type="text"
@@ -196,8 +195,8 @@ if (
                         </div>
 
                         <label htmlFor="email" className="input-label">
-                      Enter Announcement Date
-                    </label>
+                          Enter Announcement Date
+                        </label>
 
                         <div className="col-12 col-lg-6 contact-input-feild">
                           <input
@@ -226,6 +225,17 @@ if (
                           />
                         </div>
                       </div>
+                      {errorMsg && (
+                        <div className="col-12 text-danger mt-2">
+                          {errorMsg}
+                        </div>
+                      )}
+
+                      {sucessMsg && (
+                        <div className="col-12 text-success mt-2">
+                          {sucessMsg}
+                        </div>
+                      )}
                       <button
                         type="submit"
                         className="btn btn-style w-100"

@@ -1,9 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-import FacultyInfo from './Components/FacultyInfo'
+
 import Announcements from './Components/Announcements'
 import Registration from './Components/Registration';
-import HomePage from './Components/HomePage';
+
 import FacultyData from './Components/FacultyData';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 

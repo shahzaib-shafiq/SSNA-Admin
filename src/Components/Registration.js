@@ -68,6 +68,10 @@ export default function Registration() {
           <br />
           <br />
           <br />
+          <br />
+          
+          <br />
+          <br />
           <br /><br /><br />
           {/* Other spacing elements */}
           
