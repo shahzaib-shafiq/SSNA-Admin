@@ -54,7 +54,7 @@ export default function Registration() {
           <Button
             className='RegButton'
             variant="contained"
-            size="large"
+            size="medium"
             onClick={GoogleRegistration}
             endIcon={<GoogleIcon />}
           >
