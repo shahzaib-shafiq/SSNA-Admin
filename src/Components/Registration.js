@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { auth, provider } from './config';
-import { signInWithPopup } from 'firebase/auth';
+import { signInWithPopup, signOut } from 'firebase/auth';
 import HomePage from './HomePage';
 import Button from '@mui/material/Button';
 import '../Styles/Registration.css';
@@ -17,18 +17,39 @@ export default function Registration() {
           setValue(userEmail);
           localStorage.setItem('email', userEmail);
         } else {
-          setErrorMessage('Invalid email . Please use an email with the domain @cfd.nu.edu.pk');
+          setErrorMessage('Invalid email. Please use an email with the domain @cfd.nu.edu.pk');
         }
       })
       .catch((error) => {
-        // Handle the sign-in error here
         console.error('Sign-in error:', error);
         setErrorMessage('Error during sign-in. Please try again.');
       });
   };
 
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        localStorage.removeItem('email');
+        setValue('');
+      })
+      .catch((error) => {
+        console.error('Logout error:', error);
+      });
+  };
+
   useEffect(() => {
-    setValue(localStorage.getItem('email'));
+    // Cleanup function
+    const handleUnload = () => {
+      handleLogout();
+    };
+
+    // Attach the unload event listener
+    window.addEventListener('beforeunload', handleUnload);
+
+    // Cleanup the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener('beforeunload', handleUnload);
+    };
   }, []);
 
   return (
@@ -37,7 +58,7 @@ export default function Registration() {
         <HomePage />
       ) : (
         <>
-          <br />
+        <br />
           <br />
           <br />
           <br />
@@ -48,9 +69,8 @@ export default function Registration() {
           <br />
           <br />
           <br /><br /><br />
-          
           {/* Other spacing elements */}
-          {errorMessage && <div className="error-message">{errorMessage}</div>}
+          
           <Button
             className='RegButton'
             variant="contained"
@@ -60,6 +80,9 @@ export default function Registration() {
           >
             Login With Google
           </Button>
+
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
+          
           {/* Other spacing elements */}
         </>
       )}

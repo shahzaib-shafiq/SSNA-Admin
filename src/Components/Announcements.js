@@ -130,11 +130,11 @@ if (
                     <h1 className="main-heading fw-bold">
                       Welcome   <br /> Admin
                     </h1>
-                    <br></br>
+<br></br>
                     <p className="main-hero-para">
 
                       
-                          Create Announcement
+                          Post An Announcement
                     </p>
 
                   </div>
