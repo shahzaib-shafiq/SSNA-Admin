@@ -10,10 +10,9 @@ import {Link} from 'react-router-dom'
 
 export default function HomePage() {
 
-
   const logout = () => {
     localStorage.clear()
-    window.location.reload()
+//    window.location.reload()
   }
 
   return (
@@ -34,11 +33,15 @@ export default function HomePage() {
           </Button>
         </Link>
       
+
+        <Link to='/'>
+
       <Button variant="contained" endIcon={<LogoutIcon />}
       
       onClick={logout}>
         Signout
       </Button>
+        </Link>
 
       </div>
 
