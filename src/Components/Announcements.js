@@ -12,13 +12,26 @@ const Announcements
       description: ""
     });
 
-
+    const [errorMsg, setErrorMsg] = useState("");
     const [img, setImg] = useState('');
     let name, value;
     const postUserData = (event) => {
+
+
       name = event.target.name;
       value = event.target.value;
+      const inputValue = event.target.value;
+      // Regular expression to allow only English characters
+      const onlyEnglishRegex = /^[a-zA-Z\s]+$/;
+      // Check if the input matches the regular expression
+      if (onlyEnglishRegex.test(inputValue) || inputValue === '') {
+        // Update the state only if the input is valid or empty
+        setUserData({ Title: inputValue });
 
+
+      }
+
+      
       setUserData({ ...userData, [name]: value });
     };
 
@@ -33,6 +46,25 @@ const Announcements
       event.preventDefault();
       const { Title, Announcement, AnnouncementDate, description } = userData;
 
+      if (
+        Title.length < 4 || Title.length > 20 ||
+        Announcement.length < 4 || Announcement.length > 20 ||
+        description.length < 4 || description.length > 30 ||
+        isNaN(Date.parse(AnnouncementDate))
+      ) {
+        setErrorMsg("Enter Data Between 4-20 characters");
+        return;
+      }
+
+if (
+    !isNaN(parseInt(Title)) ||
+    !isNaN(parseInt(Announcement)) ||
+    !isNaN(parseInt(description)) ||
+    isNaN(Date.parse(AnnouncementDate))
+  ) {
+    setErrorMsg("Please enter valid data in the Field");
+    return;
+  }
 
 
       if (Title && Announcement && AnnouncementDate && description) {
@@ -98,11 +130,11 @@ const Announcements
                     <h1 className="main-heading fw-bold">
                       Welcome   <br /> Admin
                     </h1>
-
+                    <br></br>
                     <p className="main-hero-para">
 
-                      <br></br>
-                      Post An Announcement
+                      
+                          Create Announcement
                     </p>
 
                   </div>
@@ -110,7 +142,13 @@ const Announcements
                   {/* right side contact form  */}
                   <div className="contact-rightside col-12 col-lg-7">
                     <form method="POST">
+                    {errorMsg && (
+        <div className="col-12 text-danger mt-2">
+          {errorMsg}
+        </div>
+      )}
                       <div className="row">
+                      
                         <div className="col-12 col-lg-6 contact-input-feild">
                           <input
                             type="text"
