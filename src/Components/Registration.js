@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { auth, provider } from './config';
 import { signInWithPopup } from 'firebase/auth';
 import HomePage from './HomePage';
-
 import Button from '@mui/material/Button';
 import '../Styles/Registration.css';
 import GoogleIcon from '@mui/icons-material/Google';
-
 export default function Registration() {
   const [value, setValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -40,6 +38,17 @@ export default function Registration() {
       ) : (
         <>
           <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br /><br /><br />
+          
           {/* Other spacing elements */}
           {errorMessage && <div className="error-message">{errorMessage}</div>}
           <Button
