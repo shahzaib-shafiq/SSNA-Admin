@@ -1,0 +1,18 @@
+
+.pageheading{
+    margin-bottom: 10px;
+    
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: space-between; /* Adjust this property to change the spacing */
+}
+
+.container button {
+  flex: 1;
+  margin-bottom: 50px;
+  width: 150px; /* Adjust this property to set the width of the buttons */
+  height: 40px; /* Adjust this property to set the height of the buttons */
+}

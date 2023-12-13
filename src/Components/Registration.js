@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { auth, provider } from './config'
 import { signInWithPopup } from 'firebase/auth'
 import HomePage from './HomePage';
+
+import Button from '@mui/material/Button';
+
+import GoogleIcon from '@mui/icons-material/Google';
+
 export default function Registration() {
 
   const [value, setValue] = useState('');
@@ -19,11 +24,18 @@ export default function Registration() {
   return (
     <div>
       {value ? <HomePage /> :
-        <button
-          className="btn btn-style w-100"
-          onClick={GoogleRegistration}>
-          Google Login
-        </button>
+       
+        <>
+        
+        <Button  variant="contained" size="medium"
+        onClick={GoogleRegistration}
+        
+        endIcon={<GoogleIcon />}
+        >Login With Google</Button>
+        
+        </>
+
+
       }
     </div>
   )

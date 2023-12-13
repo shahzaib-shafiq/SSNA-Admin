@@ -1,5 +1,14 @@
 import React from 'react'
 
+import Button from '@mui/material/Button';
+import '../Styles/HomePage.css';
+import LogoutIcon from '@mui/icons-material/Logout';
+import SendIcon from '@mui/icons-material/Send';
+import Stack from '@mui/material/Stack';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import AnnouncementIcon from '@mui/icons-material/Announcement';
+
+
 export default function HomePage() {
   const logout = () => {
     localStorage.clear()
@@ -7,32 +16,30 @@ export default function HomePage() {
   }
   return (
     <div>
-      <h1>Home Page</h1>
-
-      <div className="col">
-
-        <button
-          className="btn btn-style w-100"
-          onClick={logout}>
-          Add Faculty
-        </button>
+      <h1 className='pageheading'>Welcome Admin </h1>
 
 
-        <button
-          className="btn btn-style w-100"
-          onClick={logout}>
-          Announcement
-        </button>
+      <div className="container">
 
+      <Button variant="contained" size="medium"
+       onClick={logout}
+     
+       endIcon={<PersonAddIcon />}
+     >Add Faculty</Button>
+      
 
-
-        <button
-          className="btn btn-style w-200"
-          onClick={logout}>
-          Logout
-        </button>
-
-
+      <Button variant="contained" size="medium" endIcon={<AnnouncementIcon />}
+      
+      onClick={logout}
+    
+      >Announcement</Button>
+      
+      
+      <Button variant="contained" endIcon={<LogoutIcon />}
+      
+      onClick={logout}>
+        Signout
+      </Button>
 
       </div>
 

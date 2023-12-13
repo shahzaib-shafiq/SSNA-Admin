@@ -13,8 +13,8 @@ function App() {
   {/* <FacultyInfo/> */}
     {/* <Announcements/> */}
 {/* <HomePage/> */}
-     {/* <Registration/> */}
-<FacultyData/>
+     <Registration/>
+{/* <FacultyData/> */}
     
     </div>
   );
