@@ -1,0 +1,171 @@
+.imagemainBg,
+.whitesquareBg {
+  position: absolute;
+  height: 832px;
+}
+.imagemainBg {
+  top: calc(50% - 416px);
+  left: calc(50% - 667px);
+  width: 1333px;
+  object-fit: cover;
+}
+.whitesquareBg {
+  top: 0;
+  left: -21px;
+  background-color: var(--color-white);
+  width: 1320px;
+}
+.postAnnouncement {
+  position: absolute;
+  top: 96px;
+  left: 512px;
+  font-size: var(--font-size-29xl);
+  font-weight: 600;
+  color: var(--color-gray-200);
+}
+.buttonBackChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-12xl);
+  background-color: var(--color-silver);
+  box-shadow: 4px 5px 5.4px -4px rgba(0, 0, 0, 0.25);
+  width: 180px;
+  height: 74px;
+}
+.back {
+  position: absolute;
+  top: 18px;
+  left: 54px;
+  font-size: var(--font-size-13xl);
+  font-weight: 600;
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: left;
+  display: inline-block;
+  width: 85px;
+  height: 37px;
+}
+.buttonBack {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 727px;
+  left: 50px;
+}
+.buttonBack,
+.buttonPost,
+.buttonPostChild {
+  position: absolute;
+  width: 180px;
+  height: 74px;
+}
+.buttonPostChild {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-12xl);
+  background-color: var(--color-khaki);
+  box-shadow: 4px 5px 5.4px -4px rgba(0, 0, 0, 0.25);
+}
+.buttonPost {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 727px;
+  left: 1039px;
+}
+.inputtextEntersummaryChild {
+  border: 1px solid var(--color-darkgray);
+  outline: 0;
+  background-color: var(--color-white);
+  position: absolute;
+  top: 28px;
+  left: 0;
+  border-radius: var(--br-12xl);
+  box-sizing: border-box;
+  width: 305px;
+  height: 56px;
+}
+.enterPostTitle {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  font-weight: 600;
+}
+.inputtextEntersummary {
+  position: absolute;
+  top: 230px;
+  left: 529px;
+  width: 305px;
+  height: 84px;
+}
+.imgupload,
+.uploadImage {
+  position: absolute;
+  width: 137px;
+  height: 20px;
+}
+.uploadImage {
+  top: 0;
+  left: 0;
+  font-weight: 600;
+  display: inline-block;
+}
+.imgupload {
+  top: 456px;
+  left: 999px;
+}
+.inputtextEnterannouncementdat,
+.inputtextEnterpostdescription,
+.inputtextPosttitle {
+  position: absolute;
+  top: 476px;
+  left: 529px;
+  width: 305px;
+  height: 84px;
+}
+.inputtextEnterannouncementdat,
+.inputtextPosttitle {
+  top: 599px;
+}
+.inputtextPosttitle {
+  top: 353px;
+}
+.announcementsChild {
+  position: absolute;
+  top: 401px;
+  left: 948px;
+  border-radius: 21px;
+  width: 230px;
+  height: 45px;
+  object-fit: cover;
+}
+.announcementsItem {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-azure);
+  width: 462px;
+  height: 832px;
+}
+.postsRafiki1Icon {
+  position: absolute;
+  top: 222px;
+  left: 52px;
+  width: 356px;
+  height: 374px;
+  object-fit: cover;
+}
+.announcements {
+  position: relative;
+  background-color: var(--color-gray-300);
+  width: 100%;
+  height: 832px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-100);
+  font-family: var(--font-inter);
+}

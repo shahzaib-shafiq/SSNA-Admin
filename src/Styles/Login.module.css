@@ -1,0 +1,112 @@
+.imagemainBg {
+  position: absolute;
+  top: calc(50% - 416px);
+  left: calc(50% - 667px);
+  width: 1333px;
+  height: 832px;
+  object-fit: cover;
+}
+.whitesquareBg {
+  position: absolute;
+  top: 72px;
+  left: 93px;
+  background-color: var(--color-white);
+  width: 1092px;
+  height: 688px;
+}
+.sideillustrationChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    192.4deg,
+    rgba(168, 245, 255, 0.18) 0.04%,
+    rgba(124, 224, 255, 0.1) 38.24%,
+    rgba(0, 209, 255, 0)
+  );
+  width: 414px;
+  height: 688px;
+}
+.loginRafiki1Icon {
+  position: absolute;
+  top: 164.1px;
+  left: 8.4px;
+  width: 397.3px;
+  height: 387.3px;
+  object-fit: cover;
+}
+.maskGroupIcon,
+.sideillustration {
+  position: absolute;
+  top: 72px;
+  left: 85px;
+  width: 414px;
+  height: 688px;
+}
+.maskGroupIcon {
+  top: 134px;
+  left: 249px;
+  width: 104px;
+  height: 104px;
+  object-fit: cover;
+}
+.adminLogin,
+.loginWithNuces {
+  position: absolute;
+  top: 295px;
+  left: 678px;
+  font-weight: 600;
+}
+.loginWithNuces {
+  top: 473px;
+  left: 726px;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.buttonChild {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-12xl);
+  background-color: var(--color-lightskyblue);
+  box-shadow: 4px 5px 5.4px -4px rgba(0, 0, 0, 0.25);
+  width: 252px;
+  height: 74px;
+}
+.button,
+.buttonChild,
+.login {
+  position: absolute;
+}
+.login {
+  top: 16px;
+  left: 79px;
+  font-size: var(--font-size-13xl);
+  font-weight: 600;
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: left;
+  display: inline-block;
+  width: 110px;
+  height: 37px;
+}
+.button {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 382px;
+  left: 697px;
+  width: 252px;
+  height: 74px;
+}
+.loginpage {
+  position: relative;
+  background-color: var(--color-gray-300);
+  width: 100%;
+  height: 832px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-29xl);
+  color: var(--color-gray-200);
+  font-family: var(--font-inter);
+}

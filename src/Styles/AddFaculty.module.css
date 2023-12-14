@@ -1,0 +1,302 @@
+.imagemainBg,
+.whitesquareBg {
+  position: absolute;
+  height: 832px;
+}
+.imagemainBg {
+  top: calc(50% - 416px);
+  left: calc(50% - 667px);
+  width: 1333px;
+  object-fit: cover;
+}
+.whitesquareBg {
+  top: 0;
+  left: -21px;
+  background-color: var(--color-white);
+  width: 1320px;
+}
+.addFacultyMember {
+  position: absolute;
+  top: 96px;
+  left: 512px;
+  font-size: var(--font-size-29xl);
+  font-weight: 600;
+  color: var(--color-gray-200);
+}
+.buttonBackChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-12xl);
+  background-color: var(--color-silver);
+  box-shadow: 4px 5px 5.4px -4px rgba(0, 0, 0, 0.25);
+  width: 180px;
+  height: 74px;
+}
+.back {
+  position: absolute;
+  top: 18px;
+  left: 54px;
+  font-size: var(--font-size-13xl);
+  font-weight: 600;
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: left;
+  display: inline-block;
+  width: 85px;
+  height: 37px;
+}
+.buttonBack {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 727px;
+  left: 50px;
+}
+.buttonBack,
+.buttonPost,
+.buttonPostChild {
+  position: absolute;
+  width: 180px;
+  height: 74px;
+}
+.buttonPostChild {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-12xl);
+  background-color: var(--color-khaki);
+  box-shadow: 4px 5px 5.4px -4px rgba(0, 0, 0, 0.25);
+}
+.buttonPost {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 727px;
+  left: 1039px;
+}
+.inputtextNameChild {
+  border: 1px solid var(--color-darkgray);
+  outline: 0;
+  background-color: var(--color-white);
+  position: absolute;
+  top: 22.3px;
+  left: 0;
+  border-radius: var(--br-12xl);
+  box-sizing: border-box;
+  width: 252.9px;
+  height: 44.5px;
+}
+.name {
+  position: absolute;
+  top: 0;
+  left: 4.6px;
+  font-weight: 600;
+  display: inline-block;
+  width: 147.9px;
+  height: 19.4px;
+}
+.inputtextExtensionChild,
+.inputtextName {
+  position: absolute;
+  top: 205px;
+  left: 539px;
+  width: 252.9px;
+  height: 66.8px;
+}
+.inputtextExtensionChild {
+  border: 1px solid var(--color-darkgray);
+  outline: 0;
+  background-color: var(--color-white);
+  top: 22.4px;
+  left: 0;
+  border-radius: var(--br-12xl);
+  box-sizing: border-box;
+  height: 44.5px;
+}
+.phoneExtension {
+  position: absolute;
+  top: 0;
+  left: 4.6px;
+  font-weight: 600;
+  display: inline-block;
+  width: 206.7px;
+  height: 19.4px;
+}
+.inputtextExtension {
+  position: absolute;
+  top: 400.5px;
+  left: 539px;
+  width: 252.9px;
+  height: 66.9px;
+}
+.enterOfficeAddress {
+  position: absolute;
+  top: 0;
+  left: 4.6px;
+  font-weight: 600;
+  display: inline-block;
+  width: 241.6px;
+  height: 19.4px;
+}
+.inputtextEmail,
+.inputtextFacultyid,
+.inputtextOfficeadress {
+  position: absolute;
+  top: 498.3px;
+  left: 539px;
+  width: 252.9px;
+  height: 66.9px;
+}
+.inputtextEmail,
+.inputtextFacultyid {
+  top: 596px;
+}
+.inputtextEmail {
+  top: 302.8px;
+  height: 66.8px;
+}
+.inputtextQualificationChild {
+  border: 1px solid var(--color-darkgray);
+  outline: 0;
+  background-color: var(--color-white);
+  position: absolute;
+  top: 22.4px;
+  left: 0;
+  border-radius: var(--br-12xl);
+  box-sizing: border-box;
+  width: 254.9px;
+  height: 44.9px;
+}
+.enterQualification {
+  position: absolute;
+  top: 0;
+  left: 4.6px;
+  font-weight: 600;
+  display: inline-block;
+  width: 173.1px;
+  height: 19.5px;
+}
+.inputtextQualification,
+.inputtextUniversityChild {
+  position: absolute;
+  top: 206px;
+  left: 861px;
+  width: 254.9px;
+  height: 67.3px;
+}
+.inputtextUniversityChild {
+  border: 1px solid var(--color-darkgray);
+  outline: 0;
+  background-color: var(--color-white);
+  top: 22.5px;
+  left: 0;
+  border-radius: var(--br-12xl);
+  box-sizing: border-box;
+  height: 44.9px;
+}
+.enterUniversity {
+  position: absolute;
+  top: 0;
+  left: 4.6px;
+  font-weight: 600;
+  display: inline-block;
+  width: 208.3px;
+  height: 19.5px;
+}
+.inputtextAreaofintrestChild,
+.inputtextUniversity {
+  position: absolute;
+  top: 403px;
+  left: 861px;
+  width: 254.9px;
+  height: 67.4px;
+}
+.inputtextAreaofintrestChild {
+  border: 1px solid var(--color-darkgray);
+  outline: 0;
+  background-color: var(--color-white);
+  top: 22.6px;
+  left: 0;
+  border-radius: var(--br-12xl);
+  box-sizing: border-box;
+  height: 44.9px;
+}
+.enterAreaOf {
+  position: absolute;
+  top: 0;
+  left: 4.6px;
+  font-weight: 600;
+  display: inline-block;
+  width: 243.4px;
+  height: 19.5px;
+}
+.inputtextAreaofintrest,
+.inputtextAreaofintrestItem {
+  position: absolute;
+  top: 501.5px;
+  left: 861px;
+  width: 254.9px;
+  height: 67.5px;
+}
+.inputtextAreaofintrestItem {
+  border: 1px solid var(--color-darkgray);
+  outline: 0;
+  background-color: var(--color-white);
+  top: 22.6px;
+  left: 0;
+  border-radius: 52px;
+  box-sizing: border-box;
+  height: 44.9px;
+}
+.enterDepartment,
+.inputtextAreaofintrest1 {
+  position: absolute;
+  top: 596px;
+  left: 861px;
+  width: 254.9px;
+  height: 67.5px;
+}
+.enterDepartment {
+  top: 0;
+  left: 4.6px;
+  font-weight: 600;
+  display: inline-block;
+  width: 183.3px;
+  height: 19.5px;
+}
+.addfacultyChild,
+.inputtextDepartment {
+  position: absolute;
+  top: 304.5px;
+  left: 861px;
+  width: 254.9px;
+  height: 67.4px;
+}
+.addfacultyChild {
+  top: 0;
+  left: -42px;
+  background-color: var(--color-azure);
+  width: 462px;
+  height: 832px;
+}
+.newEmployeeRafiki1 {
+  position: absolute;
+  top: 237px;
+  left: -14px;
+  width: 368px;
+  height: 368px;
+  object-fit: cover;
+}
+.addfaculty {
+  position: relative;
+  background-color: var(--color-gray-300);
+  width: 100%;
+  height: 832px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-100);
+  font-family: var(--font-inter);
+}

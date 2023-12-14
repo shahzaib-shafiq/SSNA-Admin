@@ -5,6 +5,8 @@ import HomePage from './HomePage';
 import Button from '@mui/material/Button';
 import '../Styles/Registration.css';
 import GoogleIcon from '@mui/icons-material/Google';
+import styles from "../Styles/Login.module.css";
+
 export default function Registration() {
   const [value, setValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -22,7 +24,7 @@ export default function Registration() {
       })
       .catch((error) => {
         console.error('Sign-in error:', error);
-        setErrorMessage('Error during sign-in. Please try again.');
+        setErrorMessage('');
       });
   };
 
@@ -53,30 +55,31 @@ export default function Registration() {
   }, []);
 
   return (
-    <div>
-      {value ? (
-        <HomePage />
-      ) : (
-        <>
-        <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          
-          <br />
-          <br />
-          <br /><br /><br />
-          {/* Other spacing elements */}
-          
+    value ? (
+      <HomePage />
+    ) : (
+      <>
+      
+        <div className={styles.loginpage}>
+          <img className={styles.imagemainBg} alt="" src="/imagemain--bg@2x.png" />
+          <div className={styles.whitesquareBg} />
+          <div className={styles.sideillustration}>
+            <div className={styles.sideillustrationChild} />
+            <img
+              className={styles.loginRafiki1Icon}
+              alt=""
+              src="/loginrafiki-1@2x.png"
+            />
+          </div>
+          <img className={styles.maskGroupIcon} alt="" src="/mask-group@2x.png" />
+          {/* <div className={styles.adminLogin}>{`Admin Login `}</div> */}
+          <div className={styles.loginWithNuces}>Login with NUCES account</div>
+          <div className={styles.loginWithNucesError}>
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
+          </div>
+
           <Button
-            className='RegButton'
+            className={styles.button}
             variant="contained"
             size="medium"
             onClick={GoogleRegistration}
@@ -84,12 +87,8 @@ export default function Registration() {
           >
             Login With Google
           </Button>
-
-          {errorMessage && <div className="error-message">{errorMessage}</div>}
-          
-          {/* Other spacing elements */}
-        </>
-      )}
-    </div>
+        </div>
+      </>
+    )
   );
 }
