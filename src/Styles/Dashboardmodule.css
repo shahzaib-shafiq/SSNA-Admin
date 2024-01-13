@@ -1,0 +1,151 @@
+.imagemainBg,
+.whitesquareBg {
+  position: absolute;
+  height: 832px;
+}
+.imagemainBg {
+  top: calc(50% - 416px);
+  left: calc(50% - 667px);
+  width: 1333px;
+  object-fit: cover;
+}
+.whitesquareBg {
+  top: 0;
+  left: -21px;
+  background-color: var(--color-white);
+  width: 1320px;
+}
+.maskGroupIcon {
+  position: absolute;
+  top: 55px;
+  left: 1126px;
+  width: 104px;
+  height: 104px;
+  object-fit: cover;
+}
+.welcomeAdmin {
+  position: absolute;
+  top: 284px;
+  left: 644px;
+  font-weight: 600;
+}
+.button3Child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-12xl);
+  background-color: #fd6e6e;
+  box-shadow: 4px 5px 5.4px -4px rgba(0, 0, 0, 0.25);
+  width: 180px;
+  height: 74px;
+}
+.signout {
+  position: absolute;
+  top: 18px;
+  left: 27px;
+  font-size: var(--font-size-13xl);
+  font-weight: 600;
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: left;
+  display: inline-block;
+  width: 127px;
+  height: 37px;
+}
+.button2Child,
+.button3 {
+  position: absolute;
+  height: 74px;
+}
+.button3 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  top: 727px;
+  left: 1062px;
+  width: 180px;
+}
+.button2Child {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-12xl);
+  background-color: var(--color-lightskyblue);
+  box-shadow: 4px 5px 5.4px -4px rgba(0, 0, 0, 0.25);
+  width: 305px;
+}
+.announcements {
+  position: absolute;
+  top: 18px;
+  left: 23px;
+  font-size: var(--font-size-13xl);
+  font-weight: 600;
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: left;
+  display: inline-block;
+  width: 289px;
+  height: 37px;
+}
+.button2 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 474px;
+  left: 679px;
+  width: 312px;
+  height: 74px;
+}
+.addFaculty {
+  position: absolute;
+  top: 18px;
+  left: 58px;
+  font-size: var(--font-size-13xl);
+  font-weight: 600;
+  font-family: var(--font-inter);
+  color: var(--color-white);
+  text-align: left;
+  display: inline-block;
+  width: 189px;
+  height: 37px;
+}
+.button {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 378px;
+  left: 679px;
+  width: 305px;
+  height: 74px;
+}
+.dashboardChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-azure);
+  width: 517px;
+  height: 832px;
+}
+.bufferRafiki1Icon {
+  position: absolute;
+  top: 214px;
+  left: 59px;
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+}
+.dashboard {
+  position: relative;
+  background-color: var(--color-gray-300);
+  width: 100%;
+  height: 832px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-29xl);
+  color: var(--color-gray-200);
+  font-family: var(--font-inter);
+}

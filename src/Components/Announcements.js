@@ -49,8 +49,8 @@ const Announcements
 
       if (
         Title.length < 4 || Title.length > 20 ||
-        Announcement.length < 4 || Announcement.length > 20 ||
-        description.length < 4 || description.length > 30 ||
+        Announcement.length < 4 || Announcement.length > 30 ||
+        description.length < 4 || description.length > 40 ||
         isNaN(Date.parse(AnnouncementDate))
       ) {
         setErrorMsg("Enter Data Between 4-20 characters");
@@ -176,7 +176,7 @@ const Announcements
                             id=""
                             maxLength="100"
                             className="form-control"
-                            placeholder="Announcement"
+                            placeholder="Summary"
                             value={userData.Announcement}
                             onChange={postUserData}
                           />
