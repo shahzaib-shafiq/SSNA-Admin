@@ -119,9 +119,6 @@ export default function Registration() {
 
   const [value, setValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
-
-
   const GoogleRegistration = () => {
     signInWithPopup(auth, provider)
       .then((data) => {

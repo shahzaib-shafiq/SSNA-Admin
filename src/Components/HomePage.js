@@ -9,7 +9,7 @@
   import {Link} from 'react-router-dom'
   import styles from "../Styles/Login.module.css";
 
-
+import bgImg from '../assets/img1.jpg'
 
 
   const logout = () => {
@@ -29,7 +29,8 @@ const Dashboard = () => {
       <img className={styles.maskGroupIcon} alt="" src="/mask-group@2x.png" />
       <div className={styles.welcomeAdmin}>{`Welcome Admin `}</div>    
       <div className='buttondiv'>
-       <Link to='/FacultyData'>
+       
+      <Link to='/FacultyData'>
            <Button className="styledButton" variant='contained' size='medium' endIcon={<PersonAddIcon />}>
              Add Faculty
            </Button>
@@ -57,6 +58,48 @@ const Dashboard = () => {
         alt=""
         src="/bufferrafiki-1@2x.png"
       /> */}
+
+
+<section>
+        <div className="register">
+            <div className="col-1">
+                <h2>Admin Module </h2>
+                <span></span>
+
+                <form id='form' className='flex flex-col' >
+                    {/* <button className='btn'>Sign In</button> */}
+                
+                
+                    <Link to='/FacultyData'>
+           <Button className="styledButton" variant='contained' size='medium' endIcon={<PersonAddIcon />}>
+             Add Faculty
+           </Button>
+         </Link>
+
+         <Link to='/announcement'>
+           <Button className="styledButton" variant='contained' size='medium' endIcon={<AnnouncementIcon />}>
+            Announcement
+           </Button>
+         </Link>
+     
+         <Link to='/'>
+
+       <Button className="styledButton" variant="contained" endIcon={<LogoutIcon />}
+     
+       onClick={logout}>
+         Signout
+       </Button>
+         </Link>
+
+                </form>
+
+            </div>
+            <div className="col-2">
+                <img src={bgImg} alt="" />
+            </div>
+        </div>
+    </section>
+
 
 
     </div>
