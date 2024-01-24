@@ -105,7 +105,7 @@
 
 
 import React, { useEffect, useState } from 'react';
-import './Styles/Registration.css'
+import '../Styles/HomepageForm.css'
 import bgImg from '../assets/img1.jpg'
 import { auth, provider } from './config';
 import { signInWithPopup, signOut } from 'firebase/auth';
