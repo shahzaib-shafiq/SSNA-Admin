@@ -53,6 +53,11 @@ const Dashboard = () => {
       />
     </div>
   );
+<<<<<<< Updated upstream
 };
 
 export default Dashboard;
+=======
+}
+
+>>>>>>> Stashed changes
