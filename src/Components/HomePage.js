@@ -9,6 +9,9 @@
   import {Link} from 'react-router-dom'
   import styles from "../Styles/Login.module.css";
 
+
+
+
   const logout = () => {
     localStorage.clear()
   }
@@ -17,7 +20,10 @@
 const Dashboard = () => {
   return (
     
-    <div className={styles.dashboard}>
+    <div>
+{/*     
+    hhhhhhh
+    
       <img className={styles.imagemainBg} alt="" src="/imagemain--bg@2x.png" />
       <div className={styles.whitesquareBg} />
       <img className={styles.maskGroupIcon} alt="" src="/mask-group@2x.png" />
@@ -50,14 +56,11 @@ const Dashboard = () => {
         className={styles.bufferRafiki1Icon}
         alt=""
         src="/bufferrafiki-1@2x.png"
-      />
+      /> */}
+
+
     </div>
   );
-<<<<<<< Updated upstream
 };
 
 export default Dashboard;
-=======
-}
-
->>>>>>> Stashed changes

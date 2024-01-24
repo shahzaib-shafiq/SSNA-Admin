@@ -113,12 +113,7 @@ import HomePage from './HomePage';
 import Button from '@mui/material/Button';
 import '../Styles/Registration.css';
 import GoogleIcon from '@mui/icons-material/Google';
-<<<<<<< Updated upstream
 import styles from "../Styles/Login.module.css";
-=======
-
-
->>>>>>> Stashed changes
 
 export default function Registration() {
 
@@ -174,7 +169,6 @@ export default function Registration() {
   }, []);
 
   return (
-<<<<<<< Updated upstream
     value ? (
       <HomePage />
     ) : (
@@ -211,27 +205,4 @@ export default function Registration() {
       </>
     )
   );
-=======
-    <div>
-
-        
-          <section>
-        <div className="register">
-            <div className="col-1">
-                <h2>Welcome Admin</h2>
-                <span>Login With NU Email ID</span>
-
-                <form id='form' className='flex flex-col' >
-                    <button className='btn'>Sign In</button>
-                </form>
-
-            </div>
-            <div className="col-2">
-                <img src={bgImg} alt="" />
-            </div>
-        </div>
-    </section>
-    </div>
-  )
->>>>>>> Stashed changes
 }
