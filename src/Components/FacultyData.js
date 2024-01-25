@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
 import { useFormik } from "formik";
-
 import { signUpSchema } from "../schemas";
 import { imagedb } from "./config";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
@@ -408,7 +406,7 @@ const initialValues = {
 </form>
  */}
 
-function FacultyData() {
+ const FacultyData = () => {
 
 
   const [img, setImg] = useState('');
@@ -493,323 +491,246 @@ function FacultyData() {
               <div class="lg:col-span-2">
                 <h1 className="modal-title font-sans font-bold">Add New Faculty Member</h1>
                 <br></br>
-                <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
 
-                  <div class="md:col-span-5">
-                    <label for="full_name">Enter Full Name</label>
-                    <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                <form onSubmit={handleSubmit} >
+                  <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
 
-
-                      type="name"
-                      autoComplete="off"
-                      name="name"
-                      id="name"
-                      placeholder="Name"
-                      value={values.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-
-                    {errors.name && touched.name ? (
-                      <p className="form-error">{errors.name}</p>
-                    ) : null}
-                  </div>
-
-                  <div class="md:col-span-5">
-                    <label for="email">Email Address</label>
-
-                    <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                      placeholder="email@domain.com"
-
-                      type="email"
-                      autoComplete="off"
-                      name="email"
-                      id="email"
-
-                      value={values.email}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-
-                    {errors.email && touched.email ? (
-                      <p className="form-error">{errors.email}</p>
-                    ) : null}
-
-                  </div>
-
-                  <div class="md:col-span-3">
-                    <label for="address">Office Adress</label>
-                    <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                      type="text"
-                      autoComplete="off"
-                      name="address"
-                      id="address"
-                      placeholder="Office Address"
-                      value={values.address}
-                      onChange={handleChange}
-                      onBlur={handleBlur} />
+                    <div class="md:col-span-5">
+                      <label for="full_name">Enter Full Name</label>
+                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
 
 
+                        type="name"
+                        autoComplete="off"
+                        name="name"
+                        id="name"
+                        placeholder="Name"
+                        value={values.name}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
 
-                    {errors.address && touched.address ? (
-                      <p className="form-error">{errors.address}</p>
-                    ) : null}
-                  </div>
-
-{/*     change */}
-
-
-                  {/* Change Education to Designation here */}
-
-
-{/*     change */}
-
-                  <div class="md:col-span-2">
-                    <label for="city">Designation</label>
-                    <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                      placeholder="Designation Type"
-                      type="email"
-                      autoComplete="off"
-                      name="Education"
-                      id="Education"
-                      value={values.Education}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-
-                    />
-
-                    {errors.Education && touched.Education ? (
-                      <p className="form-error">{errors.Education}</p>
-                    ) : null}
-
-
-
-                  </div>
-{/* Add other Fields */}
-
-<div class="md:col-span-2">
-                    <label for="address"> Department</label>
-                    <select
-                      name="Department"
-                      id="Department"
-                      value={values.Department}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                      
-                      <option   value="CS">CS</option>
-                      <option  value="SE">SE</option>
-                      <option  value="EE">EE</option>
-                      <option  value="AI">AI</option>
-                      <option  value="CYS">CYS</option>
-                      <option  value="BBA">BBA</option>
-                    </select>
-                  
-                  </div>
-
-                  <div class="md:col-span-2">
-                    <label for="state">State / province</label>
-                    <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                      <input name="state" id="state" placeholder="State" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" value="" />
-                      <button tabindex="-1" class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                      </button>
-                      <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                      </button>
+                      {errors.name && touched.name ? (
+                        <p className="form-error">{errors.name}</p>
+                      ) : null}
                     </div>
-                  </div>
 
-                  <div class="md:col-span-1">
-                    <label for="address">Extension</label>
-                    <input
+                    <div class="md:col-span-5">
+                      <label for="email">Email Address</label>
 
+                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        placeholder="email@domain.com"
 
-                      class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                      type="number"
-                      autoComplete="off"
-                      name="phone"
-                      id="phone"
-                      placeholder="Ext"
-                      value={values.phone}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
+                        type="email"
+                        autoComplete="off"
+                        name="email"
+                        id="email"
 
+                        value={values.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
 
-                    {errors.phone && touched.phone ? (
-                      <p className="form-error">{errors.phone}</p>
-                    ) : null}
+                      {errors.email && touched.email ? (
+                        <p className="form-error">{errors.email}</p>
+                      ) : null}
 
-                  </div>
-
-                  {/* <div class="md:col-span-5">
-                <div class="inline-flex items-center">
-                  <input type="checkbox" name="billing_same" id="billing_same" class="form-checkbox" />
-                  <label for="billing_same" class="ml-2">My billing address is different than above.</label>
-                </div>
-              </div> */}
-
-                  <div class="md:col-span-2">
-                    <label for="country">Country / region</label>
-                    <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                      <input name="country" id="country" placeholder="Country" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" value="" />
-                      <button tabindex="-1" class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                      </button>
-                      <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                      </button>
                     </div>
-                  </div>
 
-                  <div class="md:col-span-2">
-                    <label for="state">State / province</label>
-                    <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                      <input name="state" id="state" placeholder="State" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" value="" />
-                      <button tabindex="-1" class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                      </button>
-                      <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                      </button>
+                    <div class="md:col-span-3">
+                      <label for="address">Office Adress</label>
+                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        type="text"
+                        autoComplete="off"
+                        name="address"
+                        id="address"
+                        placeholder="Office Address"
+                        value={values.address}
+                        onChange={handleChange}
+                        onBlur={handleBlur} />
+
+
+
+                      {errors.address && touched.address ? (
+                        <p className="form-error">{errors.address}</p>
+                      ) : null}
                     </div>
-                  </div>
+
+                    {/*     change */}
 
 
-                  <div class="md:col-span-2">
-                    <label for="country">Country / region</label>
-                    <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                      <input name="country" id="country" placeholder="Country" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" value="" />
-                      <button tabindex="-1" class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                      </button>
-                      <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                      </button>
+                    {/* Change Education to Designation here */}
+
+
+                    {/*     change */}
+
+                    <div class="md:col-span-2">
+                      <label for="city">Designation</label>
+                      <select
+                        name="Education"
+                        id="Education"
+                        value={values.Education}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      >
+                        {/* <option className="dropdownoption" value="">Qualification</option> */}
+                        <option className="dropdownoption" value="Professor">Professor</option>
+                        <option className="dropdownoption" value="Associate Professor">Associate Professor</option>
+                        <option className="dropdownoption" value="Assistant Professor">Assistant Professor</option>
+
+                        <option className="dropdownoption" value="Lecturer">Lecturer</option>
+                        <option className="dropdownoption" value=" Instructor"> Instructor</option>
+
+
+
+                      </select>
+                      {errors.Education && touched.Education ? (
+                        <p className="form-error">{errors.Education}</p>
+                      ) : null}
+
+
+
+
                     </div>
-                  </div>
+                    {/* Add other Fields */}
 
-                  <div class="md:col-span-2">
-                    <label for="state">State / province</label>
-                    <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                      <input name="state" id="state" placeholder="State" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" value="" />
-                      <button tabindex="-1" class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                      </button>
-                      <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                      </button>
+                    <div class="md:col-span-2">
+                      <label for="address">Department</label>
+                      <select
+                        name="Department"
+                        id="Department"
+                        value={values.Department}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Department"
+                      >
+
+                        <option value="CS">CS</option>
+                        <option value="SE">SE</option>
+                        <option value="EE">EE</option>
+                        <option value="AI">AI</option>
+                        <option value="CYS">CYS</option>
+                        <option value="BBA">BBA</option>
+                      </select>
+                      {errors.Department && touched.Department ? (
+                        <p className="form-error">{errors.Department}</p>
+                      ) : null}
                     </div>
-                  </div>
 
+                    <div class="md:col-span-2">
+                      <label for="state"> University</label>
+                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        type="text"
+                        autoComplete="off"
+                        name="University"
+                        id="University"
+                        placeholder="University"
+                        value={values.University}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
 
-                  <div class="md:col-span-2">
-                    <label for="country">Country / region</label>
-                    <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                      <input name="country" id="country" placeholder="Country" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" value="" />
-                      <button tabindex="-1" class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                      </button>
-                      <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                      </button>
+                      />
+
+                      {errors.University && touched.University ? (
+                        <p className="form-error">{errors.University}</p>
+                      ) : null}
                     </div>
-                  </div>
 
-                  <div class="md:col-span-2">
-                    <label for="state">State / province</label>
-                    <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                      <input name="state" id="state" placeholder="State" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" value="" />
-                      <button tabindex="-1" class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                      </button>
-                      <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                      </button>
+                    <div class="md:col-span-1">
+                      <label for="address">Extension</label>
+                      <input
+
+
+                        class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        type="number"
+                        autoComplete="off"
+                        name="phone"
+                        id="phone"
+                        placeholder="Ext"
+                        value={values.phone}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+
+
+                      {errors.phone && touched.phone ? (
+                        <p className="form-error">{errors.phone}</p>
+                      ) : null}
+
                     </div>
-                  </div>
 
 
-                  <div class="md:col-span-2">
-                    <label for="country">Country / region</label>
-                    <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                      <input name="country" id="country" placeholder="Country" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" value="" />
-                      <button tabindex="-1" class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                      </button>
-                      <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                      </button>
+
+                    <div class="md:col-span-2">
+                      <label for="country">Area of Intrest</label>
+                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        ype="text"
+                        autoComplete="off"
+                        name="areaOfIntrest"
+                        id="areaOfIntrest"
+                        placeholder="Area of Intrest"
+                        value={values.areaOfIntrest}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+
+                      />
+                      {errors.areaOfIntrest && touched.areaOfIntrest ? (
+                        <p className="form-error">{errors.areaOfIntrest}</p>
+                      ) : null}
                     </div>
-                  </div>
 
-                  <div class="md:col-span-2">
-                    <label for="state">State / province</label>
-                    <div class="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                      <input name="state" id="state" placeholder="State" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" value="" />
-                      <button tabindex="-1" class="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                      </button>
-                      <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
-                        <svg class="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                      </button>
+                    <div class="md:col-span-2">
+                      <label for="state">Faculty ID</label>
+                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        type="text"
+                        autoComplete="off"
+                        name="id"
+                        id="id"
+                        placeholder="Faculty ID"
+                        value={values.id}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+
+                      />
+
+                      {errors.id && touched.id ? (
+                        <p className="form-error">{errors.id}</p>
+                      ) : null}
                     </div>
-                  </div>
 
 
-                  <div class="md:col-span-2">
-                    <label for="soda">How many soda pops?</label>
-                    <div class="h-10 w-28 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                      <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-r border-gray-200 transition-all text-gray-500 hover:text-blue-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mx-2" viewBox="0 0 20 20" fill="currentColor">
-                          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                      </button>
-                      <input name="soda" id="soda" placeholder="0" class="px-2 text-center appearance-none outline-none text-gray-800 w-full bg-transparent" value="0" />
-                      <button tabindex="-1" for="show_more" class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-500 hover:text-blue-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mx-2 fill-current" viewBox="0 0 20 20" fill="currentColor">
-                          <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
-                        </svg>
-                      </button>
+                    <div class="md:col-span-2">
+                      <label for="state">Faculty Image</label>
+                      <input
+                      type="file"
+                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file"
+                        onChange={(e) => handleUpload(e)}
+
+                      />
+
+                 
                     </div>
-                  </div>
 
-                  <div class="md:col-span-5 text-right">
-                    <div class="inline-flex items-end">
-                      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                    
+           
+
+
+                    <div class="md:col-span-5 text-right">
+                      <div class="inline-flex items-end">
+                        <button
+                          type="submit"
+                          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Register Faculty</button>
+                      </div>
                     </div>
-                  </div>
 
-                </div>
+                  </div>
+                </form>
+
+
+                 
               </div>
             </div>
           </div>
