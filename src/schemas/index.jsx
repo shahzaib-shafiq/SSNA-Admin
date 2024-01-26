@@ -27,3 +27,43 @@ export const signUpSchema = Yup.object({
 });
 
 
+
+export const AnnouncementSchema = Yup.object({
+  title: Yup.string().matches(/^[A-Za-z]+$/, 'Title contain only characters')
+    .min(2, 'Name must be at least 4 characters')
+    .max(25, 'Name must be at most 25 characters')
+
+    .required('Please enter post Title'),
+    
+    
+    summary: Yup.string().matches(/^[A-Za-z]+$/, 'Summary contain only characters')
+    .min(2, 'summary must be at least 15 characters')
+    .max(25, 'summary must be at most 40 characters')
+
+    .required('Please enter post Summary'),
+   
+    
+    
+    description: Yup.string().matches(/^[A-Za-z]+$/, 'Description contain only characters')
+    .min(2, 'summary must be at least 20 characters')
+    .max(25, 'summary must be at most 50 characters')
+
+    .required('Please enter post Description'),
+
+    // AnnouncementDate: Yup.string().max(25).required("Enter Post Date"),
+
+    AnnouncementDate: Yup.string()
+    .matches(
+      /^(19[0-9][0-9]|20[0-4][0-9]|2050)-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
+      "Invalid date format. Use YYYY-MM-DD format."
+    )
+    
+    .required("Enter Post Date"),
+
+
+});
+
+
+
+
+

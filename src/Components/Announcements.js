@@ -259,16 +259,12 @@
 
 // export default Announcements;
 
-
-
-
 //final'
-
 
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
-import { signUpSchema } from "../schemas";
+import { AnnouncementSchema } from "../schemas";
 import { imagedb } from "./config";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { v4 } from 'uuid';
@@ -300,7 +296,7 @@ const Announcements = () => {
     handleSubmit,
   } = useFormik({
     initialValues,
-    validationSchema: signUpSchema,
+    validationSchema: AnnouncementSchema,
     onSubmit: (values, action) => {
       const { title,summary, description,AnnouncementDate } = values;
 
@@ -367,7 +363,7 @@ const Announcements = () => {
                 />
               </div>
               <div class="lg:col-span-2">
-                <h1 className="modal-title font-sans font-bold">Add New Faculty Member</h1>
+                <h1 className="modal-title font-sans font-bold">Add New Post</h1>
                 <br></br>
 
                 <form onSubmit={handleSubmit} >
@@ -386,13 +382,13 @@ const Announcements = () => {
                         onBlur={handleBlur}
                       />
 
-                      {errors.name && touched.name ? (
-                        <p className="form-error">{errors.name}</p>
+                      {errors.title && touched.title ? (
+                        <p className="form-error">{errors.title}</p>
                       ) : null}
                     </div>
 
                     <div class="md:col-span-5">
-                      <label for="email">Enter Summary</label>
+                      <label for="email">Summary</label>
 
                       <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                         placeholder="Summary"
@@ -402,13 +398,13 @@ const Announcements = () => {
                         name="summary"
                         id=" summary"
 
-                        value={values.email}
+                        value={values.summary}
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
 
-                      {errors.email && touched.email ? (
-                        <p className="form-error">{errors.email}</p>
+                      {errors.summary && touched.summary ? (
+                        <p className="form-error">{errors.summary}</p>
                       ) : null}
 
                     </div>
@@ -421,14 +417,14 @@ const Announcements = () => {
                         name="description"
                         id="description"
                         placeholder="Description"
-                        value={values.address}
+                        value={values.description}
                         onChange={handleChange}
                         onBlur={handleBlur} />
 
 
 
-                      {errors.address && touched.address ? (
-                        <p className="form-error">{errors.address}</p>
+                      {errors.description && touched.description ? (
+                        <p className="form-error">{errors.description}</p>
                       ) : null}
                     </div>
 
@@ -446,7 +442,7 @@ const Announcements = () => {
                       type="date"
                         name="AnnouncementDate"
                         id="AnnouncementDate"
-                        value={values.address}
+                        value={values.AnnouncementDate}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         min="2018-01-01"
@@ -455,8 +451,8 @@ const Announcements = () => {
                       >                       
                       </input>
 
-                      {errors.Education && touched.Education ? (
-                        <p className="form-error">{errors.Education}</p>
+                      {errors.AnnouncementDate && touched.AnnouncementDate ? (
+                        <p className="form-error">{errors.AnnouncementDate}</p>
                       ) : null}
 
                    </div>
@@ -471,14 +467,7 @@ const Announcements = () => {
                         onChange={(e) => handleUpload(e)}
 
                       />
-
-
                     </div>
-
-
-
-
-
                     <div class="md:col-span-5 text-right">
                       <div class="inline-flex items-end">
                         <button
