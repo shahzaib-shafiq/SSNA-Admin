@@ -28,7 +28,7 @@ export const signUpSchema = Yup.object({
 
 
 
-export const AnnouncementSchema = Yup.object({
+export const UpcomingEventsSchema = Yup.object({
   title: Yup.string().matches(/^[A-Za-z]+$/, 'Title contain only characters')
     .min(2, 'Name must be at least 4 characters')
     .max(25, 'Name must be at most 25 characters')

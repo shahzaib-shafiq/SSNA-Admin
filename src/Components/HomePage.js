@@ -27,9 +27,9 @@ const Dashboard = () => {
                   Add Faculty
                 </Button>
               </Link>
-              <Link to='/announcement'>
+              <Link to='/UpcomingEvents'>
                 <Button className="styledButton" variant='contained' size='medium' endIcon={<AnnouncementIcon />}>
-                  Announcement
+                UpcomingEvents
                 </Button>
               </Link>
               <Link to='/'>
