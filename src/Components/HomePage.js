@@ -22,6 +22,16 @@ const Dashboard = () => {
             <h2>Admin Module</h2>
             <span></span>
             <form id='form' className='flex flex-col'>
+              <Link to='/CourseMaterial'>
+                <Button className="styledButton" variant='contained' size='medium' endIcon={<PersonAddIcon />}>
+                Course Material
+                </Button>
+              </Link>
+              <Link to='/Announcements'>
+                <Button className="styledButton" variant='contained' size='medium' endIcon={<AnnouncementIcon />}>
+                Announcements
+                </Button>
+              </Link>
               <Link to='/FacultyData'>
                 <Button className="styledButton" variant='contained' size='medium' endIcon={<PersonAddIcon />}>
                   Add Faculty

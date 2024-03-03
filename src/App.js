@@ -6,6 +6,9 @@ import UpcomingEvents from './Components/UpcomingEvents'
 import Registration from './Components/Registration';
 import FacultyData from './Components/FacultyData';
 import HomePage from './Components/HomePage';
+import Announcements from './Components/Announcements'
+import CourseMaterial from './Components/CourseMaterial'
+import { Announcement } from '@material-ui/icons';
 
 function App() {
   return (
@@ -18,6 +21,10 @@ function App() {
           <Route path='/HomePage' element={<HomePage />}></Route>
           <Route path='/FacultyData' element={<FacultyData />}></Route>
           <Route path='/UpcomingEvents' element={<UpcomingEvents />}></Route>
+          <Route path='/Announcements' element={<Announcements />}></Route>
+          <Route path='/CourseMaterial' element={<CourseMaterial/>}></Route>
+          
+          
         </Routes>
       </BrowserRouter>
 
