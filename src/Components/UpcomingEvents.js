@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
-import { AnnouncementSchema } from "../schemas";
+import { UpcomingEventsSchema } from "../schemas";
 import { imagedb } from "./config";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { v4 } from 'uuid';
@@ -16,8 +16,7 @@ const initialValues = {
   AnnouncementDate:"",
 };
 
-
-const Announcements = () => {
+const UpcomingEvents = () => {
 
 //Function to generate a random 6-digit ID
     const generateRandomId = () => {
@@ -33,7 +32,7 @@ const Announcements = () => {
     handleSubmit,
   } = useFormik({
     initialValues,
-    validationSchema: AnnouncementSchema,
+    validationSchema: UpcomingEventsSchema,
     onSubmit: (values, action) => {
       const { title,summary, description,AnnouncementDate } = values;
 
@@ -85,13 +84,7 @@ const Announcements = () => {
 
           <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-              {/* <div class="text-gray-600">
-            <p class="font-medium text-lg">Personal Details</p>
-            <p>Please fill out all the fields.</p>
-          </div> */}
-
-
-
+          
               <div className="text-gray-600 flex items-center">
                 <img
                   src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/IMG_Academy_Logo.svg/1200px-IMG_Academy_Logo.svg.png"
@@ -222,4 +215,4 @@ const Announcements = () => {
 
 
 
-export default Announcements;
+export default UpcomingEvents;
