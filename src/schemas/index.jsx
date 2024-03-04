@@ -65,3 +65,32 @@ export const AnnouncementSchema = Yup.object({
 
 
 });
+
+
+
+export const CourseMaterialSchema = Yup.object({
+  CourseName: Yup.string().matches(/^[A-Za-z]+$/, 'Title contain only characters')
+    .min(2, 'Name must be at least 2 characters')
+    .max(25, 'Name must be at most 25 characters')
+    .required('Please enter post Title'),   
+
+    CourseCode: Yup.string().matches(/^[A-Za-z]{2}\d{3,4}$/, 'Course code must start with 2 characters followed by 3 or 4 numbers')
+    .min(5, 'Course code must be at least 5 characters')
+    .max(6, 'Course code must be either 5 or 6 characters')
+    .required('Please enter the course code'),
+
+
+
+    Department: Yup.string().max(25).required("Enter Department"),
+   
+    DriveLink: Yup.string().matches(/^https:\/\/drive\.google\.com\/.*$/, 'Please enter a valid Google Drive link')
+    .required('Please enter a Google Drive link'),
+
+    
+    
+
+    
+    
+
+
+});

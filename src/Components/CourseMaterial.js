@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
-import { AnnouncementSchema } from "../schemas";
+import { CourseMaterialSchema } from "../schemas";
 import { imagedb } from "./config";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { v4 } from 'uuid';
@@ -9,15 +9,15 @@ import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import HomeIcon from '@mui/icons-material/Home';
 const initialValues = {
+  CourseName:"",
+  CourseCode:"",
+  Department:"",
+  DriveLink:"",
+
   
-  title:"",
-  summary:"",
-  description:"",
-  AnnouncementDate:"",
 };
 
-
-const Announcements = () => {
+const CourseMaterial = () => {
 
 //Function to generate a random 6-digit ID
     const generateRandomId = () => {
@@ -33,26 +33,25 @@ const Announcements = () => {
     handleSubmit,
   } = useFormik({
     initialValues,
-    validationSchema: AnnouncementSchema,
+    validationSchema: CourseMaterialSchema,
     onSubmit: (values, action) => {
-      const { title,summary, description,AnnouncementDate } = values;
+      const { CourseName, CourseCode,Department,DriveLink } = values;
 
-      if (title && summary && description &&AnnouncementDate) {
+      if (CourseName && CourseCode &&Department&&DriveLink) {
         const randomId = generateRandomId();
         const res = fetch(
-          "https://ssna-admin-default-rtdb.firebaseio.com/Announcements.json",
+          "https://ssna-admin-default-rtdb.firebaseio.com/CourseMaterial.json",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              title,
-              summary,
-              description,
-              AnnouncementDate,
-              id:randomId,
-              img: img
+              CourseName,
+              CourseCode,
+              Department,
+              DriveLink,
+              
             }),
           }
         );
@@ -63,19 +62,7 @@ const Announcements = () => {
     },
   });
 
-  const handleUpload = (e) => {
-    console.log(e.target.files[0])
-
-    const imgs = ref(imagedb, `FacultyImgs/${v4()}`)
-    uploadBytes(imgs, e.target.files[0]).then(data => {
-      console.log(data, "imgs")
-      getDownloadURL(data.ref).then(val => {
-        setImg(val)
-
-      })
-    })
-  }
-
+ 
   return (
     <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
       <div class="container max-w-screen-lg mx-auto">
@@ -100,116 +87,102 @@ const Announcements = () => {
                 />
               </div>
               <div class="lg:col-span-2">
-                <h1 className="modal-title font-sans font-bold">Add New Post</h1>
+                <h1 className="modal-CourseName font-sans font-bold">Add Course Material</h1>
                 <br></br>
 
                 <form onSubmit={handleSubmit} >
                   <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
 
                       <div class="md:col-span-5">
-                      <label for="full_name">Post Title</label>
+                      <label for="full_name">Course Name</label>
                       <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                         type="name"
                         autoComplete="off"
-                        name="title"
-                        id="title"
-                        placeholder="Title"
-                        value={values.title}
+                        name="CourseName"
+                        id="CourseName"
+                        placeholder="Course Title"
+                        value={values.CourseName}
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
 
-                      {errors.title && touched.title ? (
-                        <p className="form-error">{errors.title}</p>
+                      {errors.CourseName && touched.CourseName ? (
+                        <p className="form-error">{errors.CourseName}</p>
                       ) : null}
                     </div>
 
-                    <div class="md:col-span-5">
-                      <label for="email">Summary</label>
-
-                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        placeholder="Summary"
-
-                        type="text"
-                        autoComplete="off"
-                        name="summary"
-                        id=" summary"
-
-                        value={values.summary}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-
-                      {errors.summary && touched.summary ? (
-                        <p className="form-error">{errors.summary}</p>
-                      ) : null}
-
-                    </div>
+              
 
                     <div class="md:col-span-3">
-                      <label for="address">Description</label>
+                      <label for="address">Course Code</label>
                       <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                         type="text"
                         autoComplete="off"
-                        name="description"
-                        id="description"
-                        placeholder="Description"
-                        value={values.description}
+                        name="CourseCode"
+                        id="CourseCode"
+                        placeholder="CS 101"
+                        value={values.CourseCode}
+                        onChange={handleChange}
+                        onBlur={handleBlur} />
+
+                      {errors.CourseCode && touched.CourseCode ? (
+                        <p className="form-error">{errors.CourseCode}</p>
+                      ) : null}
+                    </div>
+
+                           
+                    
+                    <div class="md:col-span-2">
+                      <label for="address">Department</label>
+                      <select
+                        name="Department"
+                        id="Department"
+                        value={values.Department}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Department"
+                      >
+                        <option value="">Select Department</option>
+                        <option value="CS">CS</option>
+                        <option value="SE">SE</option>
+                        <option value="EE">EE</option>
+                        <option value="AI">AI</option>
+                        <option value="CYS">CYS</option>
+                        <option value="BBA">BBA</option>
+                      </select>
+                      {errors.Department && touched.Department ? (
+                        <p className="form-error">{errors.Department}</p>
+                      ) : null}
+                    </div>
+
+
+                    <div class="md:col-span-3">
+                      <label for="address">Course Drive Link</label>
+                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        type="text"
+                        autoComplete="off"
+                        name="DriveLink"
+                        id="DriveLink"
+                        placeholder="Link"
+                        value={values.DriveLink}
                         onChange={handleChange}
                         onBlur={handleBlur} />
 
 
 
-                      {errors.description && touched.description ? (
-                        <p className="form-error">{errors.description}</p>
+                      {errors.DriveLink && touched.DriveLink ? (
+                        <p className="form-error">{errors.DriveLink}</p>
                       ) : null}
                     </div>
 
-                    {/*     change */}
+                      
 
-
-                    {/* Change Education to Designation here */}
-
-
-                    {/*     change */}
-
-                    <div class="md:col-span-2">
-                      <label for="city">Announcement Date</label>
-                      <input
-                      type="date"
-                        name="AnnouncementDate"
-                        id="AnnouncementDate"
-                        value={values.AnnouncementDate}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        min="2018-01-01"
-                        max="2050-12-31"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      >                       
-                      </input>
-
-                      {errors.AnnouncementDate && touched.AnnouncementDate ? (
-                        <p className="form-error">{errors.AnnouncementDate}</p>
-                      ) : null}
-
-                   </div>
-                    
-
-
-                    <div class="md:col-span-2">
-                      <label for="state">Post Image</label>
-                      <input
-                        type="file"
-                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file"
-                        onChange={(e) => handleUpload(e)}
-
-                      />
-                    </div>
                     <div class="md:col-span-5 text-right">
                       <div class="inline-flex items-end">
                         <button
                           type="submit"
-                          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Register Faculty</button>
+                          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Course Material</button>
                       </div>
                     </div>
 
@@ -234,4 +207,4 @@ const Announcements = () => {
 
 
 
-export default Announcements;
+export default CourseMaterial;
