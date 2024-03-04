@@ -165,15 +165,7 @@ const Announcements = () => {
                       ) : null}
                     </div>
 
-                    {/*     change */}
-
-
-                    {/* Change Education to Designation here */}
-
-
-                    {/*     change */}
-
-                    <div class="md:col-span-2">
+                        <div class="md:col-span-2">
                       <label for="city">Announcement Date</label>
                       <input
                       type="date"
@@ -209,7 +201,7 @@ const Announcements = () => {
                       <div class="inline-flex items-end">
                         <button
                           type="submit"
-                          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Register Faculty</button>
+                          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Post Announcement</button>
                       </div>
                     </div>
 

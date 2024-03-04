@@ -1,12 +1,18 @@
 import * as Yup from "yup";
 
 export const signUpSchema = Yup.object({
-  name: Yup.string().matches(/^[A-Za-z]+$/, 'Please enter only characters')
-    .min(2, 'Name must be at least 2 characters')
-    .max(25, 'Name must be at most 25 characters')
+  // name: Yup.string().matches(/^[A-Za-z]+$/, 'Please enter only characters')
+  //   .min(2, 'Name must be at least 2 characters')
+  //   .max(25, 'Name must be at most 25 characters')
 
+  //   .required('Please enter your name'),
+  
+  name: Yup.string().matches(/^[A-Za-z\s]+$/, 'Please enter only characters and spaces')
+    .min(2, 'Name must be at least 2 characters')
+    .max(50, 'Name must be at most 50 characters')
     .required('Please enter your name'),
-  email: Yup.string()
+
+    email: Yup.string()
     .email("Invalid email address")
     .matches(/^[a-zA-Z._]+@nu\.edu\.pk$/, "Must be a valid NU email address")
     .required("Please enter your email"),
@@ -32,21 +38,18 @@ export const AnnouncementSchema = Yup.object({
   title: Yup.string().matches(/^[A-Za-z]+$/, 'Title contain only characters')
     .min(2, 'Name must be at least 4 characters')
     .max(25, 'Name must be at most 25 characters')
-
-    .required('Please enter post Title'),
-    
-    
+    .required('Please enter post Title'),   
     summary: Yup.string().matches(/^[A-Za-z]+$/, 'Summary contain only characters')
-    .min(2, 'summary must be at least 15 characters')
-    .max(25, 'summary must be at most 40 characters')
+    .min(15, 'summary must be at least 15 characters')
+    .max(40, 'summary must be at most 40 characters')
 
     .required('Please enter post Summary'),
    
     
     
     description: Yup.string().matches(/^[A-Za-z]+$/, 'Description contain only characters')
-    .min(2, 'summary must be at least 20 characters')
-    .max(25, 'summary must be at most 50 characters')
+    .min(20, 'summary must be at least 20 characters')
+    .max(50, 'summary must be at most 50 characters')
 
     .required('Please enter post Description'),
 

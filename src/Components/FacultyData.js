@@ -128,7 +128,7 @@ const initialValues = {
                       <label for="email">Email Address</label>
 
                       <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        placeholder="email@domain.com"
+                        placeholder="email@nu.edu.pk"
 
                         type="email"
                         autoComplete="off"
@@ -185,7 +185,10 @@ const initialValues = {
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       >
                         {/* <option className="dropdownoption" value="">Qualification</option> */}
+                        <option className="dropdownoption" value="">Select Designation</option>
+                        
                         <option className="dropdownoption" value="Professor">Professor</option>
+                        
                         <option className="dropdownoption" value="Associate Professor">Associate Professor</option>
                         <option className="dropdownoption" value="Assistant Professor">Assistant Professor</option>
 
@@ -216,7 +219,7 @@ const initialValues = {
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Department"
                       >
-
+                        <option value="">Select Department</option>
                         <option value="CS">CS</option>
                         <option value="SE">SE</option>
                         <option value="EE">EE</option>
