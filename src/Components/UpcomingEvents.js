@@ -13,7 +13,7 @@ const initialValues = {
   title:"",
   summary:"",
   description:"",
-  AnnouncementDate:"",
+  UpcomingEventsDate:"",
 };
 
 const UpcomingEvents = () => {
@@ -34,12 +34,11 @@ const UpcomingEvents = () => {
     initialValues,
     validationSchema: UpcomingEventsSchema,
     onSubmit: (values, action) => {
-      const { title,summary, description,AnnouncementDate } = values;
-
-      if (title && summary && description &&AnnouncementDate) {
+      const { title,summary, description,UpcomingEventsDate } = values;
+      if (title && summary && description &&UpcomingEventsDate) {
         const randomId = generateRandomId();
         const res = fetch(
-          "https://ssna-admin-default-rtdb.firebaseio.com/Announcements.json",
+          "https://ssna-admin-default-rtdb.firebaseio.com/UpcomingEvents.json",
           {
             method: "POST",
             headers: {
@@ -49,7 +48,7 @@ const UpcomingEvents = () => {
               title,
               summary,
               description,
-              AnnouncementDate,
+              UpcomingEventsDate,
               id:randomId,
               img: img
             }),
@@ -162,9 +161,9 @@ const UpcomingEvents = () => {
                       <label for="city">Announcement Date</label>
                       <input
                       type="date"
-                        name="AnnouncementDate"
-                        id="AnnouncementDate"
-                        value={values.AnnouncementDate}
+                        name="UpcomingEventsDate"
+                        id="UpcomingEventsDate"
+                        value={values.UpcomingEventsDate}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         min="2018-01-01"
@@ -172,8 +171,8 @@ const UpcomingEvents = () => {
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       >                       
                       </input>
-                      {errors.AnnouncementDate && touched.AnnouncementDate ? (
-                        <p className="form-error">{errors.AnnouncementDate}</p>
+                      {errors.UpcomingEventsDate && touched.UpcomingEventsDate ? (
+                        <p className="form-error">{errors.UpcomingEventsDate}</p>
                       ) : null}
 
                    </div>

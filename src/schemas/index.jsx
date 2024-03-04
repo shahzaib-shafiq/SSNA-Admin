@@ -72,17 +72,12 @@ export const UpcomingEventsSchema = Yup.object({
     .min(15, 'summary must be at least 15 characters')
     .max(40, 'summary must be at most 40 characters')
 
-    .required('Please enter post Summary'),
-   
-    
-    
+    .required('Please enter post Summary'),   
     description: Yup.string().matches(/^[A-Za-z]+$/, 'Description contain only characters')
     .min(20, 'summary must be at least 20 characters')
     .max(50, 'summary must be at most 50 characters')
 
     .required('Please enter post Description'),
-
-    // AnnouncementDate: Yup.string().max(25).required("Enter Post Date"),
 
     AnnouncementDate: Yup.string()
     .matches(
