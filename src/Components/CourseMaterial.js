@@ -19,11 +19,8 @@ const initialValues = {
 
 const CourseMaterial = () => {
 
-//Function to generate a random 6-digit ID
-    const generateRandomId = () => {
-      return Math.floor(1000000 + Math.random() * 9000000).toString();
-    };
-  const [img, setImg] = useState('');
+  
+
   const {
     values,
     errors,
@@ -38,7 +35,7 @@ const CourseMaterial = () => {
       const { CourseName, CourseCode,Department,DriveLink } = values;
 
       if (CourseName && CourseCode &&Department&&DriveLink) {
-        const randomId = generateRandomId();
+      
         const res = fetch(
           "https://ssna-admin-default-rtdb.firebaseio.com/CourseMaterial.json",
           {

@@ -8,13 +8,16 @@ import { v4 } from 'uuid';
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import HomeIcon from '@mui/icons-material/Home';
-const initialValues = { 
+const initialValues = {
+  
   title:"",
   summary:"",
   description:"",
-  UpcomingEventsDate:"",
+  AnnouncementDate:"",
 };
-const UpcomingEvents = () => {
+
+
+const Announcements = () => {
 
 //Function to generate a random 6-digit ID
     const generateRandomId = () => {
@@ -32,12 +35,12 @@ const UpcomingEvents = () => {
     initialValues,
     validationSchema: AnnouncementSchema,
     onSubmit: (values, action) => {
-      const { title,summary, description,UpcomingEventsDate } = values;
+      const { title,summary, description,AnnouncementDate } = values;
 
-      if (title && summary && description &&UpcomingEventsDate) {
+      if (title && summary && description &&AnnouncementDate) {
         const randomId = generateRandomId();
         const res = fetch(
-          "https://ssna-admin-default-rtdb.firebaseio.com/UpcomingEvents.json",
+          "https://ssna-admin-default-rtdb.firebaseio.com/Announcements.json",
           {
             method: "POST",
             headers: {
@@ -47,7 +50,7 @@ const UpcomingEvents = () => {
               title,
               summary,
               description,
-              UpcomingEventsDate,
+              AnnouncementDate,
               id:randomId,
               img: img
             }),
@@ -63,7 +66,7 @@ const UpcomingEvents = () => {
   const handleUpload = (e) => {
     console.log(e.target.files[0])
 
-    const imgs = ref(imagedb, `UpcomingEventsImgs/${v4()}`)
+    const imgs = ref(imagedb, `FacultyImgs/${v4()}`)
     uploadBytes(imgs, e.target.files[0]).then(data => {
       console.log(data, "imgs")
       getDownloadURL(data.ref).then(val => {
@@ -162,21 +165,13 @@ const UpcomingEvents = () => {
                       ) : null}
                     </div>
 
-                    {/*     change */}
-
-
-                    {/* Change Education to Designation here */}
-
-
-                    {/*     change */}
-
-                    <div class="md:col-span-2">
-                      <label for="city">Event Date</label>
+                        <div class="md:col-span-2">
+                      <label for="city">Announcement Date</label>
                       <input
                       type="date"
-                        name="UpcomingEventsDate"
-                        id="UpcomingEventsDate"
-                        value={values.UpcomingEventsDate}
+                        name="AnnouncementDate"
+                        id="AnnouncementDate"
+                        value={values.AnnouncementDate}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         min="2018-01-01"
@@ -184,28 +179,25 @@ const UpcomingEvents = () => {
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       >                       
                       </input>
-
-                      {errors.UpcomingEventsDate && touched.UpcomingEventsDate ? (
-                        <p className="form-error">{errors.UpcomingEventsDate}</p>
+                      {errors.AnnouncementDate && touched.AnnouncementDate ? (
+                        <p className="form-error">{errors.AnnouncementDate}</p>
                       ) : null}
 
-                   </div>                    
+                   </div>
                     <div class="md:col-span-2">
                       <label for="state">Post Image</label>
-                      
-                      {/* <input
+                      <input
                         type="file"
                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file"
-                        onChange={(e) =>handleUpload(e)}
+                        onChange={(e) => handleUpload(e)}
 
                       />
-                     */}
                     </div>
                     <div class="md:col-span-5 text-right">
                       <div class="inline-flex items-end">
                         <button
                           type="submit"
-                          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add New Event </button>
+                          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Post Announcement</button>
                       </div>
                     </div>
 
@@ -230,4 +222,4 @@ const UpcomingEvents = () => {
 
 
 
-export default UpcomingEvents;
+export default Announcements;
