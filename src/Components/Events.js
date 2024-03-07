@@ -6,8 +6,6 @@ import { imagedb } from "./config";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { v4 } from 'uuid';
 import { Link } from 'react-router-dom'
-import Button from '@mui/material/Button';
-import HomeIcon from '@mui/icons-material/Home';
 import ssnalogo from '../assets/ssnalogo.png';
 
 

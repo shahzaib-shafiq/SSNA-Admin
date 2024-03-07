@@ -8,26 +8,62 @@ import Button from '@mui/material/Button';
 import '../Styles/Registration.css';
 import GoogleIcon from '@mui/icons-material/Google';
 import styles from "../Styles/Login.module.css";
+import Swal from 'sweetalert2';
 export default function Registration() {
   const [value, setValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const GoogleRegistration = () => {
-    signInWithPopup(auth, provider)
-      .then((data) => {
-        const userEmail = data.user.email;
-        if (userEmail.endsWith('@cfd.nu.edu.pk')) {
-          setValue(userEmail);
-          localStorage.setItem('email', userEmail);
-        } else {
-          setErrorMessage('Invalid email. Please use an email with the domain @cfd.nu.edu.pk');
-        }
-      })
-      .catch((error) => {
-        console.error('Sign-in error:', error);
-        setErrorMessage('');
-      });
-  };
+  // const GoogleRegistration = () => {
+  //   signInWithPopup(auth, provider)
+  //     .then((data) => {
+  //       const userEmail = data.user.email;
+  //       if (userEmail.endsWith('@cfd.nu.edu.pk')) {
+  //         setValue(userEmail);
+  //         localStorage.setItem('email', userEmail);
+  //         const loginSuccessful = true;
+  //       } else {
+  //         setErrorMessage('Invalid email. Please use an email with the domain @cfd.nu.edu.pk');
+  //         const loginSuccessful = false;
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error('Sign-in error:', error);
+  //       setErrorMessage('');
+  //     });
+  // };
 
+
+  
+const GoogleRegistration = () => {
+  signInWithPopup(auth, provider)
+    .then((data) => {
+      const userEmail = data.user.email;
+      if (userEmail.endsWith('@cfd.nu.edu.pk')) {
+        setValue(userEmail);
+        localStorage.setItem('email', userEmail);
+        Swal.fire({
+          title: "Success!",
+          text: "You have successfully logged in.",
+          icon: "success"
+        });
+      } else {
+        setErrorMessage('Invalid email. Please use an email with the domain @cfd.nu.edu.pk');
+        Swal.fire({
+          title: "Error!",
+          text: "Invalid email. Please use an email with the domain @cfd.nu.edu.pk",
+          icon: "error"
+        });
+      }
+    })
+    .catch((error) => {
+      console.error('Sign-in error:', error);
+      setErrorMessage('');
+      Swal.fire({
+        title: "Error!",
+        text: "An error occurred during sign-in. Please try again later.",
+        icon: "error"
+      });
+    });
+};
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
@@ -57,6 +93,8 @@ export default function Registration() {
     };
   }, []);
 
+  
+
   return (
     value ? (
       <HomePage />
@@ -82,14 +120,14 @@ export default function Registration() {
           </div>
 
           <Button
-            className={styles.button}
-            variant="contained"
-            size="medium"
-            onClick={GoogleRegistration}
-            endIcon={<GoogleIcon />}
-          >
-            Login With Google
-          </Button>
+  className={styles.button}
+  variant="contained"
+  size="medium"
+  onClick={GoogleRegistration}
+  endIcon={<GoogleIcon />}
+>
+  Login With Google
+</Button>
         </div>
       </>
     )

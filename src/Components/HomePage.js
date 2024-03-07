@@ -1,14 +1,9 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import LogoutIcon from '@mui/icons-material/Logout';
+
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import { Link } from 'react-router-dom';
-import bgImg from '../assets/img1.jpg';
-
-const logout = () => {
-  localStorage.clear();
-};
 
 const Dashboard = () => {
   return (
@@ -41,10 +36,8 @@ const Dashboard = () => {
                 <Button className="styledButton w-45 h-12 p-2" variant='contained' size='medium' endIcon={<AnnouncementIcon />}>
                 UpcomingEvents
                 </Button>
-              </Link>
-             
-
-              <a href="/"  class="md:absolute bottom-0 right-0 p-4 float-right">
+              </Link>          
+             <a href="/"  class="md:absolute bottom-0 right-0 p-4 float-right">
           <img src="https://w7.pngwing.com/pngs/253/714/png-transparent-logout-heroicons-ui-icon-thumbnail.png" alt="Buy Me A Coffee" class="transition-all rounded-full w-14  hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"></img>
         </a>
             </form>
