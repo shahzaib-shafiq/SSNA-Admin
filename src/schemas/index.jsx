@@ -76,24 +76,26 @@ export const CourseMaterialSchema = Yup.object({
     .required('Please enter a Google Drive link'),
 });
 
-
-
-
 export const EventsSchema = Yup.object({
-  CourseName: Yup.string().matches(/^[A-Za-z]+$/, 'Title contain only characters')
-    .min(2, 'Name must be at least 2 characters')
+  title: Yup.string().matches(/^[A-Za-z]+$/, 'Title contain only characters')
+    .min(2, 'Name must be at least 4 characters')
     .max(25, 'Name must be at most 25 characters')
     .required('Please enter post Title'),   
+    
+    
+    description: Yup.string().matches(/^[A-Za-z]+$/, 'Description contain only characters')
+    .min(20, 'summary must be at least 20 characters')
+    .max(50, 'summary must be at most 50 characters')
+    .required('Please enter post Description'),
 
-    CourseCode: Yup.string().matches(/^[A-Za-z]{2}\d{3,4}$/, 'Course code must start with 2 characters followed by 3 or 4 numbers')
-    .min(5, 'Course code must be at least 5 characters')
-    .max(6, 'Course code must be either 5 or 6 characters')
-    .required('Please enter the course code'),
+ 
+    EventDate: Yup.string()
+    .matches(
+      /^(19[0-9][0-9]|20[0-4][0-9]|2050)-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
+      "Invalid date format. Use YYYY-MM-DD format."
+    )
+    
+    .required("Enter Post Date"),
 
 
-
-    Department: Yup.string().max(25).required("Enter Department"),
-   
-    DriveLink: Yup.string().matches(/^https:\/\/drive\.google\.com\/.*$/, 'Please enter a valid Google Drive link')
-    .required('Please enter a Google Drive link'),
 });
