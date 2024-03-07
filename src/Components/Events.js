@@ -14,7 +14,6 @@ const initialValues = {
   EventDate:"",
 };
 const Announcements = () => {
-
   
 //Function to generate a random 6-digit ID
     const generateRandomId = () => {
@@ -78,10 +77,7 @@ const Announcements = () => {
          
           <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-              {/* <div class="text-gray-600">
-            <p class="font-medium text-lg">Personal Details</p>
-            <p>Please fill out all the fields.</p>
-          </div> */}
+    
 
 
 
@@ -184,9 +180,10 @@ const Announcements = () => {
           </div>
         </div>
 
-        <a href="https://www.buymeacoffee.com/dgauderman" target="_blank" class="md:absolute bottom-0 right-0 p-4 float-right">
-          <img src="https://www.buymeacoffee.com/assets/img/guidelines/logo-mark-3.svg" alt="Buy Me A Coffee" class="transition-all rounded-full w-14 -rotate-45 hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"></img>
+        <a href="/Homepage" target="_blank" class="md:absolute bottom-0 right-0 p-4 float-right">
+          <img src="https://th.bing.com/th/id/R.610f5abf045d4d6fbab418b2e09cfe99?rik=aL%2fhAM6MWbY9WQ&pid=ImgRaw&r=0" alt="Buy Me A Coffee" class="transition-all rounded-full w-14  hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"></img>
         </a>
+
       </div>
     </div>
   );

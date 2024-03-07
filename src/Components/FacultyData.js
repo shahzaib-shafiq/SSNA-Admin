@@ -21,7 +21,7 @@ const initialValues = {
 
 };
 
- const FacultyData = () => {
+const FacultyData = () => {
 
 
   const [img, setImg] = useState('');
@@ -85,10 +85,10 @@ const initialValues = {
       <div class="container max-w-screen-lg mx-auto">
         <div>
           <h2 class="font-semibold text-xl text-gray-600">Add New Faculty Member</h2>
-         
+
           <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-          
+
               <div className="text-gray-600 flex items-center">
                 <img
                   src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/IMG_Academy_Logo.svg/1200px-IMG_Academy_Logo.svg.png"
@@ -97,7 +97,7 @@ const initialValues = {
                 />
               </div>
               <div class="lg:col-span-2">
-                
+
                 <br></br>
 
                 <form onSubmit={handleSubmit} >
@@ -185,9 +185,9 @@ const initialValues = {
                       >
                         {/* <option className="dropdownoption" value="">Qualification</option> */}
                         <option className="dropdownoption" value="">Select Designation</option>
-                        
+
                         <option className="dropdownoption" value="Professor">Professor</option>
-                        
+
                         <option className="dropdownoption" value="Associate Professor">Associate Professor</option>
                         <option className="dropdownoption" value="Assistant Professor">Assistant Professor</option>
 
@@ -316,18 +316,14 @@ const initialValues = {
                     <div class="md:col-span-2">
                       <label for="state">Faculty Image</label>
                       <input
-                      type="file"
+                        type="file"
                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file"
                         onChange={(e) => handleUpload(e)}
 
                       />
 
-                 
+
                     </div>
-
-                    
-           
-
 
                     <div class="md:col-span-5 text-right">
                       <div class="inline-flex items-end">
@@ -339,17 +335,16 @@ const initialValues = {
 
                   </div>
                 </form>
-
-
-                 
               </div>
             </div>
           </div>
         </div>
 
-        <a href="https://www.buymeacoffee.com/dgauderman" target="_blank" class="md:absolute bottom-0 right-0 p-4 float-right">
-          <img src="https://www.buymeacoffee.com/assets/img/guidelines/logo-mark-3.svg" alt="Buy Me A Coffee" class="transition-all rounded-full w-14 -rotate-45 hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"></img>
+        <a href="/Homepage" target="_blank" class="md:absolute bottom-0 right-0 p-4 float-right">
+          <img src="https://th.bing.com/th/id/R.610f5abf045d4d6fbab418b2e09cfe99?rik=aL%2fhAM6MWbY9WQ&pid=ImgRaw&r=0" alt="Buy Me A Coffee" class="transition-all rounded-full w-14  hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"></img>
         </a>
+
+
       </div>
     </div>
   );

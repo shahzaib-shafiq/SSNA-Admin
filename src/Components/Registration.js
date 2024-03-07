@@ -8,9 +8,7 @@ import Button from '@mui/material/Button';
 import '../Styles/Registration.css';
 import GoogleIcon from '@mui/icons-material/Google';
 import styles from "../Styles/Login.module.css";
-
 export default function Registration() {
-
   const [value, setValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const GoogleRegistration = () => {
