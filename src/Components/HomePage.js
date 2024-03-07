@@ -16,7 +16,7 @@ const Dashboard = () => {
       <section>
         <div className="register">
           <div className="col-2">
-            <img src={bgImg} alt="" />
+            <img src="https://cfd.nu.edu.pk/wp-content/uploads/2017/08/IMG_5750_1-min-760x400.jpg" alt="" />
           </div>
           <div className="col-1">
             <h2>Admin Module</h2>

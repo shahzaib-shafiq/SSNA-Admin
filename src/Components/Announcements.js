@@ -8,6 +8,9 @@ import { v4 } from 'uuid';
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import HomeIcon from '@mui/icons-material/Home';
+import ssnalogo from '../assets/ssnalogo.png';
+
+
 const initialValues = {
   
   title:"",
@@ -80,7 +83,7 @@ const Announcements = () => {
     <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
       <div class="container max-w-screen-lg mx-auto">
         <div>
-          <h2 class="font-semibold text-xl text-gray-600">Add New Post</h2>
+          <h2 class="font-semibold text-xl text-gray-600">Add New Announcement</h2>
          
           <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
@@ -93,7 +96,7 @@ const Announcements = () => {
 
               <div className="text-gray-600 flex items-center">
                 <img
-                  src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/IMG_Academy_Logo.svg/1200px-IMG_Academy_Logo.svg.png"
+                  src={ssnalogo}
                   alt="Personal Details Image"
                   className="w-18 h-18 mr-2"
                 />
@@ -214,9 +217,11 @@ const Announcements = () => {
           </div>
         </div>
 
-        <a href="https://www.buymeacoffee.com/dgauderman" target="_blank" class="md:absolute bottom-0 right-0 p-4 float-right">
-          <img src="https://www.buymeacoffee.com/assets/img/guidelines/logo-mark-3.svg" alt="Buy Me A Coffee" class="transition-all rounded-full w-14 -rotate-45 hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"></img>
+        <a href="/Homepage"  class="md:absolute bottom-0 right-0 p-4 float-right">
+          <img src="https://th.bing.com/th/id/R.610f5abf045d4d6fbab418b2e09cfe99?rik=aL%2fhAM6MWbY9WQ&pid=ImgRaw&r=0" alt="Buy Me A Coffee" class="transition-all rounded-full w-14  hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"></img>
         </a>
+
+
       </div>
     </div>
   );
