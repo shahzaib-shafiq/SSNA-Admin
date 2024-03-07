@@ -8,19 +8,22 @@ import { v4 } from 'uuid';
 import { Link } from 'react-router-dom'
 import ssnalogo from '../assets/ssnalogo.png';
 
-const initialValues = {
 
-  title: "",
-  summary: "",
-  description: "",
-  AnnouncementDate: "",
+const initialValues = {
+  
+  title:"",
+  summary:"",
+  description:"",
+  AnnouncementDate:"",
 };
+
+
 const Announcements = () => {
 
-  //Function to generate a random 6-digit ID
-  const generateRandomId = () => {
-    return Math.floor(1000000 + Math.random() * 9000000).toString();
-  };
+//Function to generate a random 6-digit ID
+    const generateRandomId = () => {
+      return Math.floor(1000000 + Math.random() * 9000000).toString();
+    };
   const [img, setImg] = useState('');
   const {
     values,
@@ -33,9 +36,9 @@ const Announcements = () => {
     initialValues,
     validationSchema: AnnouncementSchema,
     onSubmit: (values, action) => {
-      const { title, summary, description, AnnouncementDate } = values;
+      const { title,summary, description,AnnouncementDate } = values;
 
-      if (title && summary && description && AnnouncementDate) {
+      if (title && summary && description &&AnnouncementDate) {
         const randomId = generateRandomId();
         const res = fetch(
           "https://ssna-admin-default-rtdb.firebaseio.com/Announcements.json",
@@ -49,7 +52,7 @@ const Announcements = () => {
               summary,
               description,
               AnnouncementDate,
-              id: randomId,
+              id:randomId,
               img: img
             }),
           }
@@ -64,7 +67,7 @@ const Announcements = () => {
   const handleUpload = (e) => {
     console.log(e.target.files[0])
 
-    const imgs = ref(imagedb, `Announcements/${v4()}`)
+    const imgs = ref(imagedb, `FacultyImgs/${v4()}`)
     uploadBytes(imgs, e.target.files[0]).then(data => {
       console.log(data, "imgs")
       getDownloadURL(data.ref).then(val => {
@@ -79,9 +82,15 @@ const Announcements = () => {
       <div class="container max-w-screen-lg mx-auto">
         <div>
           <h2 class="font-semibold text-xl text-gray-600">Add New Announcement</h2>
-
+         
           <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+              {/* <div class="text-gray-600">
+            <p class="font-medium text-lg">Personal Details</p>
+            <p>Please fill out all the fields.</p>
+          </div> */}
+
+
 
               <div className="text-gray-600 flex items-center">
                 <img
@@ -91,13 +100,13 @@ const Announcements = () => {
                 />
               </div>
               <div class="lg:col-span-2">
-
+              
                 <br></br>
 
                 <form onSubmit={handleSubmit} >
                   <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
 
-                    <div class="md:col-span-5">
+                      <div class="md:col-span-5">
                       <label for="full_name">Post Title</label>
                       <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                         type="name"
@@ -156,10 +165,10 @@ const Announcements = () => {
                       ) : null}
                     </div>
 
-                    <div class="md:col-span-2">
+                        <div class="md:col-span-2">
                       <label for="city">Announcement Date</label>
                       <input
-                        type="date"
+                      type="date"
                         name="AnnouncementDate"
                         id="AnnouncementDate"
                         value={values.AnnouncementDate}
@@ -168,15 +177,15 @@ const Announcements = () => {
                         min="2018-01-01"
                         max="2050-12-31"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      >
+                      >                       
                       </input>
 
                       {errors.AnnouncementDate && touched.AnnouncementDate ? (
                         <p className="form-error">{errors.AnnouncementDate}</p>
                       ) : null}
 
-                    </div>
-
+                   </div>
+                    
 
 
                     <div class="md:col-span-2">
@@ -198,12 +207,15 @@ const Announcements = () => {
 
                   </div>
                 </form>
+
+
+
               </div>
             </div>
           </div>
         </div>
 
-        <a href="/Homepage" class="md:absolute bottom-0 right-0 p-4 float-right">
+        <a href="/Homepage"  class="md:absolute bottom-0 right-0 p-4 float-right">
           <img src="https://th.bing.com/th/id/R.610f5abf045d4d6fbab418b2e09cfe99?rik=aL%2fhAM6MWbY9WQ&pid=ImgRaw&r=0" alt="Buy Me A Coffee" class="transition-all rounded-full w-14  hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"></img>
         </a>
 
