@@ -22,7 +22,7 @@ const initialValues = {
 
 };
 const FacultyData = () => {
-  const [img, setImg] = useState('');
+ const [img, setImg] = useState('');
   const {
     values,
     errors,
@@ -32,13 +32,13 @@ const FacultyData = () => {
     handleSubmit,
   } = useFormik({
     initialValues,
-    validationSchema:FacultySchema,
+    validationSchema: FacultySchema,
     onSubmit: (values, action) => {
       const { name, phone, email, address, Education, Department, University, areaOfIntrest, id } = values;
 
       if (name && phone && email && address && Education && Department && University && areaOfIntrest, id) {
         const res = fetch(
-          "https://ssna-admin-default-rtdb.firebaseio.com/Faculty.json",
+          "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
           {
             method: "POST",
             headers: {
@@ -89,7 +89,7 @@ const FacultyData = () => {
 
               <div className="text-gray-600 flex items-center">
                 <img
-                  src={ssnalogo}
+                 src={ssnalogo}
                   alt="Personal Details Image"
                   className="w-18 h-18 mr-2"
                 />
@@ -337,7 +337,7 @@ const FacultyData = () => {
           </div>
         </div>
 
-        <a href="/Homepage" class="md:absolute bottom-0 right-0 p-4 float-right">
+        <a href="/Homepage"  class="md:absolute bottom-0 right-0 p-4 float-right">
           <img src="https://th.bing.com/th/id/R.610f5abf045d4d6fbab418b2e09cfe99?rik=aL%2fhAM6MWbY9WQ&pid=ImgRaw&r=0" alt="Buy Me A Coffee" class="transition-all rounded-full w-14  hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"></img>
         </a>
 

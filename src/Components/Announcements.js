@@ -15,8 +15,6 @@ const initialValues = {
   description: "",
   AnnouncementDate: "",
 };
-
-
 const Announcements = () => {
 
   //Function to generate a random 6-digit ID
