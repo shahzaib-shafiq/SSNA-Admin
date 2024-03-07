@@ -9,17 +9,17 @@ import { Link } from 'react-router-dom'
 import ssnalogo from '../assets/ssnalogo.png';
 
 
-const initialValues = { 
-  title:"",
-  description:"",
-  EventDate:"",
+const initialValues = {
+  title: "",
+  description: "",
+  EventDate: "",
 };
 const Announcements = () => {
-  
-//Function to generate a random 6-digit ID
-    const generateRandomId = () => {
-      return Math.floor(1000000 + Math.random() * 9000000).toString();
-    };
+
+  //Function to generate a random 6-digit ID
+  const generateRandomId = () => {
+    return Math.floor(1000000 + Math.random() * 9000000).toString();
+  };
   const [img, setImg] = useState('');
   const {
     values,
@@ -32,9 +32,9 @@ const Announcements = () => {
     initialValues,
     validationSchema: EventsSchema,
     onSubmit: (values, action) => {
-      const { title, description,EventDate } = values;
+      const { title, description, EventDate } = values;
 
-      if (title && description &&EventDate) {
+      if (title && description && EventDate) {
         const randomId = generateRandomId();
         const res = fetch(
           "https://ssna-admin-default-rtdb.firebaseio.com/Events.json",
@@ -47,11 +47,11 @@ const Announcements = () => {
               title,
               description,
               EventDate,
-              id:randomId,
+              id: randomId,
               img: img
             }),
           }
-        );     
+        );
         action.resetForm();
       }
     },
@@ -75,16 +75,16 @@ const Announcements = () => {
       <div class="container max-w-screen-lg mx-auto">
         <div>
           <h2 class="font-semibold text-xl text-gray-600">Add New Event</h2>
-         
+
           <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-    
+
 
 
 
               <div className="text-gray-600 flex items-center">
                 <img
-                 src={ssnalogo}
+                  src={ssnalogo}
                   alt="Personal Details Image"
                   className="w-18 h-18 mr-2"
                 />
@@ -96,7 +96,7 @@ const Announcements = () => {
                 <form onSubmit={handleSubmit} >
                   <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
 
-                      <div class="md:col-span-5">
+                    <div class="md:col-span-5">
                       <label for="full_name">Event Title</label>
                       <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                         type="name"
@@ -134,10 +134,10 @@ const Announcements = () => {
                       ) : null}
                     </div>
 
-                        <div class="md:col-span-2">
+                    <div class="md:col-span-2">
                       <label for="city">Event Date</label>
                       <input
-                      type="date"
+                        type="date"
                         name="EventDate"
                         id="EventDate"
                         value={values.EventDate}
@@ -146,15 +146,15 @@ const Announcements = () => {
                         min="2018-01-01"
                         max="2050-12-31"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      >                       
+                      >
                       </input>
 
                       {errors.EventDate && touched.EventDate ? (
                         <p className="form-error">{errors.EventDate}</p>
                       ) : null}
 
-                   </div>
-                    
+                    </div>
+
 
 
                     <div class="md:col-span-2">
@@ -181,7 +181,7 @@ const Announcements = () => {
           </div>
         </div>
 
-        <a href="/Homepage"  class="md:absolute bottom-0 right-0 p-4 float-right">
+        <a href="/Homepage" class="md:absolute bottom-0 right-0 p-4 float-right">
           <img src="https://th.bing.com/th/id/R.610f5abf045d4d6fbab418b2e09cfe99?rik=aL%2fhAM6MWbY9WQ&pid=ImgRaw&r=0" alt="Buy Me A Coffee" class="transition-all rounded-full w-14  hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"></img>
         </a>
 

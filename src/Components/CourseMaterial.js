@@ -10,17 +10,17 @@ import ssnalogo from '../assets/ssnalogo.png';
 
 
 const initialValues = {
-  CourseName:"",
-  CourseCode:"",
-  Department:"",
-  DriveLink:"",
+  CourseName: "",
+  CourseCode: "",
+  Department: "",
+  DriveLink: "",
 
-  
+
 };
 
 const CourseMaterial = () => {
 
-  
+
 
   const {
     values,
@@ -33,10 +33,10 @@ const CourseMaterial = () => {
     initialValues,
     validationSchema: CourseMaterialSchema,
     onSubmit: (values, action) => {
-      const { CourseName, CourseCode,Department,DriveLink } = values;
+      const { CourseName, CourseCode, Department, DriveLink } = values;
 
-      if (CourseName && CourseCode &&Department&&DriveLink) {
-      
+      if (CourseName && CourseCode && Department && DriveLink) {
+
         const res = fetch(
           "https://ssna-admin-default-rtdb.firebaseio.com/CourseMaterial.json",
           {
@@ -49,7 +49,7 @@ const CourseMaterial = () => {
               CourseCode,
               Department,
               DriveLink,
-              
+
             }),
           }
         );
@@ -60,7 +60,7 @@ const CourseMaterial = () => {
     },
   });
 
- 
+
   return (
     <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center bg-blue-200">
       <div class="container max-w-screen-lg mx-auto">
@@ -77,13 +77,13 @@ const CourseMaterial = () => {
                 />
               </div>
               <div class="lg:col-span-2">
-                
+
                 <br></br>
 
                 <form onSubmit={handleSubmit} >
                   <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
 
-                      <div class="md:col-span-5">
+                    <div class="md:col-span-5">
                       <label for="full_name">Course Name</label>
                       <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                         type="name"
@@ -101,7 +101,7 @@ const CourseMaterial = () => {
                       ) : null}
                     </div>
 
-              
+
 
                     <div class="md:col-span-3">
                       <label for="address">Course Code</label>
@@ -120,8 +120,8 @@ const CourseMaterial = () => {
                       ) : null}
                     </div>
 
-                           
-                    
+
+
                     <div class="md:col-span-2">
                       <label for="address">Department</label>
                       <select
@@ -166,7 +166,7 @@ const CourseMaterial = () => {
                       ) : null}
                     </div>
 
-                      
+
 
                     <div class="md:col-span-5 text-right">
                       <div class="inline-flex items-end">
@@ -186,7 +186,7 @@ const CourseMaterial = () => {
           </div>
         </div>
 
-        <a href="/Homepage"  class="md:absolute bottom-0 right-0 p-4 float-right">
+        <a href="/Homepage" class="md:absolute bottom-0 right-0 p-4 float-right">
           <img src="https://th.bing.com/th/id/R.610f5abf045d4d6fbab418b2e09cfe99?rik=aL%2fhAM6MWbY9WQ&pid=ImgRaw&r=0" alt="Buy Me A Coffee" class="transition-all rounded-full w-14  hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"></img>
         </a>
 
