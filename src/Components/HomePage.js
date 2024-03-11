@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import { Link } from 'react-router-dom';
+import fastcfd from '../assets/fastcfd.jpg';
+
 
 const Dashboard = () => {
   return (
@@ -11,7 +13,7 @@ const Dashboard = () => {
       <section>
         <div className="register">
           <div className="col-2">
-            <img src="https://cfd.nu.edu.pk/wp-content/uploads/2017/08/IMG_5750_1-min-760x400.jpg" alt="" />
+            <img src={fastcfd} alt="" />
           </div>
           <div className="col-1">
             <h1 className="font-serif font-bold ">Admin Opreations </h1>
