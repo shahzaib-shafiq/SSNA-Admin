@@ -7,6 +7,8 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { v4 } from 'uuid';
 import { Link } from 'react-router-dom'
 import ssnalogo from '../assets/ssnalogo.png';
+import homepagelogo from '../assets/homepagelogo.png';
+
 
 
 const initialValues = {
@@ -19,9 +21,6 @@ const initialValues = {
 };
 
 const CourseMaterial = () => {
-
-
-
   const {
     values,
     errors,
@@ -187,7 +186,7 @@ const CourseMaterial = () => {
         </div>
 
         <a href="/Homepage" class="md:absolute bottom-0 right-0 p-4 float-right">
-          <img src="https://th.bing.com/th/id/R.610f5abf045d4d6fbab418b2e09cfe99?rik=aL%2fhAM6MWbY9WQ&pid=ImgRaw&r=0" alt="Buy Me A Coffee" class="transition-all rounded-full w-14  hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"></img>
+          <img src={homepagelogo} alt="Buy Me A Coffee" class="transition-all rounded-full w-14  hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"></img>
         </a>
 
       </div>
