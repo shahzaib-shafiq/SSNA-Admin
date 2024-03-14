@@ -8,7 +8,7 @@ import { v4 } from 'uuid';
 import { Link } from 'react-router-dom'
 import ssnalogo from '../assets/ssnalogo.png';
 import homepagelogo from '../assets/homepagelogo.png';
-
+import Swal from 'sweetalert2'; // Import SweetAlert2
 const initialValues = {
   EventDate: "",
 };
@@ -123,6 +123,8 @@ const Timetable = () => {
                         accept=".pdf"
                         onChange={(e) => handleUpload(e)}
                       />
+          
+
                     </div>
                     <div class="md:col-span-5 text-right">
                       <div class="inline-flex items-end">

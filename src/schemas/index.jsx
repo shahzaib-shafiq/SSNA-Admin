@@ -115,5 +115,5 @@ export const TimetableSchema = Yup.object({
   )
   .required("Enter Post Date"),
 
-
+  
 });
