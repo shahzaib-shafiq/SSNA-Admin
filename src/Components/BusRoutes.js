@@ -71,7 +71,7 @@ const BusRoutes = () => {
     <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center  bg-blue-200">
       <div class="container max-w-screen-lg mx-auto">
         <div>
-          <h2 class="font-semibold text-xl text-gray-600">Add New Event</h2>
+          <h2 class="font-semibold text-xl text-gray-600">Add Bus Routes</h2>
 
           <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
@@ -119,7 +119,7 @@ const BusRoutes = () => {
                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                         aria-describedby="user_avatar_help"
                         id="user_avatar"
-                        accept=".pdf"
+                        accept=".xls, .xlsx"
                         onChange={(e) => handleUpload(e)}
                       />
                     </div>
