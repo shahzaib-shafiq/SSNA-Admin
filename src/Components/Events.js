@@ -16,7 +16,7 @@ const initialValues = {
   description: "",
   EventDate: "",
 };
-const Announcements = () => {
+const Events = () => {
 
   //Function to generate a random 6-digit ID
   const generateRandomId = () => {
@@ -209,4 +209,4 @@ const Announcements = () => {
 
 
 
-export default Announcements;
+export default Events;
