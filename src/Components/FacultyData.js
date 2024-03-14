@@ -147,15 +147,17 @@ const FacultyData = () => {
 
                     <div class="md:col-span-3">
                       <label for="address">Office Adress</label>
-                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                      <textarea 
+                      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         type="text"
                         autoComplete="off"
                         name="address"
                         id="address"
+                        rows="4"
                         placeholder="Office Address"
                         value={values.address}
                         onChange={handleChange}
-                        onBlur={handleBlur} />
+                        onBlur={handleBlur} ></textarea>
 
 
 
