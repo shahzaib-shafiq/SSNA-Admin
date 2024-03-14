@@ -6,17 +6,17 @@ import {
   listAll,
   list,
 } from "firebase/storage";
-import { getStorage } from "firebase/storage";
+import { storage } from "./config";
 import { v4 } from "uuid";
 
 function App() {
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
 
-  const imagesListRef = ref(getStorage, "Timetable/");
+  const imagesListRef = ref(storage, "images/");
   const uploadFile = () => {
     if (imageUpload == null) return;
-    const imageRef = ref(getStorage, `timetable/${imageUpload.name + v4()}`);
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageUrls((prev) => [...prev, url]);
@@ -49,5 +49,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
