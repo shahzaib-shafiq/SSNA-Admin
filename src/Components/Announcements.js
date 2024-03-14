@@ -86,7 +86,7 @@ const Announcements = () => {
   const handleUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const imgs = ref(imagedb, `FacultyImgs/${v4()}`);
+      const imgs = ref(imagedb, `Announcements/${v4()}`);
       uploadBytes(imgs, file).then(data => {
         getDownloadURL(data.ref).then(val => {
           setImg(val);

@@ -24,7 +24,7 @@ const initialValues = {
 
 };
 const FacultyData = () => {
- const [img, setImg] = useState('');
+  const [img, setImg] = useState('');
   const {
     values,
     errors,
@@ -91,7 +91,7 @@ const FacultyData = () => {
 
               <div className="text-gray-600 flex items-center">
                 <img
-                 src={ssnalogo}
+                  src={ssnalogo}
                   alt="Personal Details Image"
                   className="w-18 h-18 mr-2"
                 />
@@ -147,8 +147,8 @@ const FacultyData = () => {
 
                     <div class="md:col-span-3">
                       <label for="address">Office Adress</label>
-                      <textarea 
-                      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      <textarea
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         type="text"
                         autoComplete="off"
                         name="address"
@@ -341,7 +341,7 @@ const FacultyData = () => {
           </div>
         </div>
 
-        <a href="/Homepage"  class="md:absolute bottom-0 right-0 p-4 float-right">
+        <a href="/Homepage" class="md:absolute bottom-0 right-0 p-4 float-right">
           <img src={homepagelogo} alt="Buy Me A Coffee" class="transition-all rounded-full w-14  hover:shadow-sm shadow-lg ring hover:ring-4 ring-white"></img>
         </a>
 
