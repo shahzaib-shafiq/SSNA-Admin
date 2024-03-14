@@ -35,7 +35,7 @@ const Timetable = () => {
       if (EventDate) {
         const randomId = generateRandomId();
         const res = fetch(
-          "https://ssna-admin-default-rtdb.firebaseio.com/Events.json",
+          "https://ssna-admin-default-rtdb.firebaseio.com/Timetable.json",
           {
             method: "POST",
             headers: {
@@ -57,7 +57,7 @@ const Timetable = () => {
   const handleUpload = (e) => {
     console.log(e.target.files[0])
 
-    const imgs = ref(imagedb, `EventsImgs/${v4()}`)
+    const imgs = ref(imagedb, `Timetable/${v4()}`)
     uploadBytes(imgs, e.target.files[0]).then(data => {
       console.log(data, "imgs")
       getDownloadURL(data.ref).then(val => {
@@ -71,7 +71,7 @@ const Timetable = () => {
     <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center  bg-blue-200">
       <div class="container max-w-screen-lg mx-auto">
         <div>
-          <h2 class="font-semibold text-xl text-gray-600">Add New Event</h2>
+          <h2 class="font-semibold text-xl text-gray-600">Add Timetable</h2>
 
           <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
@@ -112,11 +112,12 @@ const Timetable = () => {
 
                     </div>
 
+
                     <div class="md:col-span-2">
                       <label for="state">Upload Timetable Pdf</label>
                       <input
                         type="file"
-                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                         aria-describedby="user_avatar_help"
                         id="user_avatar"
                         accept=".pdf"
