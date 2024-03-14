@@ -53,7 +53,7 @@ const BusRoutes = () => {
           );
           action.resetForm();
           Swal.fire({ // Show success notification
-            title: "Good job!",
+            title: "Success",
             text: "Bus Routes uploaded successfully!",
             icon: "success"
           });

@@ -29,12 +29,16 @@ const Timetable = () => {
   } = useFormik({
     initialValues,
     validationSchema: TimetableSchema,
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       const { EventDate } = values;
 
       if (EventDate) {
         const randomId = generateRandomId();
-        const res = fetch(
+
+        try {
+
+        
+        await fetch(
           "https://ssna-admin-default-rtdb.firebaseio.com/Timetable.json",
           {
             method: "POST",
@@ -50,7 +54,21 @@ const Timetable = () => {
           }
         );
         action.resetForm();
+        Swal.fire({ // Show success notification
+          title: "Success",
+          text: "Timetable uploaded successfully!",
+          icon: "success"
+        });
+        }
+        catch (error) {
+          Swal.fire({ // Show error notification
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">Why do I have this issue?</a>'
+          });
       }
+    }
     },
   });
 

@@ -8,7 +8,7 @@ import { v4 } from 'uuid';
 import { Link } from 'react-router-dom'
 import ssnalogo from '../assets/ssnalogo.png';
 import homepagelogo from '../assets/homepagelogo.png';
-
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 
 const initialValues = {
@@ -31,12 +31,14 @@ const CourseMaterial = () => {
   } = useFormik({
     initialValues,
     validationSchema: CourseMaterialSchema,
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       const { CourseName, CourseCode, Department, DriveLink } = values;
 
       if (CourseName && CourseCode && Department && DriveLink) {
+try{
 
-        const res = fetch(
+
+        await fetch(
           "https://ssna-admin-default-rtdb.firebaseio.com/CourseMaterial.json",
           {
             method: "POST",
@@ -55,6 +57,19 @@ const CourseMaterial = () => {
 
         // Reset form values
         action.resetForm();
+        Swal.fire({ // Show success notification
+          title: "Success!",
+          text: "Course Material uploaded successfully!",
+          icon: "success"
+        });
+      } catch (error) {
+        Swal.fire({ // Show error notification
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="#">Why do I have this issue?</a>'
+        });
+      }
       }
     },
   });

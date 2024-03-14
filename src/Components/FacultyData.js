@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import ssnalogo from '../assets/ssnalogo.png';
 import homepagelogo from '../assets/homepagelogo.png';
 
-
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 const initialValues = {
   name: "",
@@ -35,11 +35,16 @@ const FacultyData = () => {
   } = useFormik({
     initialValues,
     validationSchema: FacultySchema,
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       const { name, phone, email, address, Education, Department, University, areaOfIntrest, id } = values;
 
       if (name && phone && email && address && Education && Department && University && areaOfIntrest, id) {
-        const res = fetch(
+        
+        try 
+        {
+
+
+        await fetch(
           "https://ssna-admin-default-rtdb.firebaseio.com/Faculty.json",
           {
             method: "POST",
@@ -63,6 +68,20 @@ const FacultyData = () => {
 
         // Reset form values
         action.resetForm();
+        Swal.fire({ // Show success notification
+          title: "Success",
+          text: "Faculty Data uploaded successfully!",
+          icon: "success"
+        });
+      } catch (error) {
+        Swal.fire({ // Show error notification
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="#">Why do I have this issue?</a>'
+        });
+      }
+
       }
     },
   });

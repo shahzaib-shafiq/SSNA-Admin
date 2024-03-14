@@ -64,7 +64,7 @@ const Announcements = () => {
           );
 
           Swal.fire({
-            title: 'Good job!',
+            title: 'Sucess!',
             text: 'Announcement posted successfully!',
             icon: 'success'
           });
