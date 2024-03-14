@@ -31,65 +31,6 @@ const CourseMaterial = () => {
   } = useFormik({
     initialValues,
     validationSchema: CourseMaterialSchema,
-
-
-    // const CourseMaterial = () => {
-    //   const {
-    //     values,
-    //     errors,
-    //     touched,
-    //     handleBlur,
-    //     handleChange,
-    //     handleSubmit,
-    //   } = useFormik({
-    //     initialValues,
-    //     validationSchema: CourseMaterialSchema,
-    //     onSubmit: async (values, action) => {
-    //       const { CourseName, CourseCode, Department, DriveLink } = values;
-    
-    //       if (CourseName && CourseCode && Department && DriveLink) {
-    //         try {
-    //           await fetch(
-    //             "https://ssna-admin-default-rtdb.firebaseio.com/CourseMaterial.json",
-    //             {
-    //               method: "POST",
-    //               headers: {
-    //                 "Content-Type": "application/json",
-    //               },
-    //               body: JSON.stringify({
-    //                 CourseName,
-    //                 CourseCode,
-    //                 Department,
-    //                 DriveLink,
-    //               }),
-    //             }
-    //           );
-    
-    //           Swal.fire({
-    //             title: 'Good job!',
-    //             text: 'Course material added successfully!',
-    //             icon: 'success'
-    //           });
-    
-    //           // Reset form values
-    //           action.resetForm();
-    //         } catch (error) {
-    //           Swal.fire({
-    //             icon: 'error',
-    //             title: 'Oops...',
-    //             text: 'Something went wrong!',
-    //             footer: '<a href="#">Why do I have this issue?</a>'
-    //           });
-    //         }
-    //       }
-    //     },
-    //   });
-    
-    //   // Rest of the component code remains the same
-    // }
-    
-
-
     onSubmit: (values, action) => {
       const { CourseName, CourseCode, Department, DriveLink } = values;
 
@@ -119,6 +60,65 @@ const CourseMaterial = () => {
   });
 
 
+
+//
+
+// const CourseMaterial = () => {
+//   const {
+//     values,
+//     errors,
+//     touched,
+//     handleBlur,
+//     handleChange,
+//     handleSubmit,
+//   } = useFormik({
+//     initialValues,
+//     validationSchema: CourseMaterialSchema,
+//     onSubmit: async (values, action) => {
+//       const { CourseName, CourseCode, Department, DriveLink } = values;
+
+//       if (CourseName && CourseCode && Department && DriveLink) {
+//         try {
+//           await fetch(
+//             "https://ssna-admin-default-rtdb.firebaseio.com/CourseMaterial.json",
+//             {
+//               method: "POST",
+//               headers: {
+//                 "Content-Type": "application/json",
+//               },
+//               body: JSON.stringify({
+//                 CourseName,
+//                 CourseCode,
+//                 Department,
+//                 DriveLink,
+//               }),
+//             }
+//           );
+
+//           Swal.fire({
+//             title: 'Good job!',
+//             text: 'Course material added successfully!',
+//             icon: 'success'
+//           });
+
+//           // Reset form values
+//           action.resetForm();
+//         } catch (error) {
+//           Swal.fire({
+//             icon: 'error',
+//             title: 'Oops...',
+//             text: 'Something went wrong!',
+//             footer: '<a href="#">Why do I have this issue?</a>'
+//           });
+//         }
+//       }
+//     },
+//   });
+
+//   // Rest of the component code remains the same
+// }
+
+//
   return (
     <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center bg-blue-200">
       <div class="container max-w-screen-lg mx-auto">
