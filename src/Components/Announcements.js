@@ -10,7 +10,7 @@
 // import homepagelogo from '../assets/homepagelogo.png';
 
 // const initialValues = {
-  
+
 //   title:"",
 //   summary:"",
 //   description:"",
@@ -82,7 +82,7 @@
 //       <div class="container max-w-screen-lg mx-auto">
 //         <div>
 //           <h2 class="font-semibold text-xl text-gray-600">Add New Announcement</h2>
-         
+
 //           <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
 //             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
 //               {/* <div class="text-gray-600">
@@ -100,7 +100,7 @@
 //                 />
 //               </div>
 //               <div class="lg:col-span-2">
-              
+
 //                 <br></br>
 
 //                 <form onSubmit={handleSubmit} >
@@ -185,7 +185,7 @@
 //                       ) : null}
 
 //                    </div>
-                    
+
 
 
 //                     <div class="md:col-span-2">
@@ -242,10 +242,10 @@ import ssnalogo from '../assets/ssnalogo.png';
 import homepagelogo from '../assets/homepagelogo.png';
 
 const initialValues = {
-  title:"",
-  summary:"",
-  description:"",
-  AnnouncementDate:"",
+  title: "",
+  summary: "",
+  description: "",
+  AnnouncementDate: "",
 };
 
 const Announcements = () => {
@@ -361,10 +361,14 @@ const Announcements = () => {
                         <p className="form-error">{errors.title}</p>
                       ) : null}
                     </div>
-                    <div class="md:col-span-5">
+
+                    <div class="md:col-span-5 w-full h-full">
                       <label for="email">Summary</label>
-                      <input
-                        class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+
+
+
+
+                      <textarea rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Summary"
                         type="text"
                         autoComplete="off"
@@ -373,15 +377,23 @@ const Announcements = () => {
                         value={values.summary}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                      />
+
+                      ></textarea>
+
+
+
                       {errors.summary && touched.summary ? (
                         <p className="form-error">{errors.summary}</p>
                       ) : null}
                     </div>
-                    <div class="md:col-span-3">
+                    <div class="md:col-span-5"
+                    >
                       <label for="address">Description</label>
-                      <input
-                        class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                      <textarea
+
+
+                        rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+
                         type="text"
                         autoComplete="off"
                         name="description"
@@ -390,7 +402,8 @@ const Announcements = () => {
                         value={values.description}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                      />
+
+                      ></textarea>
                       {errors.description && touched.description ? (
                         <p className="form-error">{errors.description}</p>
                       ) : null}
