@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
-import { EventsSchema } from "../schemas";
+import { TimetableSchema } from "../schemas";
 import { imagedb } from "./config";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { v4 } from 'uuid';
@@ -9,14 +9,10 @@ import { Link } from 'react-router-dom'
 import ssnalogo from '../assets/ssnalogo.png';
 import homepagelogo from '../assets/homepagelogo.png';
 
-
-
 const initialValues = {
-  title: "",
-  description: "",
   EventDate: "",
 };
-const Announcements = () => {
+const Timetable = () => {
 
   //Function to generate a random 6-digit ID
   const generateRandomId = () => {
@@ -32,11 +28,11 @@ const Announcements = () => {
     handleSubmit,
   } = useFormik({
     initialValues,
-    validationSchema: EventsSchema,
+    validationSchema: TimetableSchema,
     onSubmit: (values, action) => {
-      const { title, description, EventDate } = values;
+      const { EventDate } = values;
 
-      if (title && description && EventDate) {
+      if (EventDate) {
         const randomId = generateRandomId();
         const res = fetch(
           "https://ssna-admin-default-rtdb.firebaseio.com/Events.json",
@@ -46,8 +42,7 @@ const Announcements = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              title,
-              description,
+
               EventDate,
               id: randomId,
               img: img
@@ -97,45 +92,6 @@ const Announcements = () => {
 
                 <form onSubmit={handleSubmit} >
                   <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-
-                    <div class="md:col-span-5">
-                      <label for="full_name">Event Title</label>
-                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        type="name"
-                        autoComplete="off"
-                        name="title"
-                        id="title"
-                        placeholder="Title"
-                        value={values.title}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-
-                      {errors.title && touched.title ? (
-                        <p className="form-error">{errors.title}</p>
-                      ) : null}
-                    </div>
-
-
-                    <div class="md:col-span-3">
-                      <label for="address">Description</label>
-                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        type="text"
-                        autoComplete="off"
-                        name="description"
-                        id="description"
-                        placeholder="Description"
-                        value={values.description}
-                        onChange={handleChange}
-                        onBlur={handleBlur} />
-
-
-
-                      {errors.description && touched.description ? (
-                        <p className="form-error">{errors.description}</p>
-                      ) : null}
-                    </div>
-
                     <div class="md:col-span-2">
                       <label for="city">Event Date</label>
                       <input
@@ -150,29 +106,28 @@ const Announcements = () => {
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       >
                       </input>
-
                       {errors.EventDate && touched.EventDate ? (
                         <p className="form-error">{errors.EventDate}</p>
                       ) : null}
 
                     </div>
 
-
-
                     <div class="md:col-span-2">
-                      <label for="state">Event Image</label>
+                      <label for="state">Upload Timetable Pdf</label>
                       <input
                         type="file"
-                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file"
+                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        aria-describedby="user_avatar_help"
+                        id="user_avatar"
+                        accept=".pdf"
                         onChange={(e) => handleUpload(e)}
-
                       />
                     </div>
                     <div class="md:col-span-5 text-right">
                       <div class="inline-flex items-end">
                         <button
                           type="submit"
-                          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Post Event</button>
+                          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Upload Timetable</button>
                       </div>
                     </div>
 
@@ -195,4 +150,4 @@ const Announcements = () => {
 
 
 
-export default Announcements;
+export default Timetable;
