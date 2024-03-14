@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="react_native_dev_server_port">8081</integer>
+    <integer name="react_native_inspector_proxy_port">8081</integer>
+    <string name="app_name">finalssna</string>
+    <string name="default_web_client_id" translatable="false">879576680646-imadre0ps3b4ot8a1gi4kfgmnqjjekec.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://ssna-admin-default-rtdb.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">879576680646</string>
+    <string name="google_api_key" translatable="false">AIzaSyANlK--8RteXUvVVc6TumEPpGQP0DMJ7G4</string>
+    <string name="google_app_id" translatable="false">1:879576680646:android:3016d153f7a53e9e1e6fc7</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyANlK--8RteXUvVVc6TumEPpGQP0DMJ7G4</string>
+    <string name="google_storage_bucket" translatable="false">ssna-admin.appspot.com</string>
+    <string name="project_id" translatable="false">ssna-admin</string>
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        
+        <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
+    </style>
+</resources>
