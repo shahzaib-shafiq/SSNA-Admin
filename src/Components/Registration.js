@@ -12,25 +12,6 @@ import Swal from 'sweetalert2';
 export default function Registration() {
   const [value, setValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  // const GoogleRegistration = () => {
-  //   signInWithPopup(auth, provider)
-  //     .then((data) => {
-  //       const userEmail = data.user.email;
-  //       if (userEmail.endsWith('@cfd.nu.edu.pk')) {
-  //         setValue(userEmail);
-  //         localStorage.setItem('email', userEmail);
-  //         const loginSuccessful = true;
-  //       } else {
-  //         setErrorMessage('Invalid email. Please use an email with the domain @cfd.nu.edu.pk');
-  //         const loginSuccessful = false;
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error('Sign-in error:', error);
-  //       setErrorMessage('');
-  //     });
-  // };
-
 
   
 const GoogleRegistration = () => {
