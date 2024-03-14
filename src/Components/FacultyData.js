@@ -40,7 +40,7 @@ const FacultyData = () => {
 
       if (name && phone && email && address && Education && Department && University && areaOfIntrest, id) {
         const res = fetch(
-          "https://ssna-admin-default-rtdb.firebaseio.com/FacultyDataBase.json",
+          "https://ssna-admin-default-rtdb.firebaseio.com/Faculty.json",
           {
             method: "POST",
             headers: {
