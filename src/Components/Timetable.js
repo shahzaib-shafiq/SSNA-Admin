@@ -8,7 +8,9 @@ import { v4 } from 'uuid';
 import { Link } from 'react-router-dom'
 import ssnalogo from '../assets/ssnalogo.png';
 import homepagelogo from '../assets/homepagelogo.png';
-import Swal from 'sweetalert2'; // Import SweetAlert2
+import Swal from 'sweetalert2';
+
+
 const initialValues = {
   EventDate: "",
 };
@@ -35,8 +37,10 @@ const Timetable = () => {
       if (EventDate) {
         const randomId = generateRandomId();
 
-        try {
-
+try{
+  const imgs = ref(imagedb, `EventsImgs/${v4()}`);
+          const data = await uploadBytes(imgs, img);
+          const imgUrl = await getDownloadURL(data.ref);
         
         await fetch(
           "https://ssna-admin-default-rtdb.firebaseio.com/Timetable.json",
@@ -49,28 +53,27 @@ const Timetable = () => {
 
               EventDate,
               id: randomId,
-              img: img
+              img: imgUrl
             }),
           }
         );
         action.resetForm();
-        Swal.fire({ // Show success notification
+        Swal.fire({
           title: "Success",
-          text: "Timetable uploaded successfully!",
+          text: "Event Added successfully!",
           icon: "success"
         });
-        }
-        catch (error) {
-          Swal.fire({ // Show error notification
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-            footer: '<a href="#">Why do I have this issue?</a>'
-          });
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="#">Why do I have this issue?</a>'
+        });
       }
     }
-    },
-  });
+  }
+});
 
   const handleUpload = (e) => {
     console.log(e.target.files[0])
@@ -93,9 +96,6 @@ const Timetable = () => {
 
           <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-
-
-
 
               <div className="text-gray-600 flex items-center">
                 <img
@@ -141,8 +141,6 @@ const Timetable = () => {
                         accept=".pdf"
                         onChange={(e) => handleUpload(e)}
                       />
-          
-
                     </div>
                     <div class="md:col-span-5 text-right">
                       <div class="inline-flex items-end">

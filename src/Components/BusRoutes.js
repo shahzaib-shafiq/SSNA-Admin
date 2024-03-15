@@ -70,14 +70,32 @@ const BusRoutes = () => {
   });
 
   const handleUpload = (e) => {
-    const imgs = ref(imagedb, `BusRoutes/${v4()}`)
-    uploadBytes(imgs, e.target.files[0]).then(data => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const imgs = ref(imagedb, `BusRoutes/${v4()}`);
+    uploadBytes(imgs, file).then(data => {
       getDownloadURL(data.ref).then(val => {
-        setImg(val)
-      })
-    })
-  }
-
+        setImg(val);
+        console.log("File uploaded successfully. Download URL:", val);
+      }).catch(error => {
+        console.error("Error getting download URL:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Failed to upload file!",
+        });
+      });
+    }).catch(error => {
+      console.error("Error uploading file:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Failed to upload file!",
+      });
+    });
+  };
+  
   return (
     <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center  bg-blue-200">
       <div class="container max-w-screen-lg mx-auto">
