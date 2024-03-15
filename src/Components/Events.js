@@ -8,7 +8,7 @@ import { v4 } from 'uuid';
 import { Link } from 'react-router-dom'
 import ssnalogo from '../assets/ssnalogo.png';
 import homepagelogo from '../assets/homepagelogo.png';
-import Swal from 'sweetalert2'; // Import SweetAlert2x
+import Swal from 'sweetalert2';
 
 
 const initialValues = {
@@ -33,61 +33,67 @@ const Events = () => {
   } = useFormik({
     initialValues,
     validationSchema: EventsSchema,
-    onSubmit:async  (values, action) => {
+    onSubmit: async (values, action) => {
       const { title, description, EventDate } = values;
-
+    
       if (title && description && EventDate) {
         const randomId = generateRandomId();
-        
+    
         try {
-
-        
-        await fetch(
-          "https://ssna-admin-default-rtdb.firebaseio.com/Events.json",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              title,
-              description,
-              EventDate,
-              id: randomId,
-              img: img
-            }),
-          }
-        );
-        action.resetForm();
-        Swal.fire({ // Show success notification
-          title: "Success",
-          text: "Event Added successfully!",
-          icon: "success"
-        });
-      } catch (error) {
-        Swal.fire({ // Show error notification
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-          footer: '<a href="#">Why do I have this issue?</a>'
-        });
+          // Upload the image first
+          const imgs = ref(imagedb, `EventsImgs/${v4()}`);
+          const data = await uploadBytes(imgs, img);
+          const imgUrl = await getDownloadURL(data.ref);
+    
+          // Once the image is uploaded, submit the form with the image URL
+          await fetch(
+            "https://ssna-admin-default-rtdb.firebaseio.com/Events.json",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                title,
+                description,
+                EventDate,
+                id: randomId,
+                img: imgUrl
+              }),
+            }
+          );
+    
+          action.resetForm();
+          Swal.fire({
+            title: "Success",
+            text: "Event Added successfully!",
+            icon: "success"
+          });
+        } catch (error) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">Why do I have this issue?</a>'
+          });
+        }
       }
-      }
-    },
+    }
   });
+    
+ 
+  function handleUpload(e) {
+  console.log(e.target.files[0]);
 
-  const handleUpload = (e) => {
-    console.log(e.target.files[0])
+  const imgs = ref(imagedb, `EventsImgs/${v4()}`);
+  uploadBytes(imgs, e.target.files[0]).then(data => {
+    console.log(data, "imgs");
+    getDownloadURL(data.ref).then(val => {
+      setImg(val);
 
-    const imgs = ref(imagedb, `EventsImgs/${v4()}`)
-    uploadBytes(imgs, e.target.files[0]).then(data => {
-      console.log(data, "imgs")
-      getDownloadURL(data.ref).then(val => {
-        setImg(val)
-
-      })
-    })
-  }
+    });
+  });
+}
 
   return (
     <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center  bg-blue-200">
@@ -136,7 +142,7 @@ const Events = () => {
 
                     <div class="md:col-span-3">
                       <label for="address">Description</label>
-                      {/* <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                         type="text"
                         autoComplete="off"
                         name="description"
@@ -146,21 +152,7 @@ const Events = () => {
                         onChange={handleChange}
                         onBlur={handleBlur} />
 
-                         */}
-                      
-                      <textarea  rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      
-                      type="text"
-                      autoComplete="off"
-                      name="description"
-                      id="description"
-                      placeholder="Description"                       
-                      value={values.description}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
 
-                      
-                      ></textarea>
 
                       {errors.description && touched.description ? (
                         <p className="form-error">{errors.description}</p>
@@ -187,9 +179,6 @@ const Events = () => {
                       ) : null}
 
                     </div>
-
-
-
                     <div class="md:col-span-2">
                       <label for="state">Event Image</label>
                       <input
