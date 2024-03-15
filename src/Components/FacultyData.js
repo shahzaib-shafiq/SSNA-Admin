@@ -185,14 +185,7 @@ const FacultyData = () => {
                       ) : null}
                     </div>
 
-                    {/*     change */}
-
-
-                    {/* Change Education to Designation here */}
-
-
-                    {/*     change */}
-
+                  
                     <div class="md:col-span-2">
                       <label for="city">Designation</label>
                       <select
