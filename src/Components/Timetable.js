@@ -87,13 +87,17 @@ const Timetable = () => {
         const pdfs = ref(imagedb, `Timetable/${v4()}`); // Assuming pdfdb is your database reference for PDFs
         uploadBytes(pdfs, file).then(data => {
           getDownloadURL(data.ref).then(url => {
-            setImg(url); // Set the PDF file URL here
+            // Set the PDF file URL here
+            setImg(url);
+            // Additionally, you can log the URL to check if it's correct
+            console.log("PDF URL:", url);
           });
         }).catch(error => {
           console.error("Error uploading PDF: ", error);
         });
       }
     };
+    
     
 
   return (
