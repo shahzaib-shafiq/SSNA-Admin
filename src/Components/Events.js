@@ -36,16 +36,10 @@ const Events = () => {
     onSubmit: async (values, action) => {
       const { title, description, EventDate } = values;
     
-      if (title && description && EventDate) {
+      if (title && description && EventDate&&img) {
         const randomId = generateRandomId();
     
-        try {
-          // Upload the image first
-          const imgs = ref(imagedb, `EventsImgs/${v4()}`);
-          const data = await uploadBytes(imgs, img);
-          const imgUrl = await getDownloadURL(data.ref);
-    
-          // Once the image is uploaded, submit the form with the image URL
+        try {                        
           await fetch(
             "https://ssna-admin-default-rtdb.firebaseio.com/Events.json",
             {
@@ -58,42 +52,54 @@ const Events = () => {
                 description,
                 EventDate,
                 id: randomId,
-                img: imgUrl
+                img: img // Use the img URL here
               }),
             }
           );
     
-          action.resetForm();
           Swal.fire({
-            title: "Success",
-            text: "Event Added successfully!",
-            icon: "success"
+            title: 'Success!',
+            text: 'Event posted successfully!',
+            icon: 'success'
           });
+    
+          // Reset form values
+          action.resetForm();
         } catch (error) {
+          console.error("Error posting Event: ", error);
           Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
             footer: '<a href="#">Why do I have this issue?</a>'
           });
         }
+      } else {
+        console.error("Image URL is missing or form fields are incomplete.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Image URL is missing or form fields are incomplete!',
+          footer: '<a href="#">Why do I have this issue?</a>'
+        });
       }
     }
-  });
-    
- 
-  function handleUpload(e) {
-  console.log(e.target.files[0]);
+    });    
 
-  const imgs = ref(imagedb, `EventsImgs/${v4()}`);
-  uploadBytes(imgs, e.target.files[0]).then(data => {
-    console.log(data, "imgs");
-    getDownloadURL(data.ref).then(val => {
-      setImg(val);
-
-    });
-  });
-}
+  const handleUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imgs = ref(imagedb, `EventsImgs/${v4()}`);
+      uploadBytes(imgs, file).then(data => {
+        getDownloadURL(data.ref).then(url => {
+          setImg(url); // Set the image URL here
+        });
+      }).catch(error => {
+        console.error("Error uploading image: ", error);
+      });
+    }
+  };
+  
 
   return (
     <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center  bg-blue-200">

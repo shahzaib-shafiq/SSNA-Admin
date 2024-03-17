@@ -33,60 +33,68 @@ const Timetable = () => {
     validationSchema: TimetableSchema,
     onSubmit: async (values, action) => {
       const { EventDate } = values;
-
-      if (EventDate) {
+    
+      if (EventDate && img) {
         const randomId = generateRandomId();
-
-try{
-  const imgs = ref(imagedb, `EventsImgs/${v4()}`);
-          const data = await uploadBytes(imgs, img);
-          const imgUrl = await getDownloadURL(data.ref);
-        
-        await fetch(
-          "https://ssna-admin-default-rtdb.firebaseio.com/Timetable.json",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-
-              EventDate,
-              id: randomId,
-              img: imgUrl
-            }),
-          }
-        );
-        action.resetForm();
+    
+        try {
+          await fetch(
+            "https://ssna-admin-default-rtdb.firebaseio.com/Timetable.json",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                EventDate,
+                id: randomId,
+                img: img, // Assuming img is the PDF file URL
+              }),
+            }
+          );
+          Swal.fire({
+            title: 'Success!',
+            text: 'Timetable added successfully!',
+            icon: 'success'
+          });
+    
+          // Reset form values
+          action.resetForm();
+        } catch (error) {
+          console.error("Error posting Timetable: ", error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href="#">Why do I have this issue?</a>'
+          });
+        }
+      } else {
+        console.error("Pdf URL is missing or form fields are incomplete.");
         Swal.fire({
-          title: "Success",
-          text: "Event Added successfully!",
-          icon: "success"
-        });
-      } catch (error) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Image URL is missing or form fields are incomplete!',
           footer: '<a href="#">Why do I have this issue?</a>'
         });
       }
     }
-  }
-});
-
-  const handleUpload = (e) => {
-    console.log(e.target.files[0])
-
-    const imgs = ref(imagedb, `Timetable/${v4()}`)
-    uploadBytes(imgs, e.target.files[0]).then(data => {
-      console.log(data, "imgs")
-      getDownloadURL(data.ref).then(val => {
-        setImg(val)
-
-      })
-    })
-  }
+    });    
+    
+    const handleUpload = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const pdfs = ref(imagedb, `Timetable/${v4()}`); // Assuming pdfdb is your database reference for PDFs
+        uploadBytes(pdfs, file).then(data => {
+          getDownloadURL(data.ref).then(url => {
+            setImg(url); // Set the PDF file URL here
+          });
+        }).catch(error => {
+          console.error("Error uploading PDF: ", error);
+        });
+      }
+    };
+    
 
   return (
     <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center  bg-blue-200">
