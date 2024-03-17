@@ -45,7 +45,7 @@ title: Yup.string()
     
     description: Yup.string().matches(/^[A-Za-z]+$/, 'Description contain only characters')
     .min(20, 'summary must be at least 20 characters')
-    .max(50, 'summary must be at most 50 characters')
+    .max(90, 'summary must be at most 90 characters')
 
     .required('Please enter post Description'),
 

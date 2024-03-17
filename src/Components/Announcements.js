@@ -35,16 +35,12 @@ const Announcements = () => {
   } = useFormik({
     initialValues,
     validationSchema: AnnouncementSchema,
-    onSubmit: async (values, action) => {
+    onSubmit : async (values, action) => {
       const { title, summary, description, AnnouncementDate } = values;
-
-      if (title && summary && description && AnnouncementDate) {
+    
+      if (title && summary && description && AnnouncementDate && img) {
         const randomId = generateRandomId();
         try {
-          const imgs = ref(imagedb, `FacultyImgs/${v4()}`);
-          const data = await uploadBytes(imgs, img);
-          const imgUrl = await getDownloadURL(data.ref);
-
           await fetch(
             "https://ssna-admin-default-rtdb.firebaseio.com/Announcements.json",
             {
@@ -58,20 +54,21 @@ const Announcements = () => {
                 description,
                 AnnouncementDate,
                 id: randomId,
-                img: imgUrl
+                img: img // Use the img URL here
               }),
             }
           );
-
+    
           Swal.fire({
-            title: 'Sucess!',
+            title: 'Success!',
             text: 'Announcement posted successfully!',
             icon: 'success'
           });
-
+    
           // Reset form values
           action.resetForm();
         } catch (error) {
+          console.error("Error posting announcement: ", error);
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -79,21 +76,33 @@ const Announcements = () => {
             footer: '<a href="#">Why do I have this issue?</a>'
           });
         }
+      } else {
+        console.error("Image URL is missing or form fields are incomplete.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Image URL is missing or form fields are incomplete!',
+          footer: '<a href="#">Why do I have this issue?</a>'
+        });
       }
-    },
-  });
+    }
+    });    
 
   const handleUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
       const imgs = ref(imagedb, `Announcements/${v4()}`);
       uploadBytes(imgs, file).then(data => {
-        getDownloadURL(data.ref).then(val => {
-          setImg(val);
+        getDownloadURL(data.ref).then(url => {
+          setImg(url); // Set the image URL here
         });
+      }).catch(error => {
+        console.error("Error uploading image: ", error);
       });
     }
   };
+  
+  
 
   return (
     <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center  bg-blue-200">
