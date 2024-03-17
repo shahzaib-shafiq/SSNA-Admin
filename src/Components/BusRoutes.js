@@ -34,7 +34,7 @@ const BusRoutes = () => {
     onSubmit: async (values, action) => {
       const { EventDate } = values;
 
-      if (EventDate) {
+      if (EventDate&&img) {
         const randomId = generateRandomId();
         try {
           await fetch(
@@ -51,51 +51,50 @@ const BusRoutes = () => {
               }),
             }
           );
-          action.resetForm();
-          Swal.fire({ // Show success notification
-            title: "Success",
-            text: "Bus Routes uploaded successfully!",
-            icon: "success"
+          Swal.fire({
+            
+            title: 'Success!',
+            text: 'Event posted successfully!',
+            icon: 'success'
           });
+
+          action.resetForm();
+
         } catch (error) {
-          Swal.fire({ // Show error notification
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
+          console.error("Error posting Event: ", error);
+          Swal.fire({
+            
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
             footer: '<a href="#">Why do I have this issue?</a>'
           });
         }
-      }
-    },
-  });
-
-  const handleUpload = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    
-    const imgs = ref(imagedb, `BusRoutes/${v4()}`);
-    uploadBytes(imgs, file).then(data => {
-      getDownloadURL(data.ref).then(val => {
-        setImg(val);
-        console.log("File uploaded successfully. Download URL:", val);
-      }).catch(error => {
-        console.error("Error getting download URL:", error);
+      } else {
+        console.error("Image URL is missing or form fields are incomplete.");
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Failed to upload file!",
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Image URL is missing or form fields are incomplete!',
+          footer: '<a href="#">Why do I have this issue?</a>'
         });
-      });
-    }).catch(error => {
-      console.error("Error uploading file:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Failed to upload file!",
-      });
-    });
-  };
-  
+      }
+    }
+  });
+          const handleUpload = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+              const imgs = ref(imagedb, `EventsImgs/${v4()}`);
+              uploadBytes(imgs, file).then(data => {
+                getDownloadURL(data.ref).then(url => {
+                  setImg(url); // Set the image URL here
+                });
+              }).catch(error => {
+                console.error("Error uploading image: ", error);
+              });
+            }
+          };
+        
   return (
     <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center  bg-blue-200">
       <div class="container max-w-screen-lg mx-auto">
