@@ -24,6 +24,10 @@ const initialValues = {
 
 };
 const FacultyData = () => {
+
+  const generateRandomId = () => {
+    return Math.floor(1000000 + Math.random() * 9000000).toString();
+  };
   const [img, setImg] = useState('');
   const {
     values,
@@ -38,12 +42,10 @@ const FacultyData = () => {
     onSubmit: async (values, action) => {
       const { name, phone, email, address, Education, Department, University, areaOfIntrest, id } = values;
 
-      if (name && phone && email && address && Education && Department && University && areaOfIntrest, id) {
-        
+      if (name && phone && email && address && Education && Department && University && areaOfIntrest&& id&&img) {
+        const randomId = generateRandomId();
         try 
         {
-
-
         await fetch(
           "https://ssna-admin-default-rtdb.firebaseio.com/Faculty.json",
           {
@@ -66,38 +68,50 @@ const FacultyData = () => {
           }
         );
 
+        Swal.fire({
+          title: 'Success!',
+          text: 'Faculty Data posted successfully!',
+          icon: 'success'
+        });
+  
         // Reset form values
         action.resetForm();
-        Swal.fire({ // Show success notification
-          title: "Success",
-          text: "Faculty Data uploaded successfully!",
-          icon: "success"
-        });
       } catch (error) {
-        Swal.fire({ // Show error notification
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+        console.error("Error posting Faculty Data: ", error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
           footer: '<a href="#">Why do I have this issue?</a>'
         });
       }
-
-      }
-    },
-  });
-
-  const handleUpload = (e) => {
-    console.log(e.target.files[0])
-
-    const imgs = ref(imagedb, `FacultyImgs/${v4()}`)
-    uploadBytes(imgs, e.target.files[0]).then(data => {
-      console.log(data, "imgs")
-      getDownloadURL(data.ref).then(val => {
-        setImg(val)
-
-      })
-    })
+    } else {
+      console.error("Image URL is missing or form fields are incomplete.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Image URL is missing or form fields are incomplete!',
+        footer: '<a href="#">Why do I have this issue?</a>'
+      });
+    }
   }
+  });    
+
+const handleUpload = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const imgs = ref(imagedb, `FacultyImgs/${v4()}`);
+    uploadBytes(imgs, file).then(data => {
+      getDownloadURL(data.ref).then(url => {
+        setImg(url); // Set the image URL here
+      });
+    }).catch(error => {
+      console.error("Error uploading image: ", error);
+    });
+  }
+};
+
+
 
   return (
     <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center  bg-blue-200">
