@@ -54,14 +54,14 @@ const BusRoutes = () => {
           Swal.fire({
             
             title: 'Success!',
-            text: 'Event posted successfully!',
+            text: 'BusRoutes posted successfully!',
             icon: 'success'
           });
 
           action.resetForm();
 
         } catch (error) {
-          console.error("Error posting Event: ", error);
+          console.error("Error posting BusRoutes: ", error);
           Swal.fire({
             
             icon: 'error',
@@ -84,7 +84,7 @@ const BusRoutes = () => {
           const handleUpload = (e) => {
             const file = e.target.files[0];
             if (file) {
-              const imgs = ref(imagedb, `EventsImgs/${v4()}`);
+              const imgs = ref(imagedb, `BusRoutes/${v4()}`);
               uploadBytes(imgs, file).then(data => {
                 getDownloadURL(data.ref).then(url => {
                   setImg(url); // Set the image URL here
