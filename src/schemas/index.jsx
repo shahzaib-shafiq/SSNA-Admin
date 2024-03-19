@@ -37,7 +37,7 @@ title: Yup.string()
 
     summary: Yup.string().matches(/^[A-Za-z]+$/, 'Summary contain only characters')
     .min(15, 'summary must be at least 15 characters')
-    .max(40, 'summary must be at most 40 characters')
+    .max(60, 'summary must be at most 60 characters')
 
     .required('Please enter Post Summary'),
    
@@ -91,7 +91,7 @@ export const EventsSchema = Yup.object({
     
     description: Yup.string().matches(/^[A-Za-z]+$/, 'Description contain only characters')
     .min(20, 'summary must be at least 20 characters')
-    .max(50, 'summary must be at most 50 characters')
+    .max(60, 'summary must be at most 60 characters')
     .required('Please enter post Description'),
 
  
