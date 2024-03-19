@@ -39,7 +39,7 @@ title: Yup.string()
     .min(15, 'summary must be at least 15 characters')
     .max(40, 'summary must be at most 40 characters')
 
-    .required('Please enter post Summary'),
+    .required('Please enter Post Summary'),
    
     
     
