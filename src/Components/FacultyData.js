@@ -42,74 +42,73 @@ const FacultyData = () => {
     onSubmit: async (values, action) => {
       const { name, phone, email, address, Education, Department, University, areaOfIntrest, id } = values;
 
-      if (name && phone && email && address && Education && Department && University && areaOfIntrest&& id&&img) {
+      if (name && phone && email && address && Education && Department && University && areaOfIntrest && id && img) {
         const randomId = generateRandomId();
-        try 
-        {
-        await fetch(
-          "https://ssna-admin-default-rtdb.firebaseio.com/Faculty.json",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name,
-              phone,
-              email,
-              address,
-              Education,
-              Department,
-              University,
-              areaOfIntrest,
-              id,
-              img: img
-            }),
-          }
-        );
+        try {
+          await fetch(
+            "https://ssna-admin-default-rtdb.firebaseio.com/Faculty.json",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name,
+                phone,
+                email,
+                address,
+                Education,
+                Department,
+                University,
+                areaOfIntrest,
+                id,
+                img: img
+              }),
+            }
+          );
 
-        Swal.fire({
-          title: 'Success!',
-          text: 'Faculty Data posted successfully!',
-          icon: 'success'
-        });
-  
-        // Reset form values
-        action.resetForm();
-      } catch (error) {
-        console.error("Error posting Faculty Data: ", error);
+          Swal.fire({
+            title: 'Success!',
+            text: 'Faculty Data posted successfully!',
+            icon: 'success'
+          });
+
+          // Reset form values
+          action.resetForm();
+        } catch (error) {
+          console.error("Error posting Faculty Data: ", error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href="#">Why do I have this issue?</a>'
+          });
+        }
+      } else {
+        console.error("Image URL is missing or form fields are incomplete.");
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Something went wrong!',
+          text: 'Image URL is missing or form fields are incomplete!',
           footer: '<a href="#">Why do I have this issue?</a>'
         });
       }
-    } else {
-      console.error("Image URL is missing or form fields are incomplete.");
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Image URL is missing or form fields are incomplete!',
-        footer: '<a href="#">Why do I have this issue?</a>'
+    }
+  });
+
+  const handleUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imgs = ref(imagedb, `FacultyImgs/${v4()}`);
+      uploadBytes(imgs, file).then(data => {
+        getDownloadURL(data.ref).then(url => {
+          setImg(url); // Set the image URL here
+        });
+      }).catch(error => {
+        console.error("Error uploading image: ", error);
       });
     }
-  }
-  });    
-
-const handleUpload = (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const imgs = ref(imagedb, `FacultyImgs/${v4()}`);
-    uploadBytes(imgs, file).then(data => {
-      getDownloadURL(data.ref).then(url => {
-        setImg(url); // Set the image URL here
-      });
-    }).catch(error => {
-      console.error("Error uploading image: ", error);
-    });
-  }
-};
+  };
 
 
 
@@ -199,7 +198,7 @@ const handleUpload = (e) => {
                       ) : null}
                     </div>
 
-                  
+
                     <div class="md:col-span-2">
                       <label for="city">Designation</label>
                       <select
@@ -343,8 +342,13 @@ const handleUpload = (e) => {
                     <div class="md:col-span-2">
                       <label for="state">Faculty Image</label>
                       <input
+
+
+                        class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        aria-describedby="user_avatar_help"
+
                         type="file"
-                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file"
+
                         onChange={(e) => handleUpload(e)}
 
                       />
