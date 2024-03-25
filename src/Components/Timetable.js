@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 
 
 const initialValues = {
+  Department: "",
   EventDate: "",
 };
 const Timetable = () => {
@@ -32,9 +33,9 @@ const Timetable = () => {
     initialValues,
     validationSchema: TimetableSchema,
     onSubmit: async (values, action) => {
-      const { EventDate } = values;
+      const { Department,EventDate } = values;
     
-      if (EventDate && img) {
+      if (Department,EventDate && img) {
         const randomId = generateRandomId();
     
         try {
@@ -46,6 +47,7 @@ const Timetable = () => {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
+                Department,
                 EventDate,
                 id: randomId,
                 img: img, // Assuming img is the PDF file URL
@@ -122,8 +124,33 @@ const Timetable = () => {
 
                 <form onSubmit={handleSubmit} >
                   <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+
+                  <div class="md:col-span-2">
+                      <label for="address">Department</label>
+                      <select
+                        name="Department"
+                        id="Department"
+                        value={values.Department}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Department"
+                      >
+                        <option value="">Select Department</option>
+                        <option value="CS">CS</option>
+                        <option value="SE">SE</option>
+                        <option value="EE">EE</option>
+                        <option value="AI">AI</option>
+                        <option value="CYS">CYS</option>
+                        <option value="BBA">BBA</option>
+                      </select>
+                      {errors.Department && touched.Department ? (
+                        <p className="form-error">{errors.Department}</p>
+                      ) : null}
+                    </div>
+
                     <div class="md:col-span-2">
-                      <label for="city">Event Date</label>
+                      <label for="city">Upload Date</label>
                       <input
                         type="date"
                         name="EventDate"
