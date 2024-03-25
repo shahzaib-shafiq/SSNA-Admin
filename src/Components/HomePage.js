@@ -5,7 +5,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import { Link } from 'react-router-dom';
 import fastcfd from '../assets/fastcfd.jpg';
-
+import nuceslogo from '../assets/nuces_logo.png';
 
 const Dashboard = () => {
   return (
@@ -16,8 +16,12 @@ const Dashboard = () => {
             <img src={fastcfd} alt="" />
           </div>
           <div className="col-1">
-            <h1 className="font-serif font-bold ">Admin Opreations </h1>
-            <span></span>
+            {/* <h1 className="font-serif font-bold text-4xl">Admin Panel </h1>
+            <img src={nuceslogo}></img> */}
+            <div className="flex items-center">
+  <img src={nuceslogo} className="h-14 w-auto mr-2" alt="NUCES Logo" />
+  <h1 className="font-serif font-bold text-2xl">Admin Operations</h1>
+</div>
             <form id='form' className='flex flex-col'>
               <Link to='/CourseMaterial'>
                 <Button className="styledButton w-45 h-12 p-2" variant='contained' size='medium' endIcon={<PersonAddIcon />}>
