@@ -117,7 +117,7 @@ const generateRandomId = () => {
                         <p className="form-error">{errors.title}</p>
                       ) : null}
                     </div>
-                    <div class="md:col-span-3">
+                    <div class="md:col-span-5">
                       <label for="address">Announcement Link</label>
                       <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                         type="text"
@@ -131,7 +131,8 @@ const generateRandomId = () => {
                       {errors.AnnouncementLink && touched.AnnouncementLink ? (
                         <p className="form-error">{errors.AnnouncementLink}</p>
                       ) : null}
-                    </div>                
+                    </div>
+
                     <div class="md:col-span-5"
                     >
                       <label for="address">Description</label>
