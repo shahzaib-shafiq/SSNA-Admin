@@ -46,7 +46,7 @@ const BusRoutes = () => {
               body: JSON.stringify({
                 EventDate,
                 id: randomId,
-                Link:SheetLink,
+                SheetLink:SheetLink,
               }),
             }
           );
