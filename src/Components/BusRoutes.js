@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
-import { TimetableSchema } from "../schemas";
+import { BusRoutesSchema  } from "../schemas";
 import { imagedb } from "./config";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { v4 } from 'uuid';
@@ -11,6 +11,7 @@ import ssnalogo from '../assets/ssnalogo.png';
 import homepagelogo from '../assets/homepagelogo.png';
 
 const initialValues = {
+  SheetLink: "",
   EventDate: "",
 };
 
@@ -19,9 +20,7 @@ const BusRoutes = () => {
     return Math.floor(1000000 + Math.random() * 9000000).toString();
   };
 
-  const [img, setImg] = useState('');
-
-  const {
+   const {
     values,
     errors,
     touched,
@@ -30,11 +29,11 @@ const BusRoutes = () => {
     handleSubmit,
   } = useFormik({
     initialValues,
-    validationSchema: TimetableSchema,
+    validationSchema:BusRoutesSchema ,
     onSubmit: async (values, action) => {
-      const { EventDate } = values;
+      const { EventDate,SheetLink } = values;
 
-      if (EventDate&&img) {
+      if (EventDate && SheetLink) {
         const randomId = generateRandomId();
         try {
           await fetch(
@@ -47,12 +46,12 @@ const BusRoutes = () => {
               body: JSON.stringify({
                 EventDate,
                 id: randomId,
-                img: img
+                Link:SheetLink,
               }),
             }
           );
           Swal.fire({
-            
+
             title: 'Success!',
             text: 'BusRoutes posted successfully!',
             icon: 'success'
@@ -63,7 +62,7 @@ const BusRoutes = () => {
         } catch (error) {
           console.error("Error posting BusRoutes: ", error);
           Swal.fire({
-            
+
             icon: 'error',
             title: 'Oops...',
             text: 'Something went wrong!',
@@ -81,20 +80,8 @@ const BusRoutes = () => {
       }
     }
   });
-          const handleUpload = (e) => {
-            const file = e.target.files[0];
-            if (file) {
-              const imgs = ref(imagedb, `BusRoutes/${v4()}`);
-              uploadBytes(imgs, file).then(data => {
-                getDownloadURL(data.ref).then(url => {
-                  setImg(url); // Set the image URL here
-                });
-              }).catch(error => {
-                console.error("Error uploading image: ", error);
-              });
-            }
-          };
-        
+  
+
   return (
     <div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center  bg-blue-200">
       <div class="container max-w-screen-lg mx-auto">
@@ -131,17 +118,25 @@ const BusRoutes = () => {
                         <p className="form-error">{errors.EventDate}</p>
                       ) : null}
                     </div>
-                    <div class="md:col-span-2">
-                      <label for="state">Upload CSV/XLSX File</label>
-                      <input
-                        type="file"
-                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                        aria-describedby="user_avatar_help"
-                        id="user_avatar"
-                        accept=".xlsx"
-                        onChange={(e) => handleUpload(e)}
-                      />
+
+
+                    <div class="md:col-span-3">
+                      <label for="address">BusRoutes Link</label>
+                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        type="text"
+                        autoComplete="off"
+                        name="SheetLink"
+                        id="SheetLink"
+                        placeholder="GoogleSheets Link"
+                        value={values.SheetLink}
+                        onChange={handleChange}
+                        onBlur={handleBlur} />
+                      {errors.SheetLink && touched.SheetLink ? (
+                        <p className="form-error">{errors.SheetLink}</p>
+                      ) : null}
                     </div>
+
+
                     <div class="md:col-span-5 text-right">
                       <div class="inline-flex items-end">
                         <button
