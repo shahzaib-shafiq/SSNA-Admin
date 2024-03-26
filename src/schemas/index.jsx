@@ -122,13 +122,11 @@ export const BusRoutesSchema = Yup.object({
       "Invalid date format. Use YYYY-MM-DD format."
     )
     .required("Enter Post Date"),
-
     SheetLink: Yup.string()
     .matches(
-      /^https:\/\/docs\.google\.com\/spreadsheets\/.*$/,
-      'Please enter a valid Google Sheets link'
+      /^https:\/\/firebasestorage\.googleapis\.com\/.*$/,
+      'Please enter a valid Firestore storage link'
     )
-    .required('Please enter a Google Sheets link'),
+    .required('Please enter a Firestore storage link'),
   
-
   });

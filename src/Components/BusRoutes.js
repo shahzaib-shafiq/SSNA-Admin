@@ -127,7 +127,7 @@ const BusRoutes = () => {
                         autoComplete="off"
                         name="SheetLink"
                         id="SheetLink"
-                        placeholder="GoogleSheets Link"
+                        placeholder="Excel Sheet Link"
                         value={values.SheetLink}
                         onChange={handleChange}
                         onBlur={handleBlur} />
