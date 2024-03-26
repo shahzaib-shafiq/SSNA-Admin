@@ -257,20 +257,25 @@ const FacultyData = () => {
                         <p className="form-error">{errors.Department}</p>
                       ) : null}
                     </div>
-
                     <div class="md:col-span-2">
-                      <label for="state"> University</label>
-                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        type="text"
-                        autoComplete="off"
+                      <label for="address">University</label>
+                      <select
                         name="University"
                         id="University"
-                        placeholder="University"
                         value={values.University}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                      />
-
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="University"
+                      >
+                        <option value="">Select University</option>
+                        <option value="FAST-CFD">FAST-CFD</option>
+                        <option value="FAST-ISB">FAST-ISB</option>
+                        <option value="FAST-PSW">FAST-PSW</option>
+                        <option value="FAST-KHI">FAST-KHI</option>
+                        <option value="FAST-LHR">FAST-LHR</option>
+                        <option value="FAST-MUL">FAST-MUL</option>
+                      </select>
                       {errors.University && touched.University ? (
                         <p className="form-error">{errors.University}</p>
                       ) : null}
@@ -303,8 +308,8 @@ const FacultyData = () => {
 
                     <div class="md:col-span-2">
                       <label for="country">Area of Intrest</label>
-                      <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        ype="text"
+                      {/* <input class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        type="text"
                         autoComplete="off"
                         name="areaOfIntrest"
                         id="areaOfIntrest"
@@ -313,8 +318,20 @@ const FacultyData = () => {
                         onChange={handleChange}
                         onBlur={handleBlur}
 
-                      />
-                      {errors.areaOfIntrest && touched.areaOfIntrest ? (
+                      /> */}
+
+                        <textarea
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        type="text"
+                        autoComplete="off"
+                        name="areaOfIntrest"
+                        id="areaOfIntrest"
+                        rows="4"
+                        placeholder="Area Of Intrest"
+                        value={values.areaOfIntrest}
+                        onChange={handleChange}
+                        onBlur={handleBlur} ></textarea>
+                        {errors.areaOfIntrest && touched.areaOfIntrest ? (
                         <p className="form-error">{errors.areaOfIntrest}</p>
                       ) : null}
                     </div>

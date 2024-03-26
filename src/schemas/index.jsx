@@ -19,8 +19,11 @@ export const FacultySchema = Yup.object({
 
   Education: Yup.string().max(25).required("Enter Education"),
   Department: Yup.string().max(25).required("Enter Department"),
-  University: Yup.string().max(45).matches(/^[a-zA-Z._]+$/, "Must be a valid University Name").required("Enter University Name"),
-  areaOfIntrest: Yup.string().max(25).matches(/^[a-zA-Z._]+$/, "Must be a valid Area of Intrest").required("Enter Area of Intrest"),
+  University: Yup.string().max(45).max(25).required("Enter University"),
+  areaOfIntrest: Yup.string().max(25).matches(/^[A-Za-z\s]+$/, 'Enter Valid Area of Intrest')
+  .min(2, 'Name must be at least 2 characters')
+  .max(450, 'Name must be at most 50 characters')
+  .required('Please enter Area of Intrest'),
   id: Yup.string().matches(/^[0-9_]+$/, "Must be a valid 6 Digit Id ").min(6).max(6).required("Enter ID"),
 
 });
