@@ -36,11 +36,6 @@ export const AnnouncementSchema = Yup.object({
     .max(25, 'Name must be at most 25 characters')
     .required('Please enter post Title'),
 
-  summary: Yup.string().matches(/^[A-Za-z\s]+$/, 'Enter Announcement Summary')
-    .min(15, 'Summary must be at least 15 characters')
-    .max(50, 'Summary must be at most 50 characters')
-    .required('Please enter your name'),
-
   description: Yup.string().matches(/^[A-Za-z\s]+$/, 'Enter Announcement Description')
     .min(20, 'Description must be at least 20 characters')
     .max(60, 'Name must be at most 60 characters')
@@ -53,7 +48,14 @@ export const AnnouncementSchema = Yup.object({
     )
 
     .required("Enter Post Date"),
-
+    
+    AnnouncementLink: Yup.string()
+    .matches(
+      /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w.-]*)*\/?$/, 
+      'Please enter a valid URL'
+    )
+    .required('Please enter a URL'),
+  
 
 });
 
