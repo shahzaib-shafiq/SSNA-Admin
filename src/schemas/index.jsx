@@ -3,7 +3,7 @@ import * as Yup from "yup";
 export const FacultySchema = Yup.object({  
   name: Yup.string().matches(/^[A-Za-z\s]+$/, 'Please enter only characters and spaces')
     .min(2, 'Name must be at least 2 characters')
-    .max(50, 'Name must be at most 50 characters')
+    .max(20, 'Name must be at most 20 characters')
     .required('Please enter your name'),
 
     email: Yup.string()
