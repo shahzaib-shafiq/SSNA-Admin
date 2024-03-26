@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 export const FacultySchema = Yup.object({  
-  name: Yup.string().matches(/^[A-Za-z\s]+$/, 'Please enter only characters and spaces')
+  name: Yup.string().matches(/^[A-Za-z\s]+$/, 'Please enter only characters in name')
     .min(2, 'Name must be at least 2 characters')
     .max(20, 'Name must be at most 20 characters')
     .required('Please enter your name'),
@@ -67,10 +67,10 @@ title: Yup.string()
 
 
 export const CourseMaterialSchema = Yup.object({
-  CourseName: Yup.string().matches(/^[A-Za-z]+$/, 'Title contain only characters')
-    .min(2, 'Name must be at least 2 characters')
-    .max(25, 'Name must be at most 25 characters')
-    .required('Please enter post Title'),   
+  CourseName: Yup.string().matches(/^[A-Za-z\s]+$/, 'Please Enter Course Name')
+  .min(2, 'Name must be at least 2 characters')
+  .max(30, 'Name must be at most 20 characters')
+  .required('Please enter course Name'),
 
     CourseCode: Yup.string().matches(/^[A-Za-z]{2}\d{3,4}$/, 'Course code must start with 2 characters followed by 3 or 4 numbers')
     .min(5, 'Course code must be at least 5 characters')
