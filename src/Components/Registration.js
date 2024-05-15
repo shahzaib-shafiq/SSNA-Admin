@@ -18,7 +18,7 @@ const GoogleRegistration = () => {
   signInWithPopup(auth, provider)
     .then((data) => {
       const userEmail = data.user.email;
-      if (userEmail.endsWith('@cfd.nu.edu.pk')) {
+      if (userEmail.endsWith("@cfd.nu.edu.pk") || userEmail.endsWith("@nu.edu.pk")) {
         setValue(userEmail);
         localStorage.setItem('email', userEmail);
         Swal.fire({
