@@ -24,7 +24,7 @@ export const FacultySchema = Yup.object({
     .min(2, 'Name must be at least 2 characters')
     .max(450, 'Name must be at most 50 characters')
     .required('Please enter Area of Intrest'),
-  id: Yup.string().matches(/^[0-9_]+$/, "Must be a valid 6 Digit Id ").min(6).max(6).required("Enter ID"),
+  id: Yup.string().matches(/^[0-9_]+$/, "Must be a valid 4 Digit Id ").min(4).max(4).required("Enter ID"),
 
 });
 export const AnnouncementSchema = Yup.object({
